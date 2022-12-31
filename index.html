@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chanam</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./assets/css/main.css">
+</head>
+
+<body>
+    <section id="header" include-html="./assets/layout/header.html"></section>
+    <section id="hero" class="layout" include-html="./assets/layout/hero.html"></section>
+    <section id="banner" class="layout" include-html="./assets/layout/banner.html"></section>
+    <section id="product" class="layout" include-html="./assets/layout/product.html"></section>
+    <section id="footer" class="layout" include-html="./assets/layout/footer.html"></section>
+
+    <!-- Include all html files into one -->
+    <script>
+        (function includeHTML() {
+            let elements, file, xmlHttp
+
+            // Loop through a collection of all HTML elements
+            elements = document.getElementsByTagName('*')
+
+            Array.from(elements).forEach(element => {
+                // Search for elements with a certain attribute
+                file = element.getAttribute('include-html')
+
+                if (file) {
+                    // Make an HTTP request using the attribute value as the file name
+                    xmlHttp = new XMLHttpRequest()
+                    xmlHttp.onreadystatechange = function () {
+                        if (this.readyState === 4) {
+                            if (this.status === 200) {
+                                element.innerHTML = this.responseText;
+                            }
+                            if (this.status === 404) {
+                                element.innerHTML = "Page not found!";
+                            }
+
+                            // Remove the attribute, and call this function once more
+                            element.removeAttribute('include-html')
+                            includeHTML()
+                        }
+                    }
+                    xmlHttp.open('GET', file, true)
+                    xmlHttp.send()
+
+                    return
+                }
+            })
+        })()
+    </script>
+    <script type="module" src="./assets/js/main.js"></script>
+</body>
+
+</html>

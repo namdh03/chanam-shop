@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@700&display=swap');
+
+.banner__item {
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.banner__item:hover .banner__item-text a::after {
+    width: 40px;
+    background-color: #e53637;
+}
+
+.banner__item-img img {
+    max-width: 100%;
+    background-position: center;
+}
+
+.banner__item-text {
+    position: absolute;
+    left: 0;
+    max-width: 300px;
+    padding-top: 20px;
+}
+
+.banner__item-text h2 {
+    margin-bottom: 10px;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 46px;
+    color: #111111;
+}
+
+.banner__item-text a {
+    position: relative;
+    display: inline-block;
+    padding: 3px 0;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #111111;
+}
+
+.banner__item-text a::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    left: 0;
+    bottom: 0;
+    background-color: #111111;
+    transition: all 0.3s;
+}
+
+.banner__item.banner__item--middle {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: -70px;
+}
+
+.banner__item.banner__item--middle .banner__item-text {
+    position: unset;
+}
+
+.banner__item.banner__item--last {
+    margin-top: 100px;
+}
+
+/* Mobile: width < 740px */
+@media only screen and (max-width: 739px) {
+    .banner__item {
+        flex-direction: column;
+        margin-bottom: 40px;
+        align-items: flex-start;
+    }
+
+    .banner__item.banner__item--middle,
+    .banner__item.banner__item--last {
+        margin-top: 0;
+    }
+
+    .banner__item-text {
+        position: relative;
+        max-width: 100%;
+        padding-top: 4px;
+    }
+
+    .banner__item-text h2 {
+        font-size: 30px;
+        line-height: 36px;
+        margin-bottom: 0;
+    }
+
+    .banner__item-text a {
+        font-size: 12px;
+    }
+
+    .banner__item-text a::after {
+        height: 0.5px;
+    }
+
+    .banner__item-img {
+        width: 100%;
+    }
+
+    .banner__item-img img {
+        min-width: 100%;
+    }
+}
+
+/* Tablet: width >= 740px and width < 1024px */
+@media only screen and (min-width: 740px) and (max-width: 1023px) {
+
+    .banner__item.banner__item--middle,
+    .banner__item.banner__item--last {
+        margin-top: 40px;
+    }
+}
+
+/* pc: width >= 1024px */
+@media only screen and (min-width: 1024px) {}

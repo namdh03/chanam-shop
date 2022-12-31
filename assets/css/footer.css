@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@700&display=swap');
+
+.footer__about {
+    margin-bottom: 30px;
+}
+
+.footer__about .footer__logo {
+    margin-bottom: 30px;
+}
+
+.footer__about .footer__logo a {
+    display: inline-block;
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.footer__about p {
+    color: #b7b7b7;
+    font-size: 16px;
+    font-family: 'Nunito Sans', sans-serif;
+    line-height: 25px;
+    margin-bottom: 30px;    
+}
+
+.footer__widget {
+    margin-bottom: 30px;
+}
+
+.footer__widget h6 {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.footer__widget ul li {
+    line-height: 36px;
+    list-style: none;
+}
+
+.footer__widget ul li a {
+    color: #b7b7b7;
+    font-size: 16px;
+    text-decoration: none;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.footer__widget .footer__newslatter p {
+    color: #b7b7b7;
+    font-size: 16px;
+    font-family: 'Nunito Sans', sans-serif;
+    line-height: 25px;
+    margin-bottom: 30px;    
+}
+
+#newletter-form {
+    position: relative;
+}
+
+.footer__widget .footer__newslatter form input {
+    width: 100%;
+    font-size: 16px;
+    color: #fff;
+    background: transparent;
+    border: none;
+    padding: 16px 36px 16px 0;
+    border-bottom: 2px solid #ffffff;
+    outline: none;
+    overflow: visible;
+    font-family: 'Nunito Sans', sans-serif;
+    margin-bottom: 6px;
+}
+
+.footer__widget .footer__newslatter form input:-webkit-autofill,
+.footer__widget .footer__newslatter form input:-webkit-autofill:focus {
+  transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+.footer__widget .footer__newslatter form button {
+    color: #b7b7b7;
+    font-size: 20px;
+    position: absolute;
+    right: 5px;
+    top: 0;
+    line-height: 55px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.footer__widget .footer__newslatter form button:hover {
+    color: #6759ff;
+}
+
+.form-group.invalid .form-control {
+    border-color: #f33a58;
+}
+
+.form-group.invalid .form-message {
+    color: #f33a58;
+}
+
+/* Mobile: width < 740px */
+@media only screen and (max-width: 739px) {
+    .footer__about,
+    .footer__widget {
+        padding: 0 20px;
+    }
+}
+
+/* Tablet: width >= 740px and width < 1024px */
+@media only screen and (min-width: 740px) and (max-width: 1023px) {
+    .footer__widget {
+        margin-bottom: 60px;
+    }
+
+    .footer__widget .footer__newslatter p {
+        margin-bottom: 16px;    
+    }
+}
+
+/* pc: width >= 1024px */
+@media only screen and (min-width: 1024px) {}

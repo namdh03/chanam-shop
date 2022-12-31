@@ -1,0 +1,34 @@
+@import url(../lib/grid.css);
+@import url(../lib/toast.css);
+@import url(../css/header.css);
+@import url(../css/hero.css);
+@import url(../css/banner.css);
+@import url(../css/product.css);
+@import url(../css/footer.css);
+
+.layout {
+    padding: 100px 0;
+}
+
+#banner {
+    background: #f3f7fa;
+}
+
+#product {
+    padding-top: 0;
+    padding-bottom: 60px;
+    background: #f3f7fa;;
+}
+
+#footer {
+    background: #111111;
+    padding-top: 70px;
+}
+
+.hide {
+    display: none;
+}
+
+a, button {
+    -webkit-tap-highlight-color: transparent;
+}
