@@ -62,9 +62,9 @@ export default function product() {
                     <div class="col l-4 l-o-0 m-12 m-o-0 c-10 c-o-1" data-index="${index}">
                         <div class="product__item" data-category="${product.category.name}">
                             <div class="product__item-img-wrapper">
-                                <a href="" class="product__item-link">
+                                <div href="" class="product__item-link">
                                     <img src="${product.images[0]}" alt="" class="product__item-img">
-                                </a>
+                                </div>
 
                                 <div class="product__item-btn-wrapper">
                                     <div class="product__item-btn product__btn--quick-view">

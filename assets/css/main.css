@@ -29,6 +29,21 @@
     display: none;
 }
 
-a, button {
+a, button, img {
     -webkit-tap-highlight-color: transparent;
 }
+
+/* Mobile: width < 740px */
+@media only screen and (max-width: 739px) {
+    #banner {
+        padding-bottom: 30px;
+    }
+}
+
+/* Tablet: width >= 740px and width < 1024px */
+@media only screen and (min-width: 740px) and (max-width: 1023px) {
+    
+}
+
+/* pc: width >= 1024px */
+@media only screen and (min-width: 1024px) {}
