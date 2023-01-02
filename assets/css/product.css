@@ -439,7 +439,23 @@
 }
 
 .product__qv-tablist {
+    max-height: 480px;
+    overflow-y: auto;
+}
 
+.product__qv-tablist::-webkit-scrollbar {
+    width: 16px;
+}
+
+.product__qv-tablist::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.product__qv-tablist::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
 }
 
 .product__qv-tablist-img {
@@ -447,14 +463,13 @@
     height: 90px;
     margin-bottom: 16px;
     padding: 2px;
-    display: flex;
-    align-items: center;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
     cursor: pointer;
+    list-style: none;
 }
 
 .product__qv-tablist-img:hover {
@@ -515,6 +530,7 @@
     -ms-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
 }
 
 .product__qv-main {
@@ -551,7 +567,7 @@
 
 .product__qv-main-img {
     width: 100%;
-    height: 500px;
+    height: 480px;
 }
 
 .product__qv-main-img img {
@@ -620,9 +636,9 @@
     padding: 10px;
     width: 280px;
     border-radius: 4px;
-    -moz-appearance:none;
-    -webkit-appearance:none; 
-    appearance:none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
     font-weight: 600;
     outline: none;
     cursor: pointer;
@@ -717,8 +733,115 @@
     transition: all 0.3s ease;
 }
 
-.product__qv-add-to-wishlist:hover {
+/* .product__qv-add-to-wishlist:hover {
     background-color: #6759ff;
+} */
+
+.product__qv-add-to-wishlist.active {
+    background-color: #6759ff;
+}
+
+.product__qv-inner {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    opacity: 0;
+    transform: scale(0.8);
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    visibility: hidden;
+}
+
+.product__qv-inner.active {
+    opacity: 1;
+    transform: scale(1);
+    visibility: visible;
+}
+
+.product__qv-inner-close-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    margin: 10px 26px 0 0;
+    cursor: pointer;
+}
+
+.product__qv-inner-close-btn i {
+    color: #fff;
+    font-size: 40px;
+}
+
+.product__qv-inner-overlay {
+    background-color: #000;
+    opacity: 0.9;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.product__qv-inner-control-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    padding: 0 16px;
+    z-index: -1;
+    display: flex;
+}
+
+.product__qv-inner-btn-prev,
+.product__qv-inner-btn-next {
+    cursor: pointer;
+}
+
+.product__qv-inner-btn-next {
+    margin: 0 0 0 auto;
+}
+
+.product__qv-inner-img {
+    position: fixed;
+    width: 574px;
+    margin: 0 auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.product__qv-inner-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    cursor: pointer;
+}
+
+.product__qv-cnt-img {
+    display: block;
+    font-family: "Lora", Sans-serif;
+    font-size: 16px;
+    color: #fff;
+    text-align: right;
+}
+
+.product__qv-inner-btn {
+    outline: none;
+    border: none;
+    font-size: 60px;
+    background-color: transparent;
+    color: #fff;
 }
 
 /* Mobile: width < 740px */
@@ -736,7 +859,7 @@
         padding: 0 20px;
         margin-left: 16px;
     }
-    
+
     .product__item-img-wrapper {
         height: 100%;
     }
@@ -746,7 +869,7 @@
         width: 48px;
 
     }
-    
+
     .product__item-btn-link i {
         line-height: 48px;
         font-size: 20px;
@@ -761,6 +884,68 @@
         top: 10px;
         right: 46px;
         color: #000;
+    }
+
+    #qv-form .product__qv-select-form label {
+        justify-content: flex-start;
+    }
+
+    .product__qv-add-to-wishlist {
+        margin-left: 12px;
+    }
+
+    .product__qv-inner-btn {
+        font-size: 30px;
+    }
+
+    .product__qv-inner-btn i {
+        background-color: #000;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+        padding: 8px;
+    }
+
+    .product__qv-main-img {
+        height: 300px;
+    }
+
+    .product__qv-tablist {
+        height: 300px;
+    }
+
+    .product__qv-tablist {
+        overflow-y: overlay;
+    }
+
+    .product__qv-tablist::-webkit-scrollbar-thumb {
+        box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    }
+
+    .product__qv-control-btn i {
+        padding: 6px;
+    }
+
+    .product__qv-show-more-btn i {
+        font-size: 12px;
+    }
+
+    /* Quick View Inner */
+    .product__qv-inner-control-btn {
+        z-index: 0;
+    }
+
+    .product__qv-inner-close-btn {
+        z-index: 1;
+        background-color: #000;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+        padding: 8px;
+    }
+
+    .product__qv-inner-close-btn i {
+        font-size: 24px;
+    }
+
+    .product__qv-cnt-img {
+        text-align: center;
     }
 }
 
@@ -778,6 +963,7 @@
 
 /* Mobile & tablet */
 @media (max-width: 1023px) {
+
     /* Product Quick View */
     .product__qv-tablist-img {
         height: 90px;
@@ -785,7 +971,7 @@
 
     .product__qv-info {
         padding: 0;
-        margin-top: 50px;
+        margin-top: 30px;
     }
 
     #qv-form .product__qv-select-form label {
@@ -793,20 +979,24 @@
     }
 
     #qv-form .product__qv-select-form select {
-        width: 84%;
+        width: 74%;
+    }
+
+    .product__qv-control-btn i {
+        opacity: 1;
+        background-color: #000;
+        color: #fff;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
     }
 }
 
 /* pc: width >= 1024px */
-@media only screen and (min-width: 1024px) {
-    
-}
+@media only screen and (min-width: 1024px) {}
 
 /* Fix breakpoint 1280px */
 @media only screen and (min-width: 1024px) and (max-width: 1280px) {
     .product__qv-wrapper {
         margin: 80px 0;
-        padding: 60px 0;
     }
 
     .product__qv-close-btn {

@@ -15,10 +15,12 @@ export default function product() {
     let viewMoreButton = $('.product__view-more-btn')
 
     return {
+        products: [],
+        categories: [],
         curIndex: 0,
 
         async getProductsAPI() {
-            let productApi = 'https://api.escuelajs.co/api/v1/products'
+            let productApi = 'https://dummyjson.com/products'
             return (await fetch(productApi)).json()
         },
 
@@ -26,7 +28,7 @@ export default function product() {
             let categoryApi = 'https://api.escuelajs.co/api/v1/categories'
             return (await fetch(categoryApi)).json()
         },
-        
+
         // Handle get parent of element based on selector 
         getParent(element, selector) {
             while (element.parentElement) {
@@ -51,10 +53,11 @@ export default function product() {
 
         // Handle render products
         async renderProducts() {
-            let products = await this.getProductsAPI()
+            let data = await this.getProductsAPI()
+            this.products = data.products
 
-            if (products) {
-                productContainer.innerHTML = products.map((product, index) => {
+            if (this.products) {
+                productContainer.innerHTML = this.products.map((product, index) => {
                     return `
                     <div class="col l-4 l-o-0 m-12 m-o-0 c-10 c-o-1" data-index="${index}">
                         <div class="product__item" data-category="${product.category.name}">
@@ -112,8 +115,8 @@ export default function product() {
 
         // Handle render category button
         async renderCategories() {
-            let categories = await this.getCategoriesAPI()
-            categories.forEach(category => {
+            this.categories = await this.getCategoriesAPI()
+            this.categories.forEach(category => {
                 let button = document.createElement('button')
                 button.setAttribute('class', 'product__category-btn')
                 button.innerText = `${category.name}`
@@ -123,7 +126,7 @@ export default function product() {
 
         handleEvents() {
             const _this = this
-            
+
             // Handle filter categories of products
             Array.from(productCategoryBtn).forEach(button => {
                 button.onclick = function (e) {
@@ -131,7 +134,7 @@ export default function product() {
                         $('.product__category-btn.active').classList.remove('active')
                     }
                     e.target.classList.add('active')
-        
+
                     Array.from(productItems).filter((product, index) => {
                         if (e.target.innerText.toLowerCase() === 'all products') {
                             product.parentNode.classList.remove('hide')
@@ -238,7 +241,7 @@ export default function product() {
             await this.renderCategories()
             this.loadCurProducts()
             this.handleEvents()
-            quickViewProducts().start()
+            quickViewProducts(this.products).start()
         },
     }
 }

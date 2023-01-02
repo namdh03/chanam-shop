@@ -1,18 +1,38 @@
 <div class="product__quick-view hide">
     <div class="product__qv-overlay"></div>
-    <div class="product__qv-inner"></div>
+    <div class="product__qv-inner">
+        <div class="product__qv-inner-overlay"></div>
+        <button class="product__qv-inner-close-btn">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="product__qv-inner-img">
+            <img src="" alt="">
+            <span class="product__qv-cnt-img"></span>
+        </div>
+
+        <div class="product__qv-inner-control-btn">
+            <button class="product__qv-inner-btn product__qv-inner-btn-prev">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+
+            <button class="product__qv-inner-btn product__qv-inner-btn-next">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
     <div class="product__qv-wrapper">
         <button class="product__qv-close-btn">
             <i class="fa-solid fa-xmark"></i>
         </button>
 
-        <div class="grid wide">
+        <div class="grid">
             <div class="row">
-                <div class="col l-1 m-2 c-2">
-                    <div class="product__qv-tablist"></div>
+                <div class="col l-1 m-2 c-3">
+                    <ul class="product__qv-tablist"></ul>
                 </div>
 
-                <div class="col l-6 m-10 c-10">
+                <div class="col l-6 m-10 c-9">
                     <div class="product__qv-center">
                         <div class="product__qv-control">
                             <button class="product__qv-control-btn product__qv-control-btn--left">

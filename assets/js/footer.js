@@ -3,7 +3,7 @@ import toast from '../lib/toast.js';
 
 export default function footer() {
     let newLetterForm = new validator('#newletter-form')
-    let input = document.querySelector('.form-group input')
+    let input = document.querySelector('#newletter-form .form-group input')
 
     newLetterForm.onSubmit = formData => {
         console.log(formData);

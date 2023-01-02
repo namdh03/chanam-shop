@@ -3,26 +3,35 @@ import product from '../js/product.js'
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 
-export default function quickViewProducts() {
+export default function quickViewProducts(products = undefined) {
     let quickViewButtons = $$('.product__btn--quick-view')
     let productQuickView = $('.product__quick-view')
     let qvCloseBtn = $('.product__qv-close-btn')
-    // let qvWrapper = $('.product__qv-wrapper')
     let qvTablist = $('.product__qv-tablist')
     let qvMainImg = $('.product__qv-main-img img')
     let qvTitle = $('.product__qv-title')
     let qvPrice = $('.product__qv-price')
     let qvDesc = $('.product__qv-desc')
-    let plusButton
-    let minusButton
-    let inputQuantity
+    let qvNextBtn = $('.product__qv-control-btn--right')
+    let qvPrevBtn = $('.product__qv-control-btn--left')
+    let plusButton = $('.product__qv-quantity-plus-btn')
+    let minusButton = $('.product__qv-quantity-minus-btn')
+    let inputQuantity = $('input')
+    let qvAddToWishlist = $('.product__qv-add-to-wishlist')
+    let qvShowMoreBtn = $('.product__qv-show-more-btn')
+    let qvInner = $('.product__qv-inner')
+    let qvInnerCloseBtn = $('.product__qv-inner-close-btn')
+    let qvInnerImg = $('.product__qv-inner-img img')
+    let qvCntImg = $('.product__qv-cnt-img')
+    let qvInnerBtnPrev = $('.product__qv-inner-btn-prev')
+    let qvInnerBtnNext = $('.product__qv-inner-btn-next')
 
     return {
         countQuantity: 1,
         indexImg: 0,
-        async renderQuickView() {
+        innerIndexImg: 0,
+        renderQuickView() {
             const _this = this
-            let products = await product().getProductsAPI()
             Array.from(quickViewButtons).forEach(button => {
                 button.onclick = function () {
                     // Reset index image
@@ -41,10 +50,10 @@ export default function quickViewProducts() {
                         qvMainImg.src = products[dataIndex].images[0]
                         qvTablist.innerHTML = Array.from(products[dataIndex].images).map((image, index) => {
                             return `
-                                <div class="product__qv-tablist-img ${index === 0 ? 'active' : ''}" data-tablist="${index}">
-                                    <img src="${image}}"
+                                <li class="product__qv-tablist-img ${index === 0 ? 'active' : ''}" data-tablist="${index}">
+                                    <img src="${image}"
                                         alt="">
-                                </div>
+                                </li>
                             `
                         }).join('')
                     }
@@ -52,6 +61,16 @@ export default function quickViewProducts() {
                     _this.handleEvents()
                 }
             })
+        },
+
+        renderInnerQuickView() {
+            this.innerIndexImg === qvTablist.children.length - 1
+                ? qvInnerBtnNext.classList.add('hide')
+                : qvInnerBtnNext.classList.remove('hide')
+            this.innerIndexImg === 0 ? qvInnerBtnPrev.classList.add('hide') : qvInnerBtnPrev.classList.remove('hide')
+
+            qvInnerImg.src = qvTablist.children[this.innerIndexImg].firstElementChild.src
+            qvCntImg.innerText = `${this.innerIndexImg + 1} of ${$$('.product__qv-tablist-img').length}`
         },
 
         handleEvents() {
@@ -92,54 +111,82 @@ export default function quickViewProducts() {
                 })
 
             // Handle click next image
-            isElementLoaded('.product__qv-control-btn--right', 'querySelector')
-                .then(selector => {
-                    selector.onclick = function () {
-                        _this.indexImg++
+            qvNextBtn.onclick = function () {
+                _this.indexImg++
 
-                        if (_this.indexImg === qvTablist.children.length) {
-                            _this.indexImg = 0
-                        }
+                if (_this.indexImg === qvTablist.children.length) {
+                    _this.indexImg = 0
+                }
 
-                        qvMainImg.src = qvTablist.children[_this.indexImg].firstElementChild.src
-                        _this.activeTabListImage()
-                    }
-                })
+                qvMainImg.src = qvTablist.children[_this.indexImg].firstElementChild.src
+                _this.activeTabListImage()
+            }
 
             // Handle click prev image
-            isElementLoaded('.product__qv-control-btn--left', 'querySelector')
-                .then(selector => {
-                    selector.onclick = function () {
-                        _this.indexImg--
+            qvPrevBtn.onclick = function () {
+                _this.indexImg--
 
-                        if (_this.indexImg < 0) {
-                            _this.indexImg = qvTablist.children.length - 1
-                        }
+                if (_this.indexImg < 0) {
+                    _this.indexImg = qvTablist.children.length - 1
+                }
 
-                        qvMainImg.src = qvTablist.children[_this.indexImg].firstElementChild.src
-                        _this.activeTabListImage()
-                    }
-                })
+                qvMainImg.src = qvTablist.children[_this.indexImg].firstElementChild.src
+                _this.activeTabListImage()
+            }
 
-            // Handle click plus and minus button quantity
-            isElementLoaded('.product__qv-quantity', 'querySelector')
-                .then(selector => {
-                    plusButton = selector.querySelector('.product__qv-quantity-plus-btn')
-                    minusButton = selector.querySelector('.product__qv-quantity-minus-btn')
-                    inputQuantity = selector.querySelector('input')
+            // Handle click plus button quantity
+            plusButton.onclick = function () {
+                inputQuantity.value = ++(_this.countQuantity)
+            }
 
-                    plusButton.onclick = function () {
-                        inputQuantity.value = ++(_this.countQuantity)
-                    }
+            // Handle click minus button quantity
+            minusButton.onclick = function () {
+                --(_this.countQuantity)
+                if (_this.countQuantity < 0) {
+                    _this.countQuantity = 0
+                }
+                inputQuantity.value = _this.countQuantity
+            }
 
-                    minusButton.onclick = function () {
-                        --(_this.countQuantity)
-                        if (_this.countQuantity < 0) {
-                            _this.countQuantity = 0
-                        }
-                        inputQuantity.value = _this.countQuantity
-                    }
-                })
+            // Handle click quick view add to wishlist button
+            qvAddToWishlist.onclick = function () {
+                qvAddToWishlist.classList.toggle('active')
+            }
+
+            // Handle show quick view inner
+            qvShowMoreBtn.onclick = function () {
+                _this.innerIndexImg = _this.indexImg
+                qvInner.classList.add('active')
+                _this.renderInnerQuickView()
+            }
+
+            // Handle hide quick view inner
+            qvInnerCloseBtn.onclick = function () {
+                qvInner.classList.remove('active')
+            }
+
+            // Handle click inner button next
+            qvInnerBtnNext.onclick = function () {
+                _this.innerIndexImg !== qvTablist.children.length - 1 ? _this.innerIndexImg++ : undefined
+                _this.renderInnerQuickView()
+            }
+
+            // Handle click inner button prev
+            qvInnerBtnPrev.onclick = function () {
+                _this.innerIndexImg !== 0 ? _this.innerIndexImg-- : undefined
+                _this.renderInnerQuickView()
+            }
+
+            // Handle click quick view inner image
+            qvInnerImg.onclick = function () {
+                _this.innerIndexImg++
+
+                if (_this.innerIndexImg === qvTablist.children.length) {
+                    _this.innerIndexImg = 0
+                }
+
+                _this.renderInnerQuickView()
+            }
         },
 
         checkTabListImg() {
@@ -158,8 +205,8 @@ export default function quickViewProducts() {
 
         },
 
-        async start() {
-            await this.renderQuickView()
+        start() {
+            this.renderQuickView()
         }
     }
 }
