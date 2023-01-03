@@ -6,6 +6,6 @@ import footer from '../js/footer.js'
 window.onload = function() {
     header()
     hero()
-    product().start()
-    footer()
+    // product().start()
+    // footer()
 }

@@ -1,36 +1,44 @@
-.hero__slider {
-    position:relative;
+
+.swiper {
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+.swiper-wrapper {
 }
 
-.hero__items {
-    height: 800px;
-    /* padding-top: 130px; */
-}
-
-.set-bg {
-    background-repeat: no-repeat;
+.swiper-slide {
+    display: flex;
     background-size: cover;
+    background-repeat: no-repeat;
     background-position: top center;
 }
 
 .swiper-slide img {
-    width:100%;
+    /* display: block; */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
 }
 
 .hero__text {
-    position:absolute;
-    padding-top: 0px;
+    /* padding-top: 0px; */
+    position: relative;
+    height: 800px;
+    padding-top: 230px;
 }
 
 .hero__text h6 {
     top: 0;
     opacity: 1;
-    color:#e53637;
+    color:#DD8262;
     font-size: 14px;
     font-weight: 700;
     letter-spacing: 2px;
     margin-bottom: 28px;
-    /* position: relative; */
 }
 
 .hero__text h2 {
@@ -41,7 +49,6 @@
     font-weight: 700;
     line-height: 58px;
     margin-bottom: 30px;
-    /* position: relative; */
 }
 
 .hero__text p {
@@ -51,13 +58,81 @@
     font-size: 16px;
     line-height: 28px;
     margin-bottom: 35px;
-    /* position: relative; */
+}
+
+.primary-btn {
+    /* display: inline-block; */
+    font-size: 13px;
+    font-weight: 700;
+    padding: 14px 30px;
+    color: #ffffff;
+    background: #000000;
+    letter-spacing: 4px;
+    cursor: pointer;
+    border:none;
+}
+
+.primary-btn:hover {
+    color: #ffffff;
+    background: #DD8262;
+}
+
+.hero__social {
+    margin-top: 190px;
+}
+
+.hero__social a {
+    color:#111111;
+    font-size: 16px;
+    display: inline-block;
+    margin-right: 32px;
+}
+
+.hero__social a:hover {
+    color:#DD8262;
 }
 
 .swiper-button-next {
     color:#111111;
 }
 
+.swiper-button-next:hover {
+    color: #DD8262;
+}
+
 .swiper-button-prev {
     color:#111111;
+}
+
+.swiper-button-prev:hover {
+    color: #DD8262;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Mobile: width < 740px */
+@media only screen and (max-width: 739px) {
+    
+
+}
+
+/* Tablet: width >= 740px and width < 1023px */
+@media only screen and (min-width: 740px) and (max-width: 1023px) {
+    
+
+}
+
+
+
+/* pc: width >= 1023px */
+@media only screen and (min-width: 1024px) {
+
 }

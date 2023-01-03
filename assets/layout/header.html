@@ -1,14 +1,5 @@
 <div class="grid wide">
     <div class="row header__row">
-        <div class="mobile__menu">
-            <div class="mobile__menu-icon">
-                <span class="icon-bars"></span>
-                <span class="icon-bars"></span>
-                <span class="icon-bars"></span>
-            </div>
-            <a>Menu</a>
-        </div>
-
         <div class="col c-3 m-3">
             <div class="nav__logo" href="#home">
                 <img src="./assets/img/logo_transparent.png">
@@ -33,10 +24,11 @@
             <a href="#cart" class="nav__client-cart">
                 <i class="fa-solid fa-cart-shopping"></i>
                 <!-- <span>0</span> -->
-                <!-- 
-                    <div class="cart__list">
-                        <a>No products in the cart.</a>
-                    </div> -->
+                <div class="cart__list">
+                    <a class="cart__list-no-cart">
+                        No products in the cart.
+                    </a>
+                </div>
             </a>
 
             <a href="#heart" class="nav__client-heart">
@@ -48,7 +40,14 @@
             </a>
         </div>
 
-    
+        <div class="mobile__menu">
+            <div class="mobile__menu-icon">
+                <span class="icon-bars"></span>
+                <span class="icon-bars"></span>
+                <span class="icon-bars"></span>
+            </div>
+            <a>Menu</a>
+        </div>
 </div>
 </div>
 
