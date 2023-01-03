@@ -1,10 +1,15 @@
 @import url(../lib/grid.css);
 @import url(../lib/toast.css);
+@import url(../css/loader.css);
 @import url(../css/header.css);
 @import url(../css/hero.css);
 @import url(../css/banner.css);
 @import url(../css/product.css);
 @import url(../css/footer.css);
+
+body {
+    overflow: hidden;
+}
 
 .layout {
     padding: 100px 0;
@@ -37,6 +42,11 @@ a, button, img {
 @media only screen and (max-width: 739px) {
     #banner {
         padding-bottom: 30px;
+    }
+
+    .row {
+        margin-left: 0;
+        margin-right: 0;
     }
 }
 

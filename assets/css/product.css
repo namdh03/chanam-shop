@@ -134,13 +134,14 @@
     overflow: hidden;
     display: flex;
     justify-content: center;
-    -webkit-transition: all 0.4s;
-    -o-transition: all 0.4s;
-    transition: all 0.4s;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
-    height: 300px;
+    height: 100%;
     width: 100%;
     background-color: #fff;
+    cursor: pointer;
 }
 
 .product__item-link::before {
@@ -174,7 +175,7 @@
 }
 
 .product__item-info {
-    margin-top: 20px;
+    margin: 18px 0;
 }
 
 .product__item-info-link {
@@ -188,17 +189,18 @@
 }
 
 .product__item-title {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 500;
     line-height: 1.2;
     color: #202424;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
 }
 
 .product__item-category {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
     color: #666;
+    margin-bottom: 8px;
 }
 
 .product__item-info-link:hover {
@@ -209,7 +211,7 @@
     color: #333;
     font-size: 20px;
     font-weight: 700;
-    margin: 4px 0 18px;
+    margin-bottom: 8px;
     text-transform: uppercase;
 }
 
@@ -250,8 +252,8 @@
 
 .product__item-btn-link {
     display: block;
-    height: 50px;
-    width: 50px;
+    height: 45px;
+    width: 45px;
     text-decoration: none;
     background-color: #fff;
     color: #333;
@@ -276,21 +278,21 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 0;
-    -webkit-transition: all 0.3s;
-    -o-transition: all 0.3s;
-    transition: all 0.3s;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
 }
 
 .product__item-btn-link:hover::after {
-    width: 100%;
-    height: 100%;
+    width: 105%;
+    height: 105%;
     opacity: 1;
     background-color: #6759ff;
 }
 
 .product__item-btn-link i {
-    line-height: 50px;
-    font-size: 20px;
+    line-height: 45px;
+    font-size: 16px;
     position: relative;
     z-index: 1;
 }
@@ -559,11 +561,13 @@
     -ms-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
+    opacity: 0.8;
 }
 
 .product__qv-show-more-btn:hover i {
     background-color: #6759ff;
     color: #fff;
+    opacity: 1;
 }
 
 .product__qv-main-img {
@@ -584,20 +588,24 @@
 
 .product__qv-title {
     font-family: "Lora", Sans-serif;
-    font-size: 30px;
-    padding-bottom: 16px;
+    font-size: 24px;
+    padding-bottom: 14px;
+    font-weight: 500;
+    color: #333;
 }
 
 .product__qv-price {
     font-family: "Lora", Sans-serif;
     font-weight: 900;
     font-size: 18px;
+    color: #333;
 }
 
 .product__qv-desc {
     font-family: "Lora", Sans-serif;
-    font-size: 16px;
-    padding: 24px 0 30px;
+    font-size: 14px;
+    padding: 22px 0 32px;
+    color: #666;
 }
 
 #qv-form .product__qv-select-form {
@@ -854,17 +862,18 @@
     }
 
     #product__search-input {
-        padding: 16px 36px;
+        padding: 12px 16px;
         text-overflow: ellipsis;
     }
 
     .product__search-btn {
         padding: 0 20px;
-        margin-left: 16px;
+        margin-left: 14px;
+        font-size: 18px;
     }
 
     .product__category-btn {
-        padding: 14px 20px;
+        padding: 12px 18px;
     }
 
     .product__item-img-wrapper {
@@ -888,12 +897,17 @@
     /* Product Quick View */
     .product__qv-wrapper {
         margin: 0;
-        padding: 60px 20px;
+        padding: 60px 0;
+    }
+    
+    .product__qv-info {
+        padding: 0 20px;
     }
 
     .product__qv-close-btn {
-        top: 10px;
-        right: 46px;
+        top: 16px;
+        right: 18px;
+        font-size: 28px;
         color: #000;
     }
 
@@ -925,6 +939,10 @@
 
     .product__qv-tablist {
         overflow-y: overlay;
+    }
+
+    .product__qv-tablist::-webkit-scrollbar {
+        width: 14px;
     }
 
     .product__qv-tablist::-webkit-scrollbar-thumb {
@@ -973,7 +991,6 @@
     }
 
     .product__qv-info {
-        padding: 0;
         margin-top: 50px;
     }
 
@@ -990,6 +1007,10 @@
         background-color: #000;
         color: #fff;
         box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+    }
+
+    .product__item-link {
+        pointer-events: none;
     }
 }
 

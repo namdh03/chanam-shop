@@ -1,4 +1,5 @@
 import quickViewProducts from '../js/quickView.js'
+import {showLoaderPage, hideLoaderPage} from '../js/loader.js'
 
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
@@ -20,11 +21,13 @@ export default function product() {
         curIndex: 0,
 
         async getProductsAPI() {
-            let productApi = 'https://dummyjson.com/products'
+            showLoaderPage()
+            let productApi = 'https://api.escuelajs.co/api/v1/products'
             return (await fetch(productApi)).json()
         },
 
         async getCategoriesAPI() {
+            showLoaderPage()
             let categoryApi = 'https://api.escuelajs.co/api/v1/categories'
             return (await fetch(categoryApi)).json()
         },
@@ -53,18 +56,17 @@ export default function product() {
 
         // Handle render products
         async renderProducts() {
-            let data = await this.getProductsAPI()
-            this.products = data.products
+            this.products = await this.getProductsAPI()
 
             if (this.products) {
                 productContainer.innerHTML = this.products.map((product, index) => {
                     return `
-                    <div class="col l-4 l-o-0 m-12 m-o-0 c-10 c-o-1" data-index="${index}">
+                    <div class="col l-4 l-o-0 m-6 m-o-0 c-10 c-o-1" data-index="${index}">
                         <div class="product__item" data-category="${product.category.name}">
                             <div class="product__item-img-wrapper">
-                                <div href="" class="product__item-link">
+                                <a href="" class="product__item-link">
                                     <img src="${product.images[0]}" alt="" class="product__item-img">
-                                </div>
+                                </a>
 
                                 <div class="product__item-btn-wrapper">
                                     <div class="product__item-btn product__btn--quick-view">
@@ -84,14 +86,14 @@ export default function product() {
                                     <div class="product__item-btn product__btn--compare">
                                         <div class="product__item-btn-tooltip">Compare</div>
                                         <div href="" class="product__item-btn-link">
-                                            <span><i class="fa-solid fa-right-left"></i></span>
+                                            <span><i class="ti-arrows-corner"></i></span>
                                         </div>
                                     </div>
                                     
                                     <div class="product__item-btn product__btn--add-to-cart">
                                         <div class="product__item-btn-tooltip">Add To Cart</div>
                                         <div href="" class="product__item-btn-link">
-                                            <span><i class="fa-solid fa-cart-flatbed"></i></span>
+                                            <span><i class="fa-brands fa-opencart"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -111,6 +113,7 @@ export default function product() {
                     `
                 }).join('')
             }
+            hideLoaderPage()
         },
 
         // Handle render category button
@@ -122,6 +125,7 @@ export default function product() {
                 button.innerText = `${category.name}`
                 productCategory.appendChild(button)
             })
+            hideLoaderPage()
         },
 
         handleEvents() {
@@ -156,19 +160,14 @@ export default function product() {
 
             // Handle search for product names
             productSearchBtn.onclick = function () {
-                Array.from(productTitle).forEach((title, index) => {
-                    let product = _this.getParent(title, '.product__item')
-                    if (productSearchInput.value) {
-                        if (title.innerText.toLowerCase().includes(productSearchInput.value.toLowerCase())) {
-                            product.parentElement.classList.remove('hide')
-                            product.parentElement.setAttribute('data-index', `${index}`)
-                        } else {
-                            product.parentElement.classList.add('hide')
-                            product.parentElement.removeAttribute('data-index')
-                        }
-                    }
-                })
-                _this.loadCurProducts()
+                _this.searchProducts()
+            }
+
+            // Handle click enter to search products
+            productSearchInput.onkeypress = function(e) {
+                if (e.keyCode === 13) {
+                    _this.searchProducts()
+                }
             }
 
             // Handle displaying more products when clicking the view more button
@@ -234,6 +233,22 @@ export default function product() {
                 emptyText.classList.add('hide')
                 viewMoreButton.classList.remove('hide')
             }
+        },
+
+        searchProducts() {
+            Array.from(productTitle).forEach((title, index) => {
+                let product = this.getParent(title, '.product__item')
+                if (productSearchInput.value) {
+                    if (title.innerText.toLowerCase().includes(productSearchInput.value.toLowerCase())) {
+                        product.parentElement.classList.remove('hide')
+                        product.parentElement.setAttribute('data-index', `${index}`)
+                    } else {
+                        product.parentElement.classList.add('hide')
+                        product.parentElement.removeAttribute('data-index')
+                    }
+                }
+            })
+            this.loadCurProducts()
         },
 
         async start() {
