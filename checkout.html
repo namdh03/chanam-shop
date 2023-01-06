@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chanam</title>
+    <link rel="stylesheet" href="./assets/fonts/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./assets/css/main.css">
+</head>
+
+<body>
+    <div class="loader-wrapper loader-wrapper--page">
+        <div class="loader-page">
+            <div class="loader-page__box"></div>
+            <div class="loader-page__box"></div>
+        </div>
+    </div>
+
+    <div class="loader-wrapper loader-wrapper--default loader-wrapper--bgcolor hidden">
+        <div class="loader-default">
+            <svg viewBox="0 0 80 80">
+                <rect x="8" y="8" width="64" height="64"></rect>
+            </svg>
+        </div>
+    </div>
+
+    <div class="back-to-top hide">
+        <div class="progress">
+            <span class="ti-arrow-up"></span>
+        </div>
+    </div>
+
+    <section id="header" include-html="./assets/layout/header.html"></section>
+    <section id="checkout" class="layout">
+        <div class="grid wide">
+            <div class="row">
+                <div class="col l-12 m-12 c-12">
+                    <div id="checkout-coupon" class="checkout-coupon hide">
+                        <p>If you have a coupon code, please apply it below.</p>
+                        <div class="checkout-coupon__form">
+                            <span><input type="text" placeholder="Coupon code" class="checkout-coupon__code"></span>
+                            <button class="checkout-coupon__submit">APPLY COUPON</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col l-6 m-12 c-12">
+                    <div class="checkout-bill">
+                        <h3 class="checkout-bill__title">BILLING DETAILS</h3>
+                        <form action="" method="POST" class="form form--modifier" id="checkout-form">
+                            <div class="grid">
+                                <div class="row">
+                                    <div class="col l-6 m-12 c-12">
+                                        <div class="form-group form-checkout-info">
+                                            <div for="firstname" class="form-label">First name
+                                                <span>*</span>
+                                            </div>
+                                            <input autocomplete="given-name" id="firstname" name="firstname"
+                                                rules="required" type="text" class="form-control">
+                                            <span class="form-message form-message--modifier"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col l-6 m-12 c-12">
+                                        <div class="form-group form-checkout-info">
+                                            <div for="email" class="form-label">Last name
+                                                <span>*</span>
+                                            </div>
+                                            <input autocomplete="family-name" id="lastname" name="lastname"
+                                                rules="required" type="text" class="form-control">
+                                            <span class="form-message form-message--modifier"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col l-6 m-12 c-12">
+                                        <div class="form-group form-checkout-info">
+                                            <div for="company" class="form-label">Company name (optional)</div>
+                                            <input autocomplete="organization" id="company" name="company" type="text"
+                                                class="form-control">
+                                            <span class="form-message form-message--modifier"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col l-6 m-12 c-12">
+                                        <div class="form-group form-checkout-info form-checkout-info--modifier">
+                                            <div for="country" class="form-label">Country / Region
+                                                <span>*</span>
+                                            </div>
+                                            <select id="country" name="country" rules="required" class="form-control"></select>
+                                            <span class="form-checkout__show-country"><i class="fa-solid fa-caret-down"></i></span>
+                                            <span class="form-message form-message--modifier"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col l-6 m-12 c-12">
+                                        <div class="form-group form-checkout-info">
+                                            <div for="address" class="form-label">Street address
+                                                <span>*</span>
+                                            </div>
+                                            <input autocomplete="address-line1" id="address" name="address"
+                                                rules="required" type="text" class="form-control">
+                                            <span class="form-message form-message--modifier"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col l-6 m-12 c-12">
+                                        <div class="form-group form-checkout-info">
+                                            <div for="apartment" class="form-label form-label--modifier">Apartment,
+                                                suite, unit, etc. (optional)</div>
+                                            <input autocomplete="address-line2" id="apartment" name="apartment"
+                                                type="text" class="form-control">
+                                            <span class="form-message form-message--modifier"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col l-6 m-12 c-12">
+                                        <div class="form-group form-checkout-info">
+                                            <div for="city" class="form-label">Town / City
+                                                <span>*</span>
+                                            </div>
+                                            <input autocomplete="address-level2" id="city" name="city" rules="required"
+                                                type="text" class="form-control">
+                                            <span class="form-message form-message--modifier"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col l-6 m-12 c-12">
+                                        <div class="form-group form-checkout-info">
+                                            <div for="state" class="form-label">State / County
+                                                <span>*</span>
+                                            </div>
+                                            <input autocomplete="address-level2" id="state" name="state"
+                                                rules="required" type="text" class="form-control">
+                                            <span class="form-message form-message--modifier"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col l-6 m-12 c-12">
+                                        <div class="form-group form-checkout-info">
+                                            <div for="postcode" class="form-label">Postcode / ZIP
+                                                <span>*</span>
+                                            </div>
+                                            <input autocomplete="postal-code" id="postcode" name="postcode"
+                                                rules="required" type="text" class="form-control">
+                                            <span class="form-message form-message--modifier"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col l-6 m-12 c-12">
+                                        <div class="form-group form-checkout-info">
+                                            <div for="phone" class="form-label">Phone
+                                                <span>*</span>
+                                            </div>
+                                            <input autocomplete="tel" id="phone" name="phone" rules="required|tel"
+                                                type="text" class="form-control">
+                                            <span class="form-message form-message--modifier"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col l-12 m-12 c-12">
+                                        <div class="form-group form-checkout-info">
+                                            <div for="email" class="form-label">Email
+                                                <span>*</span>
+                                            </div>
+                                            <input autocomplete="email" id="email" name="email" rules="required|email"
+                                                type="text" class="form-control">
+                                            <span class="form-message form-message--modifier"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <h3 class="checkout-bill__title">SHIP TO A DIFFERENT ADDRESS?
+                            <input type="checkbox" class="show-form-differ-btn">
+                        </h3>
+                        <form action="" method="POST" class="form hide" id="checkout-form-differ">
+                            <div class="grid">
+                                <div class="row">
+                                    <div class="col l-6 m-12 c-12">
+                                        <div class="form-group form-checkout-info">
+                                            <div for="firstname" class="form-label">First name
+                                                <span>*</span>
+                                            </div>
+                                            <input autocomplete="given-name" id="firstname" name="firstname"
+                                                rules="required" type="text" class="form-control">
+                                            <span class="form-message form-message--modifier"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col l-6 m-12 c-12">
+                                        <div class="form-group form-checkout-info">
+                                            <div for="email" class="form-label">Last name
+                                                <span>*</span>
+                                            </div>
+                                            <input autocomplete="family-name" id="lastname" name="lastname"
+                                                rules="required" type="text" class="form-control">
+                                            <span class="form-message form-message--modifier"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col l-6 m-12 c-12">
+                                        <div class="form-group form-checkout-info">
+                                            <div for="company" class="form-label">Company name (optional)</div>
+                                            <input autocomplete="organization" id="company" name="company" type="text"
+                                                class="form-control">
+                                            <span class="form-message form-message--modifier"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col l-6 m-12 c-12">
+                                        <div class="form-group form-checkout-info form-checkout-info--modifier">
+                                            <div for="country" class="form-label">Country / Region
+                                                <span>*</span>
+                                            </div>
+                                            <select id="country-differ" name="country" rules="required" class="form-control"></select>
+                                            <span class="form-checkout__show-country"><i class="fa-solid fa-caret-down"></i></span>
+                                            <span class="form-message form-message--modifier"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col l-6 m-12 c-12">
+                                        <div class="form-group form-checkout-info">
+                                            <div for="address" class="form-label">Street address
+                                                <span>*</span>
+                                            </div>
+                                            <input autocomplete="address-line1" id="address" name="address"
+                                                rules="required" type="text" class="form-control">
+                                            <span class="form-message form-message--modifier"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col l-6 m-12 c-12">
+                                        <div class="form-group form-checkout-info">
+                                            <div for="apartment" class="form-label form-label--modifier">Apartment,
+                                                suite, unit, etc. (optional)</div>
+                                            <input autocomplete="address-line2" id="apartment" name="apartment"
+                                                type="text" class="form-control">
+                                            <span class="form-message form-message--modifier"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col l-6 m-12 c-12">
+                                        <div class="form-group form-checkout-info">
+                                            <div for="city" class="form-label">Town / City
+                                                <span>*</span>
+                                            </div>
+                                            <input autocomplete="address-level2" id="city" name="city" rules="required"
+                                                type="text" class="form-control">
+                                            <span class="form-message form-message--modifier"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col l-6 m-12 c-12">
+                                        <div class="form-group form-checkout-info">
+                                            <div for="state" class="form-label">State / County
+                                                <span>*</span>
+                                            </div>
+                                            <input autocomplete="address-level2" id="state" name="state"
+                                                rules="required" type="text" class="form-control">
+                                            <span class="form-message form-message--modifier"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col l-12 m-12 c-12">
+                                        <div class="form-group form-checkout-info">
+                                            <div for="postcode" class="form-label">Postcode / ZIP
+                                                <span>*</span>
+                                            </div>
+                                            <input autocomplete="postal-code" id="postcode" name="postcode"
+                                                rules="required" type="text" class="form-control">
+                                            <span class="form-message form-message--modifier"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        
+                        <div class="grid">
+                            <div class="row">
+                                <div class="col l-12 m-12 c-12">
+                                    <div class="form-checkout-info">
+                                        <div for="postcode" class="form-label">Order notes (optional)</div>
+                                        <textarea name="order" id="order"
+                                            placeholder="Notes about your order, e.g. special notes for delivery."
+                                            cols="5" rows="2"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col l-6 m-12 c-12">
+                    <div class="checkout-bill">
+                        <h3 class="checkout-bill__title">
+                            YOUR ORDER
+                            <span class="checkout-coupon__toggle">
+                                Have a coupon?
+                                <a href="#" class="checkout-coupon__show-coupon">Click here to enter your code</a>
+                            </span>
+                        </h3>
+                        
+                        <div class="checkout__order-header">
+                            <div class="grid">
+                                <div class="row no-gutters">
+                                    <div class="col l-6 m-6 c-6">
+                                        <div class="product__order-title product__order--frames">Product</div>
+                                    </div>
+                                    <div class="col l-6 m-6 c-6">
+                                        <div class="product__order-title product__order--frames">Subtotal</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid checkout__order-body">
+                            <div class="row no-gutters">
+                                <div class="col l-6 m-6 c-6">
+                                    <div class="checkout__order-title-product product__order--frames">SATA Internal SSD
+                                        <div class="checkout__order-quantity-product"> x 5</div>
+                                    </div>
+                                </div>
+
+                                <div class="col l-6 m-6 c-6">
+                                    <div class="checkout__order-price-product product__order--frames">£80.00</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="checkout__order-footer">
+                            <div class="grid">
+                                <div class="row no-gutters">
+                                    <div class="col l-6 m-6 c-6">
+                                        <div class="checkout__order-footer-title product__order--frames">
+                                            <p>Subtotal</p>
+                                        </div>
+                                    </div>
+    
+                                    <div class="col l-6 m-6 c-6">
+                                        <div class="checkout__order-footer-value product__order--frames">£138.00</div>
+                                    </div>
+                                </div>
+
+                                <div class="row no-gutters">
+                                    <div class="col l-6 m-6 c-6">
+                                        <div class="checkout__order-footer-title product__order--frames">
+                                            <p>Shipping</p>
+                                        </div>
+                                    </div>
+    
+                                    <div class="col l-6 m-6 c-6">
+                                        <div class="checkout__order-footer-value product__order--frames">Enter Your Address To View Shipping Options.</div>
+                                    </div>
+                                </div>
+
+                                <div class="row no-gutters">
+                                    <div class="col l-6 m-6 c-6">
+                                        <div class="checkout__order-footer-title product__order--frames">
+                                            <p>Total</p>
+                                        </div>
+                                    </div>
+    
+                                    <div class="col l-6 m-6 c-6">
+                                        <div class="checkout__order-footer-value checkout__order-footer-value--modifier product__order--frames">£138.00</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="checkout__order-payment">
+                            <div class="grid">
+                                <div class="row no-gutters">
+                                    <div class="col l-12 m-12 c-12">
+                                        <div class="checkout__order-payment-cod">
+                                            <div class="checkout__order-payment-method">
+                                                <input name="radio" type="radio" id="radio-cod" checked>
+                                                <label for="radio-cod"></label>
+                                                <span>Cash on delivery</span>
+                                            </div>
+                                            <div class="checkout__order-payment-box">Pay with cash upon delivery.</div>
+                                        </div>
+
+                                        <div class="checkout__order-payment-paypal">
+                                            <div class="checkout__order-payment-method">
+                                                <input name="radio" type="radio" id="radio-paypal">
+                                                <label for="radio-paypal"></label>
+                                                <span>
+                                                    PayPal
+                                                    <a href="https://www.paypal.com/uk/webapps/mpp/paypal-popup">What is PayPal?</a>
+                                                </span>
+                                                <div class="checkout__order-payment-img">
+                                                    <img src="./assets/img/checkout-payment.png" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="checkout__order-payment-box hide">Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</div>
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="checkout__order-place-order">
+                            <div class="gird">
+                                <div class="row no-gutters">
+                                    <div class="col l-12 m-12 c-12">
+                                        <p class="checkout__order-policy-text">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a href="https://github.com/dnghngnm/chanam-shop" target="_blank">privacy policy</a>.</p>
+                                    </div>
+                                    <div class="col l-12 m-12 c-12">
+                                        <button form="checkout-form" class="checkout__order-submit" type="submit">Place Order</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="footer" class="layout" include-html="./assets/layout/footer.html"></section>
+
+    <!-- Include all html files into one -->
+    <script>
+        (function includeHTML() {
+            let elements, file, xmlHttp
+
+            // Loop through a collection of all HTML elements
+            elements = document.getElementsByTagName('*')
+
+            Array.from(elements).forEach(element => {
+                // Search for elements with a certain attribute
+                file = element.getAttribute('include-html')
+
+                if (file) {
+                    // Make an HTTP request using the attribute value as the file name
+                    xmlHttp = new XMLHttpRequest()
+                    xmlHttp.onreadystatechange = function () {
+                        if (this.readyState === 4) {
+                            if (this.status === 200) {
+                                element.innerHTML = this.responseText;
+                            }
+                            if (this.status === 404) {
+                                element.innerHTML = "Page not found!";
+                            }
+
+                            // Remove the attribute, and call this function once more
+                            element.removeAttribute('include-html')
+                            includeHTML()
+                        }
+                    }
+                    xmlHttp.open('GET', file, true)
+                    xmlHttp.send()
+
+                    return
+                }
+            })
+        })()
+    </script>
+    <script type="module" src="./assets/js/checkout.js"></script>
+</body>
+
+</html>

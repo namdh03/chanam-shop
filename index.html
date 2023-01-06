@@ -14,12 +14,27 @@
 </head>
 
 <body>
-    <div class="loader-wrapper">
+    <div class="loader-wrapper loader-wrapper--page">
         <div class="loader-page">
             <div class="loader-page__box"></div>
             <div class="loader-page__box"></div>
         </div>
     </div>
+
+    <div class="loader-wrapper loader-wrapper--default loader-wrapper--bgcolor hidden">
+        <div class="loader-default">
+            <svg viewBox="0 0 80 80">
+                <rect x="8" y="8" width="64" height="64"></rect>
+            </svg>
+        </div>
+    </div>
+
+    <div class="back-to-top hide">
+        <div class="progress">
+            <span class="ti-arrow-up"></span>
+        </div>
+    </div>
+    
     <section id="header" include-html="./assets/layout/header.html"></section>
     <section id="hero" class="layout" include-html="./assets/layout/hero.html"></section>
     <section id="banner" class="layout" include-html="./assets/layout/banner.html"></section>

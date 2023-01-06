@@ -614,6 +614,7 @@
     align-items: center;
     margin-bottom: 12px;
     position: relative;
+    flex-wrap: wrap;
 }
 
 #qv-form .product__qv-select-form::after {
@@ -624,7 +625,6 @@
     top: 0;
     line-height: 42px;
     font-size: 20px;
-    height: 100%;
     padding-left: 10px;
     border-left: 2px solid #ccc;
     position: absolute;
@@ -662,7 +662,7 @@
 
 .product__qv-quantity {
     display: inline-flex;
-    margin: 24px 0;
+    margin-top: 24px;
 }
 
 .product__qv-quantity input {
@@ -749,6 +749,17 @@
 
 .product__qv-add-to-wishlist.active {
     background-color: #6759ff;
+}
+
+.form-message--size,
+.form-message--color {
+    font-family: "Lora", Sans-serif;
+    margin: 8px 0 10px auto;
+}
+
+.form-message--quantity {
+    display: block;
+    margin-bottom: 30px;
 }
 
 .product__qv-inner {

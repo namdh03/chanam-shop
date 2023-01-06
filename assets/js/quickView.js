@@ -1,3 +1,5 @@
+import validator from '../lib/validator.js'
+import {showLoaderPage, hideLoaderPage, showLoaderDefault, hideLoaderDefault} from '../js/loader.js'
 import product from '../js/product.js'
 
 const $ = document.querySelector.bind(document)
@@ -14,9 +16,13 @@ export default function quickViewProducts(products = undefined) {
     let qvDesc = $('.product__qv-desc')
     let qvNextBtn = $('.product__qv-control-btn--right')
     let qvPrevBtn = $('.product__qv-control-btn--left')
+    let qvFormGroup = $$('.form-group')
+    let qvSelectForm = $$('.product__qv-select-form select')
+    let qvFormMsgSize = $('.form-message--size')
+    let qvFormMsgColor = $('.form-message--color')
     let plusButton = $('.product__qv-quantity-plus-btn')
     let minusButton = $('.product__qv-quantity-minus-btn')
-    let inputQuantity = $('input')
+    let inputQuantity = $('.product__qv-quantity input')
     let qvAddToWishlist = $('.product__qv-add-to-wishlist')
     let qvShowMoreBtn = $('.product__qv-show-more-btn')
     let qvInner = $('.product__qv-inner')
@@ -25,11 +31,16 @@ export default function quickViewProducts(products = undefined) {
     let qvCntImg = $('.product__qv-cnt-img')
     let qvInnerBtnPrev = $('.product__qv-inner-btn-prev')
     let qvInnerBtnNext = $('.product__qv-inner-btn-next')
+    let qvForm = new validator('#qv-form')
+    let plusButtonParent = product().getParent(plusButton, '.form-group')
+    let minusButtonParent = product().getParent(minusButton, '.form-group')
+    let qvFormMsgQuantity = $('.form-message--quantity')
 
     return {
         countQuantity: 1,
         indexImg: 0,
         innerIndexImg: 0,
+        
         renderQuickView() {
             const _this = this
             Array.from(quickViewButtons).forEach(button => {
@@ -40,14 +51,23 @@ export default function quickViewProducts(products = undefined) {
                     // Handle the display of the product quick view interface
                     productQuickView.classList.remove('hide')
 
+                    // Reset selected index
+                    Array.from(qvSelectForm).forEach(select => select.selectedIndex = 0)
+
+                    // Reset count quantity and input value quantity
+                    _this.countQuantity = 1
+                    inputQuantity.value = _this.countQuantity
+
+                    // Reset form group and form msg
+                    Array.from(qvFormGroup).forEach(form => form.classList.remove('invalid'))
+                    qvFormMsgSize.innerText = ''
+                    qvFormMsgColor.innerText = ''
+                    qvFormMsgQuantity.innerText = ''
+
                     // Render
                     let dataIndex = product().getParent(button, '.product__item').parentElement.getAttribute('data-index')
 
                     if (products) {
-                        qvTitle.innerText = products[dataIndex].title
-                        qvPrice.innerText = '£' + products[dataIndex].price
-                        qvDesc.innerHTML = products[dataIndex].description
-                        qvMainImg.src = products[dataIndex].images[0]
                         qvTablist.innerHTML = Array.from(products[dataIndex].images).map((image, index) => {
                             return `
                                 <li class="product__qv-tablist-img ${index === 0 ? 'active' : ''}" data-tablist="${index}">
@@ -56,6 +76,11 @@ export default function quickViewProducts(products = undefined) {
                                 </li>
                             `
                         }).join('')
+
+                        qvTitle.innerText = products[dataIndex].title
+                        qvPrice.innerText = '£' + products[dataIndex].price
+                        qvDesc.innerHTML = products[dataIndex].description
+                        qvMainImg.src = products[dataIndex].images[0]
                     }
 
                     _this.handleEvents()
@@ -136,11 +161,15 @@ export default function quickViewProducts(products = undefined) {
 
             // Handle click plus button quantity
             plusButton.onclick = function () {
+                plusButtonParent.classList.remove('invalid')
+                qvFormMsgQuantity.innerText = ``
                 inputQuantity.value = ++(_this.countQuantity)
             }
 
             // Handle click minus button quantity
             minusButton.onclick = function () {
+                minusButtonParent.classList.remove('invalid')
+                qvFormMsgQuantity.innerText = ``
                 --(_this.countQuantity)
                 if (_this.countQuantity < 0) {
                     _this.countQuantity = 0
@@ -186,6 +215,11 @@ export default function quickViewProducts(products = undefined) {
                 }
 
                 _this.renderInnerQuickView()
+            }
+
+            // Handle click add to cart at quick view ui
+            qvForm.onSubmit = formData => {
+                console.log(formData)
             }
         },
 

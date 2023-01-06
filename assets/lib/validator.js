@@ -21,31 +21,43 @@ export default function Validator(formSelector, formGroup = '.form-group', formM
     // 2. Khi hợp lệ => không trả ra gì cả (undefined)
     let validatorRules = {
         required: value => {
-            return value ? undefined : 'Vui lòng nhập trường này';
+            return value ? undefined : `Please fill out this field.`;
         },
 
         email: value => {
             // js email regex
             let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
             // bugs
-            return regex.test(value) ? undefined : 'Vui lòng nhập email';
+            return regex.test(value) ? undefined : `Please enter your email.`;
         },
 
         confirm: value => {
             let password = formElement.querySelector('#password');
-            return value === password.value ? undefined : 'Mật khẩu nhập lại không trùng khớp';
+            return value === password.value ? undefined : `Re-entered password does not match.`;
         },
 
         min: min => {
             return value => {
-                return value.length >= min ? undefined : `Vui lòng nhập tối thiểu ${min} ký tự`;
+                return value.length >= min ? undefined : `Please enter at least ${min} characters.`;
             }
         },
 
         max: max => {
             return value => {
-                return value.length <= max ? undefined : `Vui lòng nhập tối đa ${max} ký tự`;
+                return value.length <= max ? undefined : `Please enter up to ${max} characters.`;
             }
+        },
+        quantity: number => {
+            return value => {
+                return value >= number ? undefined : `Please enter at least ${number} product.`;
+            }
+        },
+        number: value => {
+            return !isNaN(value) ? undefined : `Input characters must be alphanumeric.`;
+        },
+        tel: value => {
+            let regex = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
+            return regex.test(value) ? undefined : `Invalid phone number`;
         },
     };
 
