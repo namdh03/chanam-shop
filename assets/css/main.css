@@ -2,6 +2,9 @@
 @import url(../lib/toast.css);
 @import url(../css/loader.css);
 @import url(../css/header.css);
+@import url(../css/user.css);
+@import url(../css/about.css);
+@import url(../css/sidebar.css);
 @import url(../css/hero.css);
 @import url(../css/banner.css);
 @import url(../css/product.css);
@@ -18,6 +21,29 @@ body {
 
 .layout {
     padding: 100px 0;
+}
+
+#header {
+    background: #ffffff;             
+    width: 100%;
+    height: 100px;
+    position:fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    font-family: 'Open Sans', sans-serif;
+    box-sizing: border-box;
+}
+
+#hero {
+    width:100%;
+    height: 100%;
+    font-family: 'Open Sans', sans-serif;
+    padding-bottom: 0;
 }
 
 #banner {
