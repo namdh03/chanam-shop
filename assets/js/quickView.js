@@ -45,11 +45,10 @@ export default function quickViewProducts(products = undefined) {
             const _this = this
             Array.from(quickViewButtons).forEach(button => {
                 button.onclick = function () {
+                    showLoaderDefault()
+
                     // Reset index image
                     _this.indexImg = 0
-
-                    // Handle the display of the product quick view interface
-                    productQuickView.classList.remove('hide')
 
                     // Reset selected index
                     Array.from(qvSelectForm).forEach(select => select.selectedIndex = 0)
@@ -71,8 +70,7 @@ export default function quickViewProducts(products = undefined) {
                         qvTablist.innerHTML = Array.from(products[dataIndex].images).map((image, index) => {
                             return `
                                 <li class="product__qv-tablist-img ${index === 0 ? 'active' : ''}" data-tablist="${index}">
-                                    <img src="${image}"
-                                        alt="">
+                                    <img src="${image}" alt="">
                                 </li>
                             `
                         }).join('')
@@ -83,6 +81,13 @@ export default function quickViewProducts(products = undefined) {
                         qvMainImg.src = products[dataIndex].images[0]
                     }
 
+                    let qvTablistImg = $$('.product__qv-tablist-img img')
+                    qvTablistImg[qvTablistImg.length - 1].onload = function() {
+                        hideLoaderDefault()
+
+                        // Handle the display of the product quick view interface
+                        productQuickView.classList.remove('hide')
+                    }
                     _this.handleEvents()
                 }
             })

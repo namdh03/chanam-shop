@@ -9,6 +9,8 @@ export default function product() {
     let productItems = document.getElementsByClassName('product__item')
     let productTitle = document.getElementsByClassName('product__item-title')
     let productContainer = $('.product__container')
+    let productContainerCS = getComputedStyle(productContainer)
+    let productContainerHeight = productContainer.clientHeight
     let productCategory = $('.product__category')
     let productSearchInput = $('#product__search-input')
     let productSearchBtn = $('.product__search-btn')
@@ -132,31 +134,7 @@ export default function product() {
             const _this = this
 
             // Handle filter categories of products
-            Array.from(productCategoryBtn).forEach(button => {
-                button.onclick = function (e) {
-                    if ($('.product__category-btn.active')) {
-                        $('.product__category-btn.active').classList.remove('active')
-                    }
-                    e.target.classList.add('active')
-
-                    Array.from(productItems).filter((product, index) => {
-                        if (e.target.innerText.toLowerCase() === 'all products') {
-                            product.parentNode.classList.remove('hide')
-                            product.parentElement.setAttribute('data-index', `${index}`)
-                        } else {
-                            if ((product.getAttribute('data-category').toLowerCase() === e.target.innerText.toLowerCase())) {
-                                product.parentNode.classList.remove('hide')
-                                product.parentElement.setAttribute('data-index', `${index}`)
-                            } else {
-                                product.parentNode.classList.add('hide')
-                                product.parentElement.removeAttribute('data-index')
-                            }
-                        }
-                    })
-                    productSearchInput.value = ''
-                    _this.loadCurProducts()
-                }
-            })
+            this.filterProducts()
 
             // Handle search for product names
             productSearchBtn.onclick = function () {
@@ -226,7 +204,10 @@ export default function product() {
 
         // Handle if there is no product
         showEmptyText() {
-            if (productContainer.offsetHeight === 0) {
+            productContainerHeight = productContainer.clientHeight
+                                    - (parseFloat(productContainerCS.paddingTop) 
+                                    + parseFloat(productContainerCS.paddingBottom))
+            if (productContainerHeight === 0) {
                 emptyText.classList.remove('hide')
                 viewMoreButton.classList.add('hide')
             } else {
@@ -236,19 +217,66 @@ export default function product() {
         },
 
         searchProducts() {
-            Array.from(productTitle).forEach((title, index) => {
-                let product = this.getParent(title, '.product__item')
-                if (productSearchInput.value) {
-                    if (title.innerText.toLowerCase().includes(productSearchInput.value.toLowerCase())) {
-                        product.parentElement.classList.remove('hide')
-                        product.parentElement.setAttribute('data-index', `${index}`)
+            if (typeof productSearchInput.value !== 'string' || productSearchInput.value.trim().length !== 0) {
+                productContainer.scrollIntoView()
+                let categoryBtn = $('.product__category-btn.active')
+                Array.from(productTitle).forEach((title, index) => {
+                    
+                    let product = this.getParent(title, '.product__item')
+
+                    if (categoryBtn.innerText.toLowerCase() === 'all products') {
+                        if (title.innerText.toLowerCase().includes(productSearchInput.value.toLowerCase())) {
+                            product.parentElement.classList.remove('hide')
+                            product.parentElement.setAttribute('data-index', `${index}`)
+                        } else {
+                            product.parentElement.classList.add('hide')
+                            product.parentElement.removeAttribute('data-index')
+                        }
                     } else {
-                        product.parentElement.classList.add('hide')
-                        product.parentElement.removeAttribute('data-index')
+                        if (categoryBtn.innerText.toLowerCase() === title.nextElementSibling.textContent.trim().toLocaleLowerCase()) {
+                            if (title.innerText.toLowerCase().includes(productSearchInput.value.toLowerCase())) {
+                                product.parentElement.classList.remove('hide')
+                                product.parentElement.setAttribute('data-index', `${index}`)
+                            } else {
+                                product.parentElement.classList.add('hide')
+                                product.parentElement.removeAttribute('data-index')
+                            }
+                        }
                     }
+                })
+                this.loadCurProducts()
+            }
+        },
+
+        filterProducts() {
+            const _this = this
+            Array.from(productCategoryBtn).forEach(button => {
+                button.onclick = function (e) {
+                    if ($('.product__category-btn.active')) {
+                        $('.product__category-btn.active').classList.remove('active')
+                    }
+                    e.target.classList.add('active')
+
+                    // productContainer.scrollIntoView()
+
+                    Array.from(productItems).filter((product, index) => {
+                        if (e.target.innerText.toLowerCase() === 'all products') {
+                            product.parentNode.classList.remove('hide')
+                            product.parentElement.setAttribute('data-index', `${index}`)
+                        } else {
+                            if ((product.getAttribute('data-category').toLowerCase() === e.target.innerText.toLowerCase())) {
+                                product.parentNode.classList.remove('hide')
+                                product.parentElement.setAttribute('data-index', `${index}`)
+                            } else {
+                                product.parentNode.classList.add('hide')
+                                product.parentElement.removeAttribute('data-index')
+                            }
+                        }
+                    })
+                    productSearchInput.value = ''
+                    _this.loadCurProducts()
                 }
             })
-            this.loadCurProducts()
         },
 
         async start() {

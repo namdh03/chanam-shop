@@ -21,6 +21,7 @@ let checkoutOrderPaymentMethod = $$('.checkout__order-payment-method')
 let checkoutOrderPaymentBox = $$('.checkout__order-payment-box')
 let checkoutOrderSubmit = $('.checkout__order-submit')
 let formGroup = $$('.form-group')
+let formMsg = $$('.form-message')
 let formCheckout = new validator('#checkout-form')
 let formCheckoutDiffer = new validator('#checkout-form-differ')
 
@@ -54,6 +55,7 @@ showFormDifferBtn.onclick = function() {
     
     Array.from(formGroup).forEach((form, index) => {
         form.classList.remove('invalid')
+        formMsg[index].innerText = ''
     })
     
     if (checkoutFormDiffer.getAttribute('class').includes('hide')) {
