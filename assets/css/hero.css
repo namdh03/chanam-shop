@@ -6,9 +6,6 @@
     margin-right: auto;
   }
 
-.swiper-wrapper {
-}
-
 .swiper-slide {
     display: flex;
     background-size: cover;
@@ -92,12 +89,17 @@
     color:#DD8262;
 }
 
+.swiper-pagination-bullet {
+    background:#111111;
+}
+
+/* 
 .swiper-button-next {
     color:#111111;
 }
 
 .swiper-button-next:hover {
-    color: #DD8262;
+    color: #ffffff;
 }
 
 .swiper-button-prev {
@@ -105,8 +107,8 @@
 }
 
 .swiper-button-prev:hover {
-    color: #DD8262;
-}
+    color: #ffffff;
+} */
 
 
 

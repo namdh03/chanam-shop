@@ -110,7 +110,7 @@
     display: none;
 }
 
-.cart__list a {
+.cart__list-no-cart {
     box-sizing:border-box;
     display: flex;  
     flex-direction: center;
