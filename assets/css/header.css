@@ -82,6 +82,9 @@
     font-size: 18px;
 }
 
+.nav__client-cart {
+    cursor: pointer;
+}
 
 .nav__client i::after {
     content: "";

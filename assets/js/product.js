@@ -1,5 +1,6 @@
 import quickViewProducts from '../js/quickView.js'
-import {showLoaderPage, hideLoaderPage, showLoaderDefault, hideLoaderDefault} from '../js/loader.js'
+import miniCart from '../js/miniCart.js'
+import { showLoaderPage, hideLoaderPage, showLoaderDefault, hideLoaderDefault } from '../js/loader.js'
 
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
@@ -142,7 +143,7 @@ export default function product() {
             }
 
             // Handle click enter to search products
-            productSearchInput.onkeypress = function(e) {
+            productSearchInput.onkeypress = function (e) {
                 if (e.keyCode === 13) {
                     _this.searchProducts()
                 }
@@ -205,8 +206,8 @@ export default function product() {
         // Handle if there is no product
         showEmptyText() {
             productContainerHeight = productContainer.clientHeight
-                                    - (parseFloat(productContainerCS.paddingTop) 
-                                    + parseFloat(productContainerCS.paddingBottom))
+                - (parseFloat(productContainerCS.paddingTop)
+                    + parseFloat(productContainerCS.paddingBottom))
             if (productContainerHeight === 0) {
                 emptyText.classList.remove('hide')
                 viewMoreButton.classList.add('hide')
@@ -218,10 +219,11 @@ export default function product() {
 
         searchProducts() {
             if (typeof productSearchInput.value !== 'string' || productSearchInput.value.trim().length !== 0) {
-                productContainer.scrollIntoView()
+                // productContainer.scrollIntoView()
+                this.scrollElement(productContainer)
                 let categoryBtn = $('.product__category-btn.active')
                 Array.from(productTitle).forEach((title, index) => {
-                    
+
                     let product = this.getParent(title, '.product__item')
 
                     if (categoryBtn.innerText.toLowerCase() === 'all products') {
@@ -279,12 +281,28 @@ export default function product() {
             })
         },
 
+        scrollElement(element) {
+            console.log(this.position(element));
+            window.scroll(0, this.position(element));
+        },
+
+        position(obj) {
+            var currentTop = -100;
+            if (obj.offsetParent) {
+                do {
+                    currentTop += obj.offsetTop;
+                } while ((obj = obj.offsetParent));
+                return [currentTop];
+            }
+        },
+
         async start() {
             await this.renderProducts()
             await this.renderCategories()
             this.loadCurProducts()
             this.handleEvents()
             quickViewProducts(this.products).start()
+            miniCart(this.products).start()
         },
     }
 }
