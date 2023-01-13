@@ -1,7 +1,7 @@
 <div class="grid wide">
     <div class="row header__row">
         <div class="col c-3 m-3">
-            <div class="nav__logo" href="#home">
+            <div class="nav__logo" href="#">
                 <img src="./assets/img/logo_transparent.png">
             </div>
         </div>
@@ -38,13 +38,34 @@
             </a>
         </div>
 
-        <div class="mobile__menu" href="./assets/layout/sidebar.html">
-            <div class="mobile__menu-icon">
-                <span class="icon-bars"></span>
-                <span class="icon-bars"></span>
-                <span class="icon-bars"></span>
+        <div id="mobile__menu">
+            <!-- <div class="bg"></div> -->
+            <div class="button" tabindex="0">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
             </div>
-            <a>Menu</a>
+            <div id="sid-content" tabindex="0">
+              <ul>
+                <li><a href="#">Home</a></li>
+                <li>
+                    <a href="#">Shop</a>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li>
+                    <a href="#">My Account</a>
+                    <ul class="dropdown">
+                        <li><a href="#">My Cart</a></li>
+                        <li><a href="#">My Wishlist</a></li>
+                    </ul>
+                </li>
+                <li class="small"><a href="#">Sign In</a><a href="#">Sign Up</a></li>
+              </ul>
+            </div>
         </div>
     </div>
 </div>
