@@ -4,24 +4,27 @@ const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 
 export default function miniCart(products = undefined) {
-    const PRODUCTS_STORAGE_KEY = 'Chanam'
+    const PRODUCTS_STORAGE_KEY_CART = 'Carts'
     let navClientCart = $('.nav__client-cart')
     let productMiniCart = $('.product__mini-cart')
     let productMiniCartWrapper = $('.product__mini-cart-wrapper')
     let productMiniCartClose = $('.product__mini-cart-close')
     let productMiniCartItems = $('.product__mini-cart-items')
     let productMiniCartSubtotalNumber = $('.product__mini-cart-subtotal-number')
-    
+
     return {
-        cart: {},
         products: [],
         quantity: 1,
         subTotal: 0,
-        config: JSON.parse(localStorage.getItem(PRODUCTS_STORAGE_KEY)) || {},
 
-        setConfig(key, value) {
-            this.config[key] = value;
-            localStorage.setItem(PRODUCTS_STORAGE_KEY, JSON.stringify(this.config));
+        getConfig(PRODUCTS_STORAGE_KEY) {
+            return JSON.parse(localStorage.getItem(PRODUCTS_STORAGE_KEY)) || {}
+        },
+
+        setConfig(PRODUCTS_STORAGE_KEY, key, value) {
+            const data = this.getConfig(PRODUCTS_STORAGE_KEY)
+            data[key] = value
+            localStorage.setItem(PRODUCTS_STORAGE_KEY, JSON.stringify(data))
         },
 
         async isElementLoaded(selectors, method) {
@@ -44,7 +47,7 @@ export default function miniCart(products = undefined) {
             this.isElementLoaded('.product__btn--add-to-cart', 'querySelectorAll')
                 .then(selectors => {
                     const _this = this
-                    
+
                     this.setLocalStorage(selectors)
                     for (let i of this.products) {
                         for (let j of products) {
@@ -60,13 +63,13 @@ export default function miniCart(products = undefined) {
 
         handleEvents() {
             // Handle show mini cart
-            navClientCart.onclick = function() {
+            navClientCart.onclick = function () {
                 productMiniCart.classList.add('active')
                 productMiniCartWrapper.classList.add('active')
             }
 
             // Handle close mini cart
-            productMiniCartClose.onclick = function() {
+            productMiniCartClose.onclick = function () {
                 productMiniCart.classList.remove('active')
                 productMiniCartWrapper.classList.remove('active')
             }
@@ -89,17 +92,17 @@ export default function miniCart(products = undefined) {
 
                     _this.subTotal += _this.quantity * productItem.price
                     productMiniCartSubtotalNumber.innerText = '£' + _this.subTotal
-                    
+                    _this.setConfig('Subtotal', 'subtotal', _this.subTotal)
+
                     for (let i = 0; i < _this.products.length; i++) {
                         if (productID === _this.products[i].productID) {
-                            quantity = ++_this.config.cart.products[i].quantity
+                            quantity = ++_this.getConfig(PRODUCTS_STORAGE_KEY_CART).products[i].quantity
                             _this.products.splice(i, 1)
                         }
                     }
-                    
-                    _this.products.push({productID, quantity})
-                    _this.cart['products'] = _this.products
-                    _this.setConfig('cart', _this.cart)
+
+                    _this.products.push({ productID, quantity })
+                    _this.setConfig(PRODUCTS_STORAGE_KEY_CART, 'products', _this.products)
 
                     for (let item of productMiniCartItem) {
                         if (Number(item.getAttribute('data-id')) === productID) {
@@ -115,8 +118,7 @@ export default function miniCart(products = undefined) {
         },
 
         loadConfig() {
-            this.config.cart ? this.cart = this.cart = this.config.cart : this.cart = {}
-            this.config.cart?.products ? this.products = this.config.cart.products : this.products = []
+            this.getConfig(PRODUCTS_STORAGE_KEY_CART).products ? this.products = this.getConfig(PRODUCTS_STORAGE_KEY_CART).products : this.products = []
         },
 
         createCartItem(image, title, quantity, price, productID) {
@@ -154,22 +156,22 @@ export default function miniCart(products = undefined) {
         removeCartItem(productMniCartRemoveBtn) {
             const _this = this
             Array.from(productMniCartRemoveBtn).forEach(button => {
-                button.onclick = function() {
+                button.onclick = function () {
                     let item = product().getParent(button, '.product__mini-cart-item')
                     let quantity = Number(item.querySelector('.product__mini-cart-quantity').textContent.replace(/\D/g, ''))
                     let price = Number(item.querySelector('.product__mini-cart-number').textContent.replace(/\D/g, ''))
                     item.remove()
-                    
+
                     for (let i = 0; i < _this.products.length; i++) {
                         if (Number(item.getAttribute('data-id')) === _this.products[i].productID) {
                             _this.products.splice(i, 1)
-                            _this.cart['products'] = _this.products
-                            _this.setConfig('cart', _this.cart)
+                            _this.setConfig(PRODUCTS_STORAGE_KEY_CART, 'products', _this.products)
                             _this.showEmptyText()
                         }
                     }
                     _this.subTotal -= quantity * price
                     productMiniCartSubtotalNumber.innerText = '£' + _this.subTotal
+                    _this.setConfig('Subtotal', 'subtotal', _this.subTotal)
                     _this.showEmptyText()
                 }
             })
@@ -183,6 +185,7 @@ export default function miniCart(products = undefined) {
                     }
                 }
             }
+            this.setConfig('Subtotal', 'subtotal', this.subTotal)
             productMiniCartSubtotalNumber.innerText = '£' + this.subTotal
         },
 

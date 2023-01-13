@@ -302,8 +302,9 @@
     text-transform: uppercase;
 }
 
-.checkout__order-quantity-product {
-    margin-left: 4px;
+.checkout__order-name-product {
+    margin-right: 4px;
+    line-height: 1.4;
 }
 
 .checkout__order-title-product,
@@ -329,7 +330,7 @@
     color: #202424;
 }
 
-.checkout__order-footer-value--modifier {
+.checkout__order-footer-value--total {
     font-weight: 900;
     color: #202424;
 }

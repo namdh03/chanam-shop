@@ -10,8 +10,6 @@ export default function product() {
     let productItems = document.getElementsByClassName('product__item')
     let productTitle = document.getElementsByClassName('product__item-title')
     let productContainer = $('.product__container')
-    let productContainerCS = getComputedStyle(productContainer)
-    let productContainerHeight = productContainer.clientHeight
     let productCategory = $('.product__category')
     let productSearchInput = $('#product__search-input')
     let productSearchBtn = $('.product__search-btn')
@@ -205,6 +203,8 @@ export default function product() {
 
         // Handle if there is no product
         showEmptyText() {
+            let productContainerCS = getComputedStyle(productContainer)
+            let productContainerHeight = productContainer.clientHeight
             productContainerHeight = productContainer.clientHeight
                 - (parseFloat(productContainerCS.paddingTop)
                     + parseFloat(productContainerCS.paddingBottom))

@@ -1,6 +1,8 @@
 import validator from '../lib/validator.js'
 import {showLoaderPage, hideLoaderPage, showLoaderDefault, hideLoaderDefault} from '../js/loader.js'
 import scroll from '../js/scrollToTop.js'
+import product from '../js/product.js'
+import miniCart from '../js/miniCart.js'
 import footer from '../js/footer.js'
 
 const $ = document.querySelector.bind(document)
@@ -24,6 +26,8 @@ let formGroup = $$('.form-group')
 let formMsg = $$('.form-message')
 let formCheckout = new validator('#checkout-form')
 let formCheckoutDiffer = new validator('#checkout-form-differ')
+let checkoutOrderBody = $('.checkout__order-body')
+let checkoutOrderSubtotal = $('.checkout__order-footer-value')
 
 fetch(countryApi)
     .then((response) => {
@@ -43,7 +47,6 @@ fetch(countryApi)
         }).join('')
         countrySelect.innerHTML = option
         countrySelectDiffer.innerHTML = option
-        hideLoaderPage()
     })
 
 checkoutShowCoupon.onclick = function() {
@@ -101,3 +104,40 @@ formCheckout.onSubmit = formData => {
 formCheckoutDiffer.onSubmit = formData => {
     console.log(formData);
 }
+
+async function renderCheckoutUI() {
+    let html = ''
+    let productsLS = miniCart().getConfig('Carts').products
+    let subtotalLS = miniCart().getConfig('Subtotal').subtotal
+    let productsAPI = await product().getProductsAPI()
+    hideLoaderPage()
+
+    if (!productsLS) return
+    if (!subtotalLS) return 
+
+    for (let i of productsLS) {
+        for (let j of productsAPI) {
+            if (i.productID === j.id) {
+                html += `
+                    <div class="row no-gutters">
+                        <div class="col l-6 m-6 c-6">
+                            <div class="checkout__order-title-product product__order--frames">
+                                <div class="checkout__order-name-product">${j.title}</div>
+                                <div class="checkout__order-quantity-product"> x ${i.quantity}</div>
+                            </div>
+                        </div>
+                    
+                        <div class="col l-6 m-6 c-6">
+                            <div class="checkout__order-price-product product__order--frames">£${j.price}</div>
+                        </div>
+                    </div>
+                `
+            }
+        }
+    }
+
+    checkoutOrderBody.innerHTML = html
+    checkoutOrderSubtotal.innerText = '£' + subtotalLS
+}
+renderCheckoutUI()
+
