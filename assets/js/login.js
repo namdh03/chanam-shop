@@ -56,7 +56,7 @@ loginForm.onSubmit = async formData => {
             invalid(passwordInput)
             return
         } else {
-            window.location.href = '../../index.html'
+            window.location = '/index.html'
         }
     }
 }

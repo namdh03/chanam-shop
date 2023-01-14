@@ -106,6 +106,7 @@ export default function miniCart(products = undefined) {
                             _this.showEmptyText()
                         }
                     })
+                    this.showEmptyText()
                 })
         },
 
