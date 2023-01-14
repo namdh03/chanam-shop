@@ -6,14 +6,14 @@ export default function footer() {
     let input = document.querySelector('#newletter-form .form-group input')
 
     newLetterForm.onSubmit = formData => {
-        console.log(formData);
+        console.log(formData)
 
         toast({
             title: 'Thành công!',
             message: 'Cảm ơn bạn đã trở thành khách hàng thân thiết của chúng tôi!',
             type: 'success',
             duration: 1500
-        });
+        })
         input.value = ''
     }
 }

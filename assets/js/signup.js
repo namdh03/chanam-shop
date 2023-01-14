@@ -1,29 +1,112 @@
-// validation form register and register user local storage
-const inputUsernameRegister = document.querySelector(".input-signup-username");
-const inputEmailRegister = document.querySelector(".input-signup-email");
-const inputPasswordRegister = document.querySelector(".input-signup-password");
-const btnRegister = document.querySelector(".signup__signInButton");
+import validator from '../lib/validator.js';
+import toast from '../lib/toast.js';
+import { showLoaderPage, hideLoaderPage, showLoaderDefault, hideLoaderDefault } from '../js/loader.js'
 
-// validation form register and register user local storage
+const $ = document.querySelector.bind(document)
+const $$ = document.querySelectorAll.bind(document)
 
-btnRegister.addEventListener("click", (e) => {
-  e.preventDefault();
-  if (
-    inputUsernameRegister.value === "" ||
-    inputEmailRegister.value === "" ||
-    inputPasswordRegister.value === ""
-  ) {
-    alert("vui lòng không để trống");
-  } else {
-    // array user
-    const user = {
-      username: inputUsernameRegister.value,
-      email: inputEmailRegister.value,
-      password: inputPasswordRegister.value,
-    };
-    let json = JSON.stringify(user);
-    localStorage.setItem(inputUsernameRegister.value, json);
-    alert("Đăng Ký Thành Công");
-    window.location.href = "login.html";
-  }
-});
+let userApi = 'https://63b1106f6a74151a1bca76f7.mockapi.io/api/v1/users'
+let signUpForm = new validator('#sign-up-form')
+let emailInput = $('.sign-up-form__input--email')
+let usernameInput = $('.sign-up-form__input--username')
+
+hideLoaderPage()
+
+async function getUsersAPI() {
+    return (await fetch(userApi)).json()
+}
+
+function createUser(data, callback) {
+    showLoaderPage()
+    let options = {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+        body: JSON.stringify(data)
+    }
+
+    fetch(userApi, options)
+        .then(response => {
+            response.json()
+        })
+        .then(callback)
+}
+
+function createCart(data, userId, callback) {
+    showLoaderPage()
+    let options = {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+        body: JSON.stringify(data)
+    }
+    
+    fetch('https://63b1106f6a74151a1bca76f7.mockapi.io/api/v1/users/' + userId + '/carts', options)
+        .then(response => {
+            response.json()
+        })
+        .then(callback)
+}
+
+signUpForm.onSubmit = async formData => {
+    let isExistedEmail = false
+    let isExistedUsername = false
+    let email = formData.email
+    let username = formData.username
+    let password = formData.password
+    let users = await getUsersAPI()
+    let userId = users.length + 1
+
+    if (typeof users === 'object') {
+        for (let user of users) {
+            if (user.email === email) {
+                isExistedEmail = true
+                break
+            } else if (user.username === username) {
+                isExistedUsername = true
+                break
+            }
+        }
+
+        if (isExistedEmail) {
+            toast({
+                title: 'Thất bại!',
+                message: 'Email đã tồn tại!',
+                type: 'error',
+                duration: 3000
+            })
+            invalid(emailInput)
+        } else if (isExistedUsername) {
+            toast({
+                title: 'Thất bại!',
+                message: 'Tên người dùng đã tồn tại!',
+                type: 'error',
+                duration: 3000
+            })
+            invalid(usernameInput)
+        } else {
+            let user = {
+                email: email,
+                username: username,
+                password: password,
+            }
+
+            let cart = {
+                products: [],
+            }
+            
+            createUser(user)
+            createCart(cart, userId, () => window.location.href = '/login.html')
+        }
+    }
+}
+
+function invalid(input) {
+    input.parentElement.classList.add('invalid')
+
+    input.onfocus = function() {
+        input.parentElement.classList.remove('invalid')
+    }
+}
