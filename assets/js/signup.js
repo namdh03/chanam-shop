@@ -1,5 +1,5 @@
-import validator from '../lib/validator.js';
-import toast from '../lib/toast.js';
+import validator from '../lib/validator.js'
+import toast from '../lib/toast.js'
 import { showLoaderPage, hideLoaderPage, showLoaderDefault, hideLoaderDefault } from '../js/loader.js'
 
 const $ = document.querySelector.bind(document)

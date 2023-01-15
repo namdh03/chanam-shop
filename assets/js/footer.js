@@ -1,5 +1,5 @@
-import validator from '../lib/validator.js';
-import toast from '../lib/toast.js';
+import validator from '../lib/validator.js'
+import toast from '../lib/toast.js'
 
 export default function footer() {
     let newLetterForm = new validator('#newletter-form')

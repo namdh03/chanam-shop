@@ -1,3 +1,4 @@
+import validator from '../lib/validator.js'
 import product from '../js/product.js'
 
 const $ = document.querySelector.bind(document)
@@ -6,13 +7,14 @@ const $$ = document.querySelectorAll.bind(document)
 export default function miniCart(products = undefined) {
     let userId = window.localStorage.getItem('userId')
     let cartApi = 'https://63b1106f6a74151a1bca76f7.mockapi.io/api/v1/users/1/carts'
-    const PRODUCTS_STORAGE_KEY_CART = 'Carts'
     let navClientCart = $('.nav__client-cart')
     let productMiniCart = $('.product__mini-cart')
     let productMiniCartWrapper = $('.product__mini-cart-wrapper')
     let productMiniCartClose = $('.product__mini-cart-close')
     let productMiniCartItems = $('.product__mini-cart-items')
     let productMiniCartSubtotalNumber = $('.product__mini-cart-subtotal-number')
+    let qvForm = $('#qv-form')
+    let qvFormValidator = new validator('#qv-form')
 
     return {
         cart: {},
@@ -40,6 +42,7 @@ export default function miniCart(products = undefined) {
             return (await fetch('https://63b1106f6a74151a1bca76f7.mockapi.io/api/v1/users/' + userId + '/carts')).json()
         },
 
+        // Handle update product to api
         updateProducts(data, id, callback) {
             let options = {
                 method: 'PUT',
@@ -56,58 +59,70 @@ export default function miniCart(products = undefined) {
                 .then(callback);
         },
 
-        renderMiniCart() {
+        // Main mini cart
+        miniCart() {
             this.isElementLoaded('.product__btn--add-to-cart', 'querySelectorAll')
                 .then(selectors => {
                     const _this = this
-
-                    for (let i of this.products) {
-                        for (let j of products) {
-                            if (i.productID === j.id) {
-                                this.createCartItem(j.images[0], j.title, i.quantity, j.price, i.productID)
-                                break
-                            }
-                        }
-                    }
-
+                    
                     Array.from(selectors).forEach(button => {
                         button.onclick = function () {
-                            let productItemElement = product().getParent(button, '.product__item')
-                            let productIndex = productItemElement.parentElement.getAttribute('data-index')
-                            let productItem = products[productIndex]
-                            let productID = productItem.id
-                            let quantity = _this.quantity
-                            let productMiniCartItem = $$('.product__mini-cart-item')
-        
-                            _this.subTotal += _this.quantity * productItem.price
-                            productMiniCartSubtotalNumber.innerText = '£' + _this.subTotal
-        
-                            for (let i = 0; i < _this.products.length; i++) {
-                                if (productID === _this.products[i].productID) {
-                                    quantity = ++_this.products[i].quantity
-                                    _this.products.splice(i, 1)
-                                }
+                            if (userId) {
+                                let productItemElement = product().getParent(button, '.product__item')
+                                let productIndex = productItemElement.parentElement.getAttribute('data-index')
+                                _this.renderMiniCart(products, productIndex, _this.quantity)
+                            } else {
+                                window.location.href = '/login.html'
                             }
 
-                            _this.products.push({ productID, quantity })
-                            _this.cart["products"] = _this.products
-                            _this.cart["userId"] = userId
-                            _this.updateProducts(_this.cart, userId)
-                            
-                            for (let item of productMiniCartItem) {
-                                if (Number(item.getAttribute('data-id')) === productID) {
-                                    let number = item.querySelector('.product__mini-cart-quantity')
-                                    number.innerText = quantity + ' x'
-                                    return
-                                }
-                            }
-                            
-                            _this.createCartItem(productItem.images[0], productItem.title, quantity, productItem.price, productID)
                             _this.showEmptyText()
                         }
                     })
                     this.showEmptyText()
                 })
+
+                for (let i of this.products) {
+                    for (let j of products) {
+                        if (i.productID === j.id) {
+                            this.createCartItem(j.images[0], j.title, i.quantity, j.price, i.productID)
+                            break
+                        }
+                    }
+                }
+        },
+
+        // Handle exception and add to cart
+        renderMiniCart(products, productIndex, amount) {
+            let productItem = products[productIndex]
+            let productID = productItem.id
+            let quantity = Number(amount)
+            let productMiniCartItem = $$('.product__mini-cart-item')
+
+            this.subTotal += amount * productItem.price
+            productMiniCartSubtotalNumber.innerText = '£' + this.subTotal
+
+            for (let i = 0; i < this.products.length; i++) {
+                if (productID === this.products[i].productID) {
+                    quantity += this.products[i].quantity
+                    this.products.splice(i, 1)
+                    break
+                }
+            }
+
+            this.products.push({ productID, quantity })
+            this.cart["products"] = this.products
+            this.cart["userId"] = userId
+            this.updateProducts(this.cart, userId)
+            
+            for (let item of productMiniCartItem) {
+                if (Number(item.getAttribute('data-id')) === productID) {
+                    let number = item.querySelector('.product__mini-cart-quantity')
+                    number.innerText = quantity + ' x'
+                    return
+                }
+            }
+            
+            this.createCartItem(productItem.images[0], productItem.title, quantity, productItem.price, productID)
         },
 
         createCartItem(image, title, quantity, price, productID) {
@@ -160,6 +175,7 @@ export default function miniCart(products = undefined) {
                             _this.showEmptyText()
                         }
                     }
+
                     _this.subTotal -= quantity * price
                     productMiniCartSubtotalNumber.innerText = '£' + _this.subTotal
                     _this.showEmptyText()
@@ -211,23 +227,38 @@ export default function miniCart(products = undefined) {
         },
         
         async loadCurrProducts() {
-            let carts = await this.getCart(userId)
-            for (let cart of carts) {
-                if (cart.userId === userId) {
-                    this.products = cart.products
-                    break
+            if (userId) {
+                let carts = await this.getCart(userId)
+                
+                for (let cart of carts) {
+                    if (cart.userId === userId) {
+                        this.products = cart.products
+                        break
+                    }
+                }
+            }
+        },
+
+        qvSubmitForm() {
+            // Handle click add to cart at quick view ui
+            qvFormValidator.onSubmit = formData => {
+                if (userId) {
+                    console.log(formData)
+                    let productIndex = qvForm.getAttribute('data-index')
+                    this.renderMiniCart(products, productIndex, formData.quantity)
+                    this.showEmptyText()
+                } else {
+                    window.location.href = '/login.html'
                 }
             }
         },
 
         async start() {
-            if (userId) {
-                await this.loadCurrProducts()
-                this.loadSubtotal()
-                this.renderMiniCart()
-            }
+            await this.loadCurrProducts()
+            this.loadSubtotal()
+            this.miniCart()
             this.handleEvents()
-            this.showEmptyText()
+            this.qvSubmitForm()
         }
     }
 }

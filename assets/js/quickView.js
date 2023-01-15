@@ -31,7 +31,7 @@ export default function quickViewProducts(products = undefined) {
     let qvCntImg = $('.product__qv-cnt-img')
     let qvInnerBtnPrev = $('.product__qv-inner-btn-prev')
     let qvInnerBtnNext = $('.product__qv-inner-btn-next')
-    let qvForm = new validator('#qv-form')
+    let qvForm = $('#qv-form')
     let plusButtonParent = product().getParent(plusButton, '.form-group')
     let minusButtonParent = product().getParent(minusButton, '.form-group')
     let qvFormMsgQuantity = $('.form-message--quantity')
@@ -65,6 +65,8 @@ export default function quickViewProducts(products = undefined) {
 
                     // Render
                     let dataIndex = product().getParent(button, '.product__item').parentElement.getAttribute('data-index')
+
+                    qvForm.setAttribute('data-index', dataIndex)
 
                     if (products) {
                         qvTablist.innerHTML = Array.from(products[dataIndex].images).map((image, index) => {
@@ -220,11 +222,6 @@ export default function quickViewProducts(products = undefined) {
                 }
 
                 _this.renderInnerQuickView()
-            }
-
-            // Handle click add to cart at quick view ui
-            qvForm.onSubmit = formData => {
-                console.log(formData)
             }
         },
 

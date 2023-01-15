@@ -1,5 +1,5 @@
-import validator from '../lib/validator.js';
-import toast from '../lib/toast.js';
+import validator from '../lib/validator.js'
+import toast from '../lib/toast.js'
 import { showLoaderPage, hideLoaderPage, showLoaderDefault, hideLoaderDefault } from '../js/loader.js'
 
 const $ = document.querySelector.bind(document)
@@ -56,7 +56,7 @@ loginForm.onSubmit = async formData => {
             invalid(passwordInput)
             return
         } else {
-            window.location = '/index.html'
+            window.location.href = '../../index.html'
         }
     }
 }
