@@ -1,57 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
 
-.checkout__header {
-    padding: 80px 0;
-    background-color: #f3f3f3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    font-family: "Lora", Sans-serif;
-}
-
-.checkout__header span::before {
-    content: "/";
-    font-size: 20px;
-    margin: 0 10px;
-    color: #999999;
-    display: inline-block;
-    font-family: FontAwesome;
-    font-weight: 900;
-}
-
-.checkout__header-title {
-    color: #222222;
-    font-weight: 400;
-    font-size: 32px;
-    line-height: 1.2;
-    text-transform: capitalize;
-}
-
-.checkout__header-navigation {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #6759ff;
-    font-size: 14px;
-    text-transform: capitalize;
-    margin-top: 4px;
-}
-
-.checkout__header-navigation a {
-    color: #999999;
-    text-decoration: none;
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -ms-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-}
-
-.checkout__header-navigation a:hover {
-    color: #6759ff;
-}
-
 .checkout-coupon {
     display: block;
     text-align: center;
@@ -481,10 +429,42 @@ input[type="radio"]:checked ~ label:after {
     margin-top: 8px;
 }
 
+.checkout__return-to-home-btn {
+    font-family: "Lora", Sans-serif;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    background-color: #6759ff;
+    color: #fff;
+    text-transform: uppercase;
+    position: relative;
+    top: 100%;
+    font-weight: 700;
+    font-size: 12px;
+    padding: 14px 20px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.checkout__return-to-home-btn:hover {
+    background-color: #333333;
+}
+
+.checkout__return-to-home-btn span {
+    font-size: 8px;
+    display: inline-block;
+    margin-right: 8px;
+}
+
 /* Mobile: width < 740px */
 @media only screen and (max-width: 739px) {
     .checkout-coupon {
-        margin: 0 10px 50px;
+        margin: 40px 10px 50px;
     }
 
     .checkout-coupon p {
@@ -522,6 +502,10 @@ input[type="radio"]:checked ~ label:after {
 
     .checkout__order-policy-text {
         font-size: 14px;
+    }
+
+    .checkout__return-to-home-btn {
+        margin-left: 20px;
     }
 }
 

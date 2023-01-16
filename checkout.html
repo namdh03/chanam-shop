@@ -38,14 +38,14 @@
     </div>
 
     <section id="header" include-html="./assets/layout/header.html"></section>
-    <section id="mini-cart" class="layout" include-html="./assets/layout/miniCart.html"></section>
+    <section id="mini-cart" include-html="./assets/layout/miniCart.html"></section>
     <section id="checkout" class="layout">
         <div class="grid">
             <div class="row no-gutters">
                 <div class="col l-12 m-12 c-12">
-                    <div class="checkout__header">
-                        <h1 class="checkout__header-title">Checkout</h1>
-                        <div class="checkout__header-navigation">
+                    <div class="redirect__page">
+                        <h1 class="redirect__page-title">Checkout</h1>
+                        <div class="redirect__page-navigation">
                             <a href="index.html">Home</a>
                             <span>Checkout</span>
                         </div>
@@ -53,7 +53,20 @@
                 </div>
             </div>
         </div>
-        <div class="grid wide">
+        <div class="checkout__return-to-home hide">
+            <div class="grid wide">
+                <div class="row no-gutters">
+                    <div class="col l-12 m-12 c-12">
+                        <a href="./index.html" class="checkout__return-to-home-btn">
+                            <span class="ti-angle-left"></span>
+                            Return to home
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid wide checkout__wrapper">
             <div class="row">
                 <div class="col l-12 m-12 c-12">
                     <div id="checkout-coupon" class="checkout-coupon hide">

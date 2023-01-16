@@ -72,7 +72,7 @@ export default function miniCart(products = undefined) {
                                 let productIndex = productItemElement.parentElement.getAttribute('data-index')
                                 _this.renderMiniCart(products, productIndex, _this.quantity)
                             } else {
-                                window.location.href = '/login.html'
+                                window.location.href = './login.html'
                             }
 
                             _this.showEmptyText()
@@ -248,7 +248,7 @@ export default function miniCart(products = undefined) {
                     this.renderMiniCart(products, productIndex, formData.quantity)
                     this.showEmptyText()
                 } else {
-                    window.location.href = '/login.html'
+                    window.location.href = './login.html'
                 }
             }
         },
@@ -259,6 +259,7 @@ export default function miniCart(products = undefined) {
             this.miniCart()
             this.handleEvents()
             this.qvSubmitForm()
+            this.showEmptyText()
         }
     }
 }

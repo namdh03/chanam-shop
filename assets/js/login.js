@@ -17,6 +17,7 @@ async function getUsersAPI() {
 }
 
 loginForm.onSubmit = async formData => {
+    showLoaderPage()
     let isExistedUsername = false
     let isExistedPassword = false
     let username = formData.username
@@ -56,15 +57,11 @@ loginForm.onSubmit = async formData => {
             invalid(passwordInput)
             return
         } else {
-            window.location.href = '../../index.html'
+            window.location.href = './index.html'
         }
     }
 }
 
 function invalid(input) {
     input.parentElement.classList.add('invalid')
-
-    input.onfocus = function() {
-        input.parentElement.classList.remove('invalid')
-    }
 }

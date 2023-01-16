@@ -43,7 +43,7 @@ function createCart(data, userId, callback) {
         body: JSON.stringify(data)
     }
     
-    fetch('https://63b1106f6a74151a1bca76f7.mockapi.io/api/v1/users/' + userId + '/carts', options)
+    fetch('https://63b1106f6a74151a1bca76f7.mockapi.io/api/v1/users/' + `${userId}` + '/carts', options)
         .then(response => {
             response.json()
         })
@@ -51,6 +51,7 @@ function createCart(data, userId, callback) {
 }
 
 signUpForm.onSubmit = async formData => {
+    showLoaderPage()
     let isExistedEmail = false
     let isExistedUsername = false
     let email = formData.email
@@ -98,15 +99,14 @@ signUpForm.onSubmit = async formData => {
             }
             
             createUser(user)
-            createCart(cart, userId, () => window.location.href = '/login.html')
+
+            users = await getUsersAPI()
+            userId = users.length + 1
+            createCart(cart, userId, () => window.location.href = './login.html')
         }
     }
 }
 
 function invalid(input) {
     input.parentElement.classList.add('invalid')
-
-    input.onfocus = function() {
-        input.parentElement.classList.remove('invalid')
-    }
 }

@@ -92,7 +92,8 @@
                                     <div class="product__qv-quantity-btn product__qv-quantity-minus-btn">
                                         <i class="fa-solid fa-minus"></i>
                                     </div>
-                                    <input id="quantity" name="quantity" rules="required|number|quantity:1" type="text" value="1"
+                                    <input id="quantity" name="quantity" rules="required|number|quantity:1" type="number"
+                                        step="1" min="0" max="99999" value="1" inputmode="numeric" autocomplete="off"
                                         class="form-control">
                                     <div class="product__qv-quantity-btn product__qv-quantity-plus-btn">
                                         <i class="fa-solid fa-plus"></i>

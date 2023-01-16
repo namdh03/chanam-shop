@@ -919,11 +919,23 @@
 .product__qv-quantity-minus-btn {
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
+    opacity: 1;
+}
+
+.product__qv-quantity-minus-btn.active {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .product__qv-quantity-plus-btn {
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
+    opacity: 1;
+}
+
+.product__qv-quantity-plus-btn.active {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .product__qv-add-to-cart-btn {

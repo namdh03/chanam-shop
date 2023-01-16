@@ -171,6 +171,10 @@ export default function quickViewProducts(products = undefined) {
                 plusButtonParent.classList.remove('invalid')
                 qvFormMsgQuantity.innerText = ``
                 inputQuantity.value = ++(_this.countQuantity)
+
+                if (_this.countQuantity > 0) {
+                    minusButton.classList.remove('active')
+                }
             }
 
             // Handle click minus button quantity
@@ -182,6 +186,14 @@ export default function quickViewProducts(products = undefined) {
                     _this.countQuantity = 0
                 }
                 inputQuantity.value = _this.countQuantity
+
+                if (_this.countQuantity === 0) {
+                    minusButton.classList.add('active')
+                }
+            }
+
+            inputQuantity.oninput = function() {
+                _this.countQuantity = inputQuantity.value
             }
 
             // Handle click quick view add to wishlist button
