@@ -80,7 +80,7 @@
     margin-bottom: 60px;
 }
 
-.checkout-bill__title {
+.form-bill__title {
     display: flex;
     font-family: "Lora", Sans-serif;
     font-size: 14px;
@@ -94,7 +94,7 @@
     border-color: #eaeaea;
 }
 
-.checkout-bill__title input {
+.form-bill__title input {
     margin: 0 0 0 auto;
     background-color: #f7f7f7;
     display: inline-block;
@@ -116,24 +116,24 @@
     transition: 0.05s all ease-in-out;
 }
 
-.checkout-bill__title input:checked:before {
+.form-bill__title input:checked:before {
     content: '\f00c';
     color: #242424;
     width: 18px;
     font-family: 'FontAwesome';
 }
 
-.form-checkout-info {
+.form__information {
     width: 100%;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
     padding: 4px 0;
 }
 
-.form-checkout-info--modifier {
+.form__information--modifier {
     position: relative;
 }
 
-.form-checkout-info .form-label {
+.form__information .form__label--modifier {
     font-family: "Lora", Sans-serif;
     margin: 0 0 12px;
     font-size: 16px;
@@ -141,7 +141,7 @@
     color: #666666;
 }
 
-.form-checkout-info textarea {
+.form__information textarea {
     font-family: "Lora", Sans-serif;
     background-color: #f7f7f7;
     min-height: 150px;
@@ -164,17 +164,17 @@
     outline: none;
 }
 
-.form-label--modifier {
+.form__label--modifier--modifier {
     white-space: nowrap; 
     overflow: hidden;
     text-overflow: ellipsis; 
 }
 
-.form-checkout-info .form-label span {
+.form__information .form__label--modifier span {
     color: red;
 }
 
-.form-checkout-info .form-control {
+.form__information .form-control {
     font-family: "Lora", Sans-serif;
     font-size: 16px;
     background-color: #f7f7f7;
@@ -188,7 +188,7 @@
     min-height: 40px
 }
 
-.form-checkout-info select {
+.form__information select {
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
@@ -245,8 +245,8 @@
 .product__order-title {
     font-size: 18px;
     color: #202424;
-    letter-spacing: 1px;
-    font-weight: 800;
+    letter-spacing: 0.8px;
+    font-weight: 900;
     text-transform: uppercase;
 }
 
@@ -429,7 +429,7 @@ input[type="radio"]:checked ~ label:after {
     margin-top: 8px;
 }
 
-.checkout__return-to-home-btn {
+.redirect__return-to-home-btn {
     font-family: "Lora", Sans-serif;
     text-decoration: none;
     display: inline-flex;
@@ -451,11 +451,11 @@ input[type="radio"]:checked ~ label:after {
     transition: all 0.3s ease;
 }
 
-.checkout__return-to-home-btn:hover {
+.redirect__return-to-home-btn:hover {
     background-color: #333333;
 }
 
-.checkout__return-to-home-btn span {
+.redirect__return-to-home-btn span {
     font-size: 8px;
     display: inline-block;
     margin-right: 8px;
@@ -504,7 +504,7 @@ input[type="radio"]:checked ~ label:after {
         font-size: 14px;
     }
 
-    .checkout__return-to-home-btn {
+    .redirect__return-to-home-btn {
         margin-left: 20px;
     }
 }

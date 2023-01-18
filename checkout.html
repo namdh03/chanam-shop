@@ -53,11 +53,11 @@
                 </div>
             </div>
         </div>
-        <div class="checkout__return-to-home hide">
+        <div class="redirect__return-to-home hide">
             <div class="grid wide">
                 <div class="row no-gutters">
                     <div class="col l-12 m-12 c-12">
-                        <a href="./index.html" class="checkout__return-to-home-btn">
+                        <a href="./index.html" class="redirect__return-to-home-btn">
                             <span class="ti-angle-left"></span>
                             Return to home
                         </a>
@@ -80,124 +80,124 @@
 
                 <div class="col l-6 m-12 c-12">
                     <div class="checkout-bill">
-                        <h3 class="checkout-bill__title">BILLING DETAILS</h3>
+                        <h3 class="form-bill__title">BILLING DETAILS</h3>
                         <form action="" method="POST" class="form form--modifier" id="checkout-form">
                             <div class="grid">
                                 <div class="row">
                                     <div class="col l-6 m-12 c-12">
-                                        <div class="form-group form-checkout-info">
-                                            <div for="firstname" class="form-label">First name
+                                        <div class="form-group form__information">
+                                            <div for="firstname" class="form-label form__label--modifier">First name
                                                 <span>*</span>
                                             </div>
                                             <input autocomplete="given-name" id="firstname" name="firstname"
-                                                rules="required" type="text" class="form-control">
+                                                rules="required" type="text" class="form-control user-data">
                                             <span class="form-message form-message--modifier"></span>
                                         </div>
                                     </div>
 
                                     <div class="col l-6 m-12 c-12">
-                                        <div class="form-group form-checkout-info">
-                                            <div for="email" class="form-label">Last name
+                                        <div class="form-group form__information">
+                                            <div for="lastname" class="form-label form__label--modifier">Last name
                                                 <span>*</span>
                                             </div>
                                             <input autocomplete="family-name" id="lastname" name="lastname"
-                                                rules="required" type="text" class="form-control">
+                                                rules="required" type="text" class="form-control user-data">
                                             <span class="form-message form-message--modifier"></span>
                                         </div>
                                     </div>
 
                                     <div class="col l-6 m-12 c-12">
-                                        <div class="form-group form-checkout-info">
-                                            <div for="company" class="form-label">Company name (optional)</div>
+                                        <div class="form-group form__information">
+                                            <div for="company" class="form-label form__label--modifier">Company name (optional)</div>
                                             <input autocomplete="organization" id="company" name="company" type="text"
-                                                class="form-control">
+                                                class="form-control user-data">
                                             <span class="form-message form-message--modifier"></span>
                                         </div>
                                     </div>
 
                                     <div class="col l-6 m-12 c-12">
-                                        <div class="form-group form-checkout-info form-checkout-info--modifier">
-                                            <div for="country" class="form-label">Country / Region
+                                        <div class="form-group form__information form__information--modifier">
+                                            <div for="country" class="form-label form__label--modifier">Country / Region
                                                 <span>*</span>
                                             </div>
-                                            <select id="country" name="country" rules="required" class="form-control"></select>
+                                            <select id="country" name="country" rules="required" class="form-control user-data"></select>
                                             <span class="form-checkout__show-country"><i class="fa-solid fa-caret-down"></i></span>
                                             <span class="form-message form-message--modifier"></span>
                                         </div>
                                     </div>
 
                                     <div class="col l-6 m-12 c-12">
-                                        <div class="form-group form-checkout-info">
-                                            <div for="address" class="form-label">Street address
+                                        <div class="form-group form__information">
+                                            <div for="streetAddress" class="form-label form__label--modifier">Street address
                                                 <span>*</span>
                                             </div>
-                                            <input autocomplete="address-line1" id="address" name="address"
-                                                rules="required" type="text" class="form-control">
+                                            <input autocomplete="address-line1" id="streetAddress" name="streetAddress"
+                                                rules="required" type="text" class="form-control user-data">
                                             <span class="form-message form-message--modifier"></span>
                                         </div>
                                     </div>
 
                                     <div class="col l-6 m-12 c-12">
-                                        <div class="form-group form-checkout-info">
-                                            <div for="apartment" class="form-label form-label--modifier">Apartment,
+                                        <div class="form-group form__information">
+                                            <div for="apartment" class="form-label form__label--modifier form-label form__label--modifier--modifier">Apartment,
                                                 suite, unit, etc. (optional)</div>
                                             <input autocomplete="address-line2" id="apartment" name="apartment"
-                                                type="text" class="form-control">
+                                                type="text" class="form-control user-data">
                                             <span class="form-message form-message--modifier"></span>
                                         </div>
                                     </div>
 
                                     <div class="col l-6 m-12 c-12">
-                                        <div class="form-group form-checkout-info">
-                                            <div for="city" class="form-label">Town / City
+                                        <div class="form-group form__information">
+                                            <div for="city" class="form-label form__label--modifier">Town / City
                                                 <span>*</span>
                                             </div>
                                             <input autocomplete="address-level2" id="city" name="city" rules="required"
-                                                type="text" class="form-control">
+                                                type="text" class="form-control user-data">
                                             <span class="form-message form-message--modifier"></span>
                                         </div>
                                     </div>
 
                                     <div class="col l-6 m-12 c-12">
-                                        <div class="form-group form-checkout-info">
-                                            <div for="state" class="form-label">State / County
+                                        <div class="form-group form__information">
+                                            <div for="state" class="form-label form__label--modifier">State / County
                                                 <span>*</span>
                                             </div>
                                             <input autocomplete="address-level2" id="state" name="state"
-                                                rules="required" type="text" class="form-control">
+                                                rules="required" type="text" class="form-control user-data">
                                             <span class="form-message form-message--modifier"></span>
                                         </div>
                                     </div>
 
                                     <div class="col l-6 m-12 c-12">
-                                        <div class="form-group form-checkout-info">
-                                            <div for="postcode" class="form-label">Postcode / ZIP
+                                        <div class="form-group form__information">
+                                            <div for="postcode" class="form-label form__label--modifier">Postcode / ZIP
                                                 <span>*</span>
                                             </div>
                                             <input autocomplete="postal-code" id="postcode" name="postcode"
-                                                rules="required" type="text" class="form-control">
+                                                rules="required" type="text" class="form-control user-data">
                                             <span class="form-message form-message--modifier"></span>
                                         </div>
                                     </div>
 
                                     <div class="col l-6 m-12 c-12">
-                                        <div class="form-group form-checkout-info">
-                                            <div for="phone" class="form-label">Phone
+                                        <div class="form-group form__information">
+                                            <div for="phone" class="form-label form__label--modifier">Phone
                                                 <span>*</span>
                                             </div>
                                             <input autocomplete="tel" id="phone" name="phone" rules="required|tel"
-                                                type="text" class="form-control">
+                                                type="text" class="form-control user-data">
                                             <span class="form-message form-message--modifier"></span>
                                         </div>
                                     </div>
 
                                     <div class="col l-12 m-12 c-12">
-                                        <div class="form-group form-checkout-info">
-                                            <div for="email" class="form-label">Email
+                                        <div class="form-group form__information">
+                                            <div for="email" class="form-label form__label--modifier">Email
                                                 <span>*</span>
                                             </div>
                                             <input autocomplete="email" id="email" name="email" rules="required|email"
-                                                type="text" class="form-control">
+                                                type="text" class="form-control user-data">
                                             <span class="form-message form-message--modifier"></span>
                                         </div>
                                     </div>
@@ -205,15 +205,15 @@
                             </div>
                         </form>
 
-                        <h3 class="checkout-bill__title">SHIP TO A DIFFERENT ADDRESS?
+                        <h3 class="form-bill__title">SHIP TO A DIFFERENT ADDRESS?
                             <input type="checkbox" class="show-form-differ-btn">
                         </h3>
                         <form action="" method="POST" class="form hide" id="checkout-form-differ">
                             <div class="grid">
                                 <div class="row">
                                     <div class="col l-6 m-12 c-12">
-                                        <div class="form-group form-checkout-info">
-                                            <div for="firstname" class="form-label">First name
+                                        <div class="form-group form__information">
+                                            <div for="firstname" class="form-label form__label--modifier">First name
                                                 <span>*</span>
                                             </div>
                                             <input autocomplete="given-name" id="firstname" name="firstname"
@@ -223,8 +223,8 @@
                                     </div>
 
                                     <div class="col l-6 m-12 c-12">
-                                        <div class="form-group form-checkout-info">
-                                            <div for="email" class="form-label">Last name
+                                        <div class="form-group form__information">
+                                            <div for="email" class="form-label form__label--modifier">Last name
                                                 <span>*</span>
                                             </div>
                                             <input autocomplete="family-name" id="lastname" name="lastname"
@@ -234,8 +234,8 @@
                                     </div>
 
                                     <div class="col l-6 m-12 c-12">
-                                        <div class="form-group form-checkout-info">
-                                            <div for="company" class="form-label">Company name (optional)</div>
+                                        <div class="form-group form__information">
+                                            <div for="company" class="form-label form__label--modifier">Company name (optional)</div>
                                             <input autocomplete="organization" id="company" name="company" type="text"
                                                 class="form-control">
                                             <span class="form-message form-message--modifier"></span>
@@ -243,8 +243,8 @@
                                     </div>
 
                                     <div class="col l-6 m-12 c-12">
-                                        <div class="form-group form-checkout-info form-checkout-info--modifier">
-                                            <div for="country" class="form-label">Country / Region
+                                        <div class="form-group form__information form__information--modifier">
+                                            <div for="country" class="form-label form__label--modifier">Country / Region
                                                 <span>*</span>
                                             </div>
                                             <select id="country-differ" name="country" rules="required" class="form-control"></select>
@@ -254,8 +254,8 @@
                                     </div>
 
                                     <div class="col l-6 m-12 c-12">
-                                        <div class="form-group form-checkout-info">
-                                            <div for="address" class="form-label">Street address
+                                        <div class="form-group form__information">
+                                            <div for="address" class="form-label form__label--modifier">Street address
                                                 <span>*</span>
                                             </div>
                                             <input autocomplete="address-line1" id="address" name="address"
@@ -265,8 +265,8 @@
                                     </div>
 
                                     <div class="col l-6 m-12 c-12">
-                                        <div class="form-group form-checkout-info">
-                                            <div for="apartment" class="form-label form-label--modifier">Apartment,
+                                        <div class="form-group form__information">
+                                            <div for="apartment" class="form-label form__label--modifier form-label form__label--modifier--modifier">Apartment,
                                                 suite, unit, etc. (optional)</div>
                                             <input autocomplete="address-line2" id="apartment" name="apartment"
                                                 type="text" class="form-control">
@@ -275,8 +275,8 @@
                                     </div>
 
                                     <div class="col l-6 m-12 c-12">
-                                        <div class="form-group form-checkout-info">
-                                            <div for="city" class="form-label">Town / City
+                                        <div class="form-group form__information">
+                                            <div for="city" class="form-label form__label--modifier">Town / City
                                                 <span>*</span>
                                             </div>
                                             <input autocomplete="address-level2" id="city" name="city" rules="required"
@@ -286,8 +286,8 @@
                                     </div>
 
                                     <div class="col l-6 m-12 c-12">
-                                        <div class="form-group form-checkout-info">
-                                            <div for="state" class="form-label">State / County
+                                        <div class="form-group form__information">
+                                            <div for="state" class="form-label form__label--modifier">State / County
                                                 <span>*</span>
                                             </div>
                                             <input autocomplete="address-level2" id="state" name="state"
@@ -297,8 +297,8 @@
                                     </div>
 
                                     <div class="col l-12 m-12 c-12">
-                                        <div class="form-group form-checkout-info">
-                                            <div for="postcode" class="form-label">Postcode / ZIP
+                                        <div class="form-group form__information">
+                                            <div for="postcode" class="form-label form__label--modifier">Postcode / ZIP
                                                 <span>*</span>
                                             </div>
                                             <input autocomplete="postal-code" id="postcode" name="postcode"
@@ -313,8 +313,8 @@
                         <div class="grid">
                             <div class="row">
                                 <div class="col l-12 m-12 c-12">
-                                    <div class="form-checkout-info">
-                                        <div for="postcode" class="form-label">Order notes (optional)</div>
+                                    <div class="form__information">
+                                        <div for="postcode" class="form-label form__label--modifier">Order notes (optional)</div>
                                         <textarea name="order" id="order"
                                             placeholder="Notes about your order, e.g. special notes for delivery."
                                             cols="5" rows="2"></textarea>
@@ -327,7 +327,7 @@
 
                 <div class="col l-6 m-12 c-12">
                     <div class="checkout-bill">
-                        <h3 class="checkout-bill__title">
+                        <h3 class="form-bill__title">
                             YOUR ORDER
                             <span class="checkout-coupon__toggle">
                                 Have a coupon?

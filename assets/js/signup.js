@@ -17,11 +17,10 @@ async function getUsersAPI() {
 }
 
 function createUser(data, callback) {
-    showLoaderPage()
     let options = {
         method: 'POST',
         headers: {
-            'Content-type': 'application/json; charset=UTF-8',
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
     }
@@ -34,11 +33,10 @@ function createUser(data, callback) {
 }
 
 function createCart(data, userId, callback) {
-    showLoaderPage()
     let options = {
         method: 'POST',
         headers: {
-            'Content-type': 'application/json; charset=UTF-8',
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
     }
@@ -73,25 +71,37 @@ signUpForm.onSubmit = async formData => {
 
         if (isExistedEmail) {
             toast({
-                title: 'Thất bại!',
-                message: 'Email đã tồn tại!',
+                title: 'Error!',
+                message: 'Email address already taken!',
                 type: 'error',
                 duration: 3000
             })
             invalid(emailInput)
+            hideLoaderPage()
         } else if (isExistedUsername) {
             toast({
-                title: 'Thất bại!',
-                message: 'Tên người dùng đã tồn tại!',
+                title: 'Error!',
+                message: 'Username already taken!',
                 type: 'error',
                 duration: 3000
             })
             invalid(usernameInput)
+            hideLoaderPage()
         } else {
             let user = {
                 email: email,
                 username: username,
                 password: password,
+                firstname: '',
+                lastname: '',
+                country: '',
+                streetAddress: '',
+                city: '',
+                state: '',
+                postcode: '',
+                phone: '',
+                company: '',
+                apartment: '',
             }
 
             let cart = {

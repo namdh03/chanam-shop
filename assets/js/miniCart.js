@@ -43,7 +43,7 @@ export default function miniCart(products = undefined) {
         },
 
         // Handle update product to api
-        updateProducts(data, id, callback) {
+        async updateProducts(data, id, callback) {
             let options = {
                 method: 'PUT',
                 headers: {
@@ -54,9 +54,9 @@ export default function miniCart(products = undefined) {
         
             fetch(cartApi + '/' + id, options)
                 .then(function (response) {
-                    response.json();
+                    response.json()
                 })
-                .then(callback);
+                .then(callback)
         },
 
         // Main mini cart
@@ -68,7 +68,7 @@ export default function miniCart(products = undefined) {
                     Array.from(selectors).forEach(button => {
                         button.onclick = function () {
                             if (userId) {
-                                let productItemElement = product().getParent(button, '.product__item')
+                                let productItemElement = product.getParent(button, '.product__item')
                                 let productIndex = productItemElement.parentElement.getAttribute('data-index')
                                 _this.renderMiniCart(products, productIndex, _this.quantity)
                             } else {
@@ -149,7 +149,7 @@ export default function miniCart(products = undefined) {
                 </div>
 
                 <div class="product__mini-cart-remove">
-                    <i class="fa-regular fa-rectangle-xmark"></i>
+                    <i class="fa-regular fa-rectangle-xmark product__mini-cart-remove-icon"></i>
                 </div>
             `
             productMiniCartItems.append(cartItem)
@@ -161,9 +161,10 @@ export default function miniCart(products = undefined) {
             const _this = this
             Array.from(productMniCartRemoveBtn).forEach(button => {
                 button.onclick = function () {
-                    let item = product().getParent(button, '.product__mini-cart-item')
+                    let item = product.getParent(button, '.product__mini-cart-item')
                     let quantity = Number(item.querySelector('.product__mini-cart-quantity').textContent.replace(/\D/g, ''))
                     let price = Number(item.querySelector('.product__mini-cart-number').textContent.replace(/\D/g, ''))
+                    
                     item.remove()
 
                     for (let i = 0; i < _this.products.length; i++) {
@@ -173,6 +174,7 @@ export default function miniCart(products = undefined) {
                             _this.cart["userId"] = userId
                             _this.updateProducts(_this.cart, userId)
                             _this.showEmptyText()
+                            break
                         }
                     }
 
@@ -220,6 +222,7 @@ export default function miniCart(products = undefined) {
                 for (let j of products) {
                     if (i.productID === j.id) {
                         this.subTotal += i.quantity * j.price
+                        break
                     }
                 }
             }
@@ -243,7 +246,6 @@ export default function miniCart(products = undefined) {
             // Handle click add to cart at quick view ui
             qvFormValidator.onSubmit = formData => {
                 if (userId) {
-                    console.log(formData)
                     let productIndex = qvForm.getAttribute('data-index')
                     this.renderMiniCart(products, productIndex, formData.quantity)
                     this.showEmptyText()

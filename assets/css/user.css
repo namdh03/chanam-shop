@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 .user__page {
     font-family: 'Open Sans', sans-serif;
     display: flex;
@@ -87,4 +89,185 @@
 
 .container form a:hover {
     color: #555;
+}
+
+.user__profile {
+    display: flex;
+    align-items: center;
+    margin: 50px 0 40px;
+}
+
+.user__info {
+    font-family: 'Rubik', sans-serif;
+    padding-left: 16px;
+}
+
+.user__img {
+    width: 64px;
+    height: 64px;
+}
+
+.user__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+}
+
+.user__name {
+    display: block;
+    font-size: 18px;
+    line-height: 1;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.user__logout {
+    text-decoration: none;
+    font-size: 14px;
+    color: #222222;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.user__logout:hover {
+    color: #6759ff;
+}
+
+.user__account-nav {
+    border-top: 1px solid #eaeaea;
+}
+
+.user__account-nav-item {
+    font-family: 'Rubik', sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #eaeaea;
+    cursor: pointer;
+}
+
+.user__account-nav-item:hover .user__account-nav-text,
+.user__account-nav-item:hover .user__account-nav-icon {
+    color: #6759ff;
+    opacity: 1;
+}
+
+.user__account-nav-text {
+    color: #222222;
+    display: block;
+    text-decoration: none;
+    line-height: 1.6;
+    width: 100%;
+    font-size: 14px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.user__account-nav-icon {
+    color: #6759ff;
+    opacity: 0.5;
+    font-size: 16px;
+    display: block;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.user__account-nav-icon span {
+    position: relative;
+    top: 3px;
+}
+
+.user__account-nav-icon.active {
+    color: #6759ff;
+    opacity: 1;
+}
+
+.user__acc-content {
+    margin-top: 50px;
+}
+
+.user__acc-content-text {
+    font-family: 'Rubik', sans-serif;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #666666;
+    line-height: 2;
+}
+
+.user__acc-content-link {
+    color: #222222;
+    cursor: pointer;
+    text-decoration: none;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.user__acc-content-link:hover {
+    color: #6759ff;
+}
+
+.user__font-text {
+    font-family: 'Rubik', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+}
+
+.user__form-title {
+    font-family: "Lora", Sans-serif;
+    color: #222222;
+    margin-bottom: 12px;
+    text-transform: none;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 2.4;
+}
+
+.user__save-address {
+    font-family: 'Rubik', sans-serif;
+    outline: none;
+    border: none;
+    padding: 14px 30px;
+    background-color: #6759ff;
+    color: #fff;
+    border-radius: 25px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.user__save-address:hover {
+    background-color: #222222;
+}
+
+.user__password-change-title {
+    font-family: 'Rubik', sans-serif;
+    color: #333;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
 }

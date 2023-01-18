@@ -1,5 +1,7 @@
+import validator from '../lib/validator.js'
 import {showLoaderPage, hideLoaderPage, showLoaderDefault, hideLoaderDefault} from '../js/loader.js'
-import toast from '../lib/toast.js';
+import { userIDStatus } from '../js/userStatus.js'
+import toast from '../lib/toast.js'
 import scroll from '../js/scrollToTop.js'
 import product from '../js/product.js'
 import miniCart from '../js/miniCart.js'
@@ -9,7 +11,7 @@ const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 
 let userId = window.localStorage.getItem('userId')
-let productsAPI = await product().getProductsAPI()
+let productsAPI = await product.getProductsAPI()
 let carts = await miniCart().getCart(userId)
 let cartBody = $('.cart__body')
 let cartSubtotal = $('.cart__totals-body-value--subtotal')
@@ -20,13 +22,20 @@ let cartQuantityPlusBtn = document.getElementsByClassName('cart__product-quantit
 let cartQuantityMinusBtn = document.getElementsByClassName('cart__product-quantity-minus-btn')
 let cartItem = document.getElementsByClassName('cart__item')
 let cartUpdateBtn = $('.cart__update-btn')
+let cartWrapper = $('.cart__wrapper')
+let cartReturnHome = $('.redirect__return-to-home')
+let productMiniCartClose = $('.product__mini-cart-close')
+let cartCouponSubmit = $('.cart-coupon__submit')
+let cartCouponCode = $('.cart-coupon__code')
 
+userIDStatus()
 miniCart(productsAPI).start()
 scroll()
-footer()
+footer.start()
 
-const app = {
+const cart = {
     html: '',
+    cart: {},
     products: [],
     subTotal: 0,
     isChanged: false,
@@ -89,6 +98,7 @@ const app = {
                             </div>
                         </div>
                     `
+                    break
                 }
             }
         }
@@ -97,6 +107,7 @@ const app = {
             for (let j of productsAPI) {
                 if (i.productID === j.id) {
                     this.subTotal += i.quantity * j.price
+                    break
                 }
             }
         }
@@ -121,7 +132,37 @@ const app = {
         // Handle delete cart items
         Array.from(cartRemoveBtn).forEach(button => {
             button.onclick = function() {
-                let cartItem = product().getParent(button, '.cart__item')
+                let cartItem = product.getParent(button, '.cart__item')
+                let cartItemID = Number(cartItem.getAttribute('data-id'))
+                let productMiniCartItem = $$('.product__mini-cart-item')
+
+                for (let i = 0; i < productMiniCartItem.length; i++) {
+                    if (Number(productMiniCartItem[i].getAttribute('data-id')) === cartItemID) {
+                        productMiniCartItem[i].remove()
+                        break
+                    }
+                }
+
+                for (let i = 0; i < _this.products.length; i++) {
+                    if (cartItemID === _this.products[i].productID) {
+                        _this.products.splice(i, 1)
+                        _this.cart["products"] = _this.products
+                        _this.cart["userId"] = userId
+
+                        if (_this.products.length === 0) {
+                            showLoaderPage()
+                            
+                            setTimeout(() => {
+                                _this.showReturnHomeBtn()
+                            }, 1000)
+                        }
+
+                        miniCart().updateProducts(_this.cart, userId)
+                        miniCart().showEmptyText()
+                        break
+                    }
+                }
+
                 cartItem.remove()
             }
         })
@@ -176,17 +217,71 @@ const app = {
         cartUpdateBtn.onclick = function() {
             if (cartUpdateBtn.classList.contains('active') && _this.isChanged === true) {
                 showLoaderDefault()
-                let cart = {}
-                let products = []
-                Array.from(cartItem).forEach(item => {
-                    let quantity = Number(item.querySelector('.cart__quantity-input').value)
-                    let productID = Number(item.getAttribute('data-id'))
-
-                    products.push({ productID, quantity })
-                })
                 
-                cart['products'] = products
-                miniCart().updateProducts(cart, userId)
+                setTimeout(() => {
+                    let cart = {}
+                    let products = []
+                    Array.from(cartItem).forEach(item => {
+                        let quantity = Number(item.querySelector('.cart__quantity-input').value)
+                        let productID = Number(item.getAttribute('data-id'))
+
+                        if (quantity !== 0) {
+                            products.push({ productID, quantity })
+                        }
+                    })
+                    
+                    cart['products'] = products
+                    miniCart().updateProducts(cart, userId, () => {
+                        window.location.reload()
+                    })
+                }, 1000)
+            }
+        }
+
+        // Handle remove mini cart item
+        miniCart().isElementLoaded('.product__mini-cart-remove-icon', 'querySelectorAll')
+            .then(selectors => {
+                Array.from(selectors).forEach(selector => {
+                    let productMiniCartItem = product.getParent(selector, '.product__mini-cart-item')
+                    let miniCartItemID = Number(productMiniCartItem.getAttribute('data-id'))
+
+                    selector.onclick = function() {
+                        Array.from(cartItem).forEach(item => {
+                            if (Number(item.getAttribute('data-id')) === miniCartItemID) {
+                                item.remove()
+                                return
+                            }
+                        })
+
+                        for (let i = 0; i < _this.products.length; i++) {
+                            if (miniCartItemID === _this.products[i].productID) {
+                                _this.products.splice(i, 1)
+                                
+                                if (_this.products.length === 0) {
+                                    showLoaderPage()
+                                    
+                                    setTimeout(() => {
+                                        _this.showReturnHomeBtn()
+                                    }, 1000)
+                                }
+    
+                                break
+                            }
+                        }
+                    }
+                }) 
+            })
+
+        // Handle submit coupon code
+        cartCouponSubmit.onclick = function() {
+            if (typeof cartCouponCode.value !== 'string' || cartCouponCode.value.trim().length !== 0) {
+                toast({
+                    title: 'Error!',
+                    message: `Coupon "${cartCouponCode.value}" does not exist!`,
+                    type: 'error',
+                    duration: 3000
+                })
+                cartCouponCode.value = ''
             }
         }
     },
@@ -195,10 +290,20 @@ const app = {
         cartUpdateBtn.classList.add('active')
     },
 
+    showReturnHomeBtn() {
+        if (this.products.length === 0) {
+            cartWrapper.remove()
+            cartReturnHome.classList.remove('hide')
+            productMiniCartClose.click()
+            hideLoaderPage()
+        }
+    },
+
     start() {
         this.renderCart()
+        this.showReturnHomeBtn()
         this.handleEvents()
     },
 }
 
-app.start()
+cart.start()

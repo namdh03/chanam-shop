@@ -32,8 +32,8 @@ export default function quickViewProducts(products = undefined) {
     let qvInnerBtnPrev = $('.product__qv-inner-btn-prev')
     let qvInnerBtnNext = $('.product__qv-inner-btn-next')
     let qvForm = $('#qv-form')
-    let plusButtonParent = product().getParent(plusButton, '.form-group')
-    let minusButtonParent = product().getParent(minusButton, '.form-group')
+    let plusButtonParent = product.getParent(plusButton, '.form-group')
+    let minusButtonParent = product.getParent(minusButton, '.form-group')
     let qvFormMsgQuantity = $('.form-message--quantity')
 
     return {
@@ -64,7 +64,7 @@ export default function quickViewProducts(products = undefined) {
                     qvFormMsgQuantity.innerText = ''
 
                     // Render
-                    let dataIndex = product().getParent(button, '.product__item').parentElement.getAttribute('data-index')
+                    let dataIndex = product.getParent(button, '.product__item').parentElement.getAttribute('data-index')
 
                     qvForm.setAttribute('data-index', dataIndex)
 

@@ -17,7 +17,7 @@ async function getUsersAPI() {
 }
 
 loginForm.onSubmit = async formData => {
-    showLoaderPage()
+    showLoaderDefault()
     let isExistedUsername = false
     let isExistedPassword = false
     let username = formData.username
@@ -40,21 +40,23 @@ loginForm.onSubmit = async formData => {
 
         if (!isExistedUsername) {
             toast({
-                title: 'Thất bại!',
-                message: 'Tên người dùng không tồn tại!',
+                title: 'Error!',
+                message: 'ERROR: Username or password incorrect!',
                 type: 'error',
                 duration: 3000
             })
-            invalid(usernameInput)
+            invalid()
+            hideLoaderDefault()
             return
         } else if (!isExistedPassword) {
             toast({
-                title: 'Thất bại!',
-                message: 'Mật khẩu không chính xác',
+                title: 'Error!',
+                message: 'ERROR: Username or password incorrect!',
                 type: 'error',
                 duration: 3000
             })
-            invalid(passwordInput)
+            invalid()
+            hideLoaderDefault()
             return
         } else {
             window.location.href = './index.html'
@@ -62,6 +64,7 @@ loginForm.onSubmit = async formData => {
     }
 }
 
-function invalid(input) {
-    input.parentElement.classList.add('invalid')
+function invalid() {
+    usernameInput.parentElement.classList.add('invalid')
+    passwordInput.parentElement.classList.add('invalid')
 }

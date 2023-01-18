@@ -1,23 +1,22 @@
 import validator from '../lib/validator.js'
 import { showLoaderPage, hideLoaderPage, showLoaderDefault, hideLoaderDefault } from '../js/loader.js'
-import toast from '../lib/toast.js';
+import { userIDStatus } from '../js/userStatus.js'
+import toast from '../lib/toast.js'
 import scroll from '../js/scrollToTop.js'
 import product from '../js/product.js'
 import miniCart from '../js/miniCart.js'
 import footer from '../js/footer.js'
+import { createCountryOption } from '../js/countryOption.js'
+import { createFormData } from '../js/formData.js'
 
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 
-scroll()
-footer()
-
 let userId = window.localStorage.getItem('userId')
 let cartApi = 'https://63b1106f6a74151a1bca76f7.mockapi.io/api/v1/users/1/carts'
-let countryApi = 'https://restcountries.com/v3.1/all'
 let productMiniCartClose = $('.product__mini-cart-close')
 let checkoutWrapper = $('.checkout__wrapper')
-let checkoutReturnHome = $('.checkout__return-to-home')
+let checkoutReturnHome = $('.redirect__return-to-home')
 let countrySelect = $('#country')
 let countrySelectDiffer = $('#country-differ')
 let checkoutCoupon = $('.checkout-coupon')
@@ -36,39 +35,33 @@ let checkoutOrderBody = $('.checkout__order-body')
 let checkoutOrderSubtotal = $('.checkout__order-footer-value')
 let checkoutOrderTotal = $('.checkout__order-footer-value--total')
 let checkoutCouponSubmit = $('.checkout-coupon__submit')
+let checkoutCouponCode = $('.checkout-coupon__code')
+let productMniCartRemoveBtn = document.getElementsByClassName('product__mini-cart-remove-icon')
+let userData = $$('.user-data')
+let productsAPI = await product.getProductsAPI()
 
-fetch(countryApi)
-    .then((response) => {
-        return response.json();
-    })
-    .then((countries) => {
-        let option = Array.from(countries).map(country => {
-            if (country.name.common === 'United Kingdom') {
-                return `
-                    <option value="${country.name.common}" selected="selected">${country.name.common}</option>
-                `
-            } else {
-                return `
-                    <option value="${country.name.common}">${country.name.common}</option>
-                `
-            }
-        }).join('')
-        countrySelect.innerHTML = option
-        countrySelectDiffer.innerHTML = option
-    })
+userIDStatus()
+await miniCart(productsAPI).start()
+await renderOrderCheckout(productsAPI)
+scroll()
+footer.start()
+
+createCountryOption(countrySelect, countrySelectDiffer)
 
 checkoutShowCoupon.onclick = function () {
     checkoutCoupon.classList.toggle('hide')
 }
 
 checkoutCouponSubmit.onclick = function () {
-    toast({
-        title: 'Thất bại!',
-        message: 'Mã coupon không hợp lệ!',
-        type: 'error',
-        duration: 3000
-    })
-    $('.checkout-coupon__code').value = ''
+    if (typeof checkoutCouponCode.value !== 'string' || checkoutCouponCode.value.trim().length !== 0) {
+        toast({
+            title: 'Error!',
+            message: `Coupon "${checkoutCouponCode.value}" does not exist!`,
+            type: 'error',
+            duration: 3000
+        })
+        checkoutCouponCode.value = ''
+    }
 }
 
 showFormDifferBtn.onclick = function () {
@@ -126,9 +119,9 @@ function updateProducts(data, id, callback) {
 
     fetch(cartApi + '/' + id, options)
         .then(function (response) {
-            response.json();
+            response.json()
         })
-        .then(callback);
+        .then(callback)
 }
 
 function handleCheckout() {
@@ -164,7 +157,7 @@ async function renderOrderCheckout(productsAPI) {
     }
 
     if (products.length === 0) {
-        checkoutWrapper.classList.add('hide')
+        checkoutWrapper.remove()
         checkoutReturnHome.classList.remove('hide')
         productMiniCartClose.click()
     }
@@ -186,6 +179,7 @@ async function renderOrderCheckout(productsAPI) {
                         </div>
                     </div>
                 `
+                break
             }
         }
     }
@@ -194,6 +188,7 @@ async function renderOrderCheckout(productsAPI) {
         for (let j of productsAPI) {
             if (i.productID === j.id) {
                 subTotal += i.quantity * j.price
+                break
             }
         }
     }
@@ -201,20 +196,13 @@ async function renderOrderCheckout(productsAPI) {
     checkoutOrderBody.innerHTML = html
     checkoutOrderSubtotal.innerText = '£' + subTotal
     checkoutOrderTotal.innerText = '£' + subTotal
-    hideLoaderPage()
 }
 
-;(async () => {
-    let productsAPI = await product().getProductsAPI()
-    miniCart(productsAPI).start()
-    renderOrderCheckout(productsAPI)
+Array.from(productMniCartRemoveBtn).forEach(button => {
+    button.onclick = async function() {
+        let productsAPI = await product.getProductsAPI()
+        await renderOrderCheckout(productsAPI)
+    }
+})
 
-    miniCart().isElementLoaded('.product__mini-cart-remove i', 'querySelectorAll')
-    .then(selectors => {
-        Array.from(selectors).forEach(selector => {
-            selector.onclick = async function () {
-                renderOrderCheckout(productsAPI)
-            }
-        })
-    })
-})()
+createFormData(userData, userId, hideLoaderPage)

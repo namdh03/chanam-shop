@@ -148,7 +148,10 @@
     font-weight: 900;
 }
 
-.product__mini-cart-remove {}
+.product__mini-cart-remove {
+    width: 20px;
+    height: 20px;
+}
 
 .product__mini-cart-remove i {
     color: #d4d4d4;
