@@ -47,18 +47,26 @@ export default function Validator(formSelector, formGroup = '.form-group', formM
                 return value.length <= max ? undefined : `Please enter up to ${max} characters.`;
             }
         },
+
         quantity: number => {
             return value => {
                 return value >= number ? undefined : `Please enter at least ${number} product.`;
             }
         },
+
         number: value => {
             return !isNaN(value) ? undefined : `Input characters must be alphanumeric.`;
         },
+
         tel: value => {
             let regex = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
             return regex.test(value) ? undefined : `Invalid phone number`;
         },
+
+        blank: value => {
+            let regex = /^\S*$/;
+            return regex.test(value) ? undefined : `Please do not enter space(s).`
+        }
     };
 
     // Lấy ra selector form muốn validate

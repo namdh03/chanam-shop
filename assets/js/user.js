@@ -1,5 +1,6 @@
-import validator from '../lib/validator.js'
 import { showLoaderPage, hideLoaderPage, showLoaderDefault, hideLoaderDefault } from '../js/loader.js'
+import { userIDStatus } from '../js/userStatus.js'
+import validator from '../lib/validator.js'
 import toast from '../lib/toast.js'
 import scroll from '../js/scrollToTop.js'
 import product from '../js/product.js'
@@ -7,11 +8,11 @@ import miniCart from '../js/miniCart.js'
 import footer from '../js/footer.js'
 import { createCountryOption } from '../js/countryOption.js'
 import { createFormData } from '../js/formData.js'
-import { userIDStatus } from '../js/userStatus.js'
 
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 
+let userApi = 'https://63b1106f6a74151a1bca76f7.mockapi.io/api/v1/users'
 let productsAPI = await product.getProductsAPI()
 let userId = window.localStorage.getItem('userId')
 let userAccNavItems  = $$('.user__account-nav-item')
@@ -29,6 +30,7 @@ let countrySelect = $('#country')
 let userData = $$('.user-data')
 let userNameApi = $$('.user__name--api')
 let addressesForm= new validator('#addresses-form')
+let userForm = new validator('#user-form')
 
 userIDStatus()
 await miniCart(productsAPI).start()
@@ -37,7 +39,14 @@ footer.start()
 createCountryOption(countrySelect)
 
 const user = {
-    async getUsersAPI(userId) {
+    user: {},
+    users: [],
+
+    async getUsersAPI() {
+        return (await fetch(userApi)).json()
+    },
+
+    async getUserAPI(userId) {
         return (await fetch('https://63b1106f6a74151a1bca76f7.mockapi.io/api/v1/users/' + `${userId}`)).json()
     },
 
@@ -58,10 +67,10 @@ const user = {
     },
 
     async render() {
-        let user = await this.getUsersAPI(userId)
+        this.user = await this.getUserAPI(userId)
 
         Array.from(userNameApi).forEach(name => {
-            name.innerText = user.username
+            name.innerText = this.user.username
         })
     },
 
@@ -121,8 +130,11 @@ const user = {
         })
 
         // Handle submit form edit addresses user
-        addressesForm.onSubmit = formData => {
+        addressesForm.onSubmit = async formData => {
             showLoaderDefault()
+            _this.users = await _this.getUsersAPI()
+
+            let isExistedEmail = false
             let firstname = formData.firstname
             let lastname = formData.lastname
             let country = formData.country
@@ -133,23 +145,123 @@ const user = {
             let phone = formData.phone
             let company = formData.company
             let apartment = formData.apartment
+            let email = formData.email
 
-            let user = {
-                firstname: firstname,
-                lastname: lastname,
-                country: country,
-                streetAddress: streetAddress,
-                city: city,
-                state: state,
-                postcode: postcode,
-                phone: phone,
-                company: company,
-                apartment: apartment,
+            for (let user of _this.users) {
+                if (user.email === email) {
+                    isExistedEmail = true
+
+                    if (_this.user.email === email) {
+                        isExistedEmail = false
+                    }
+
+                    break
+                }
+            }
+    
+            if (isExistedEmail) {
+                toast({
+                    title: 'Error!',
+                    message: 'Email address already taken!',
+                    type: 'error',
+                    duration: 3000
+                })
+                hideLoaderDefault()
+                return
+            } else {
+                let user = {
+                    email: email,
+                    firstname: firstname,
+                    lastname: lastname,
+                    country: country,
+                    streetAddress: streetAddress,
+                    city: city,
+                    state: state,
+                    postcode: postcode,
+                    phone: phone,
+                    company: company,
+                    apartment: apartment,
+                }
+
+                _this.updateUser(user, userId, () => {
+                    window.location.reload()
+                })
+            }
+        }
+
+        // Handle submit form edit user account details
+        userForm.onSubmit = async formData => {
+            showLoaderDefault()
+            _this.users = await _this.getUsersAPI()
+            let isExistedEmail = false
+            let isExistedUsername = false
+            let isExistedPassword = false
+            let email = formData.email
+            let username = formData.username
+            let oldPassword = formData.oldPassword
+            let password = formData.password
+            let firstname = formData.firstname
+            let lastname = formData.lastname
+
+            for (let user of _this.users) {
+                if (user.email === email) {
+                    isExistedEmail = true
+
+                    if (_this.user.email === email) {
+                        isExistedEmail = false
+                    }
+                } else if (user.username === username) {
+                    isExistedUsername = true
+
+                    if (_this.user.username === username) {
+                        isExistedUsername = false
+                    }
+                } 
+                if (user.password === oldPassword) {
+                    isExistedPassword = true
+                }
             }
 
-            _this.updateUser(user, userId, () => {
+            if (isExistedEmail) {
+                toast({
+                    title: 'Error!',
+                    message: 'Email address already taken!',
+                    type: 'error',
+                    duration: 3000
+                })
                 hideLoaderDefault()
-            })
+                return
+            } else if (isExistedUsername) {
+                toast({
+                    title: 'Error!',
+                    message: 'Username already taken!',
+                    type: 'error',
+                    duration: 3000
+                })
+                hideLoaderDefault()
+                return
+            } else if (!isExistedPassword) {
+                toast({
+                    title: 'Error!',
+                    message: 'ERROR: Password not found!',
+                    type: 'error',
+                    duration: 3000
+                })
+                hideLoaderDefault()
+                return
+            } else {
+                let user = {
+                    email: email,
+                    firstname: firstname,
+                    lastname: lastname,
+                    username: username,
+                    password: password,
+                }
+
+                _this.updateUser(user, userId, () => {
+                    window.location.reload()
+                })
+            }
         }
     },
 

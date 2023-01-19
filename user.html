@@ -276,7 +276,7 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="user__save-address">Save Address</button>
+                            <button type="submit" class="user__save">Save Address</button>
                         </form>
                     </div>
 
@@ -337,8 +337,8 @@
 
                                     <div class="col l-12 m-12 c-12">
                                         <div class="form-group form__information">
-                                            <div for="password" class="form-label user__font-text form__label--modifier">Current password (leave blank to leave unchanged)</div>
-                                            <input id="password" name="password" type="text"
+                                            <div for="oldPassword" class="form-label user__font-text form__label--modifier">Current password (leave blank to leave unchanged)</div>
+                                            <input id="oldPassword" name="oldPassword" type="text"
                                                 class="form-control">
                                             <span class="form-message form-message--modifier"></span>
                                         </div>
@@ -346,8 +346,8 @@
 
                                     <div class="col l-12 m-12 c-12">
                                         <div class="form-group form__information">
-                                            <div for="newPassword" class="form-label user__font-text form__label--modifier">New password (leave blank to leave unchanged)</div>
-                                            <input id="newPassword" name="newPassword" rules="required|min:6" type="text"
+                                            <div for="password" class="form-label user__font-text form__label--modifier">New password (leave blank to leave unchanged)</div>
+                                            <input id="password" name="password" rules="required|blank|min:6" type="text"
                                                 class="form-control">
                                             <span class="form-message form-message--modifier"></span>
                                         </div>
@@ -364,7 +364,7 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="user__save-address">Save Changes</button>
+                            <button type="submit" class="user__save">Save Changes</button>
                         </form>
                     </div>
                 </div>

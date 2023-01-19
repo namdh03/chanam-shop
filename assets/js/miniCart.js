@@ -15,6 +15,12 @@ export default function miniCart(products = undefined) {
     let productMiniCartSubtotalNumber = $('.product__mini-cart-subtotal-number')
     let qvForm = $('#qv-form')
     let qvFormValidator = new validator('#qv-form')
+    let productPopup = $('.product__popup')
+    let productPopupQuantity = $('.product__popup-quantity')
+    let productPopupTotal = $('.product__popup-total')
+    let productPopupOverlay = $('.product__popup-overlay')
+    let productPopupContinueBtn = $('.product__popup--continue-btn')
+    let productPopupCartBtn = $('.product__popup--cart-btn')
 
     return {
         cart: {},
@@ -71,6 +77,7 @@ export default function miniCart(products = undefined) {
                                 let productItemElement = product.getParent(button, '.product__item')
                                 let productIndex = productItemElement.parentElement.getAttribute('data-index')
                                 _this.renderMiniCart(products, productIndex, _this.quantity)
+                                _this.renderPopup()
                             } else {
                                 window.location.href = './login.html'
                             }
@@ -89,6 +96,23 @@ export default function miniCart(products = undefined) {
                         }
                     }
                 }
+        },
+
+        // Handle render popup notification
+        renderPopup() {
+            let amount = 0
+            productPopup.classList.remove('hide')
+            for (let i of this.products) {
+                for (let j of products) {
+                    if (i.productID === j.id) {
+                        amount += i.quantity
+                        break
+                    }
+                }
+            }
+            
+            productPopupQuantity.innerText = amount
+            productPopupTotal.innerText = '£' + this.subTotal
         },
 
         // Handle exception and add to cart
@@ -186,6 +210,8 @@ export default function miniCart(products = undefined) {
         },
 
         handleEvents() {
+            const _this = this
+
             // Handle show mini cart
             navClientCart.onclick = function () {
                 productMiniCart.classList.add('active')
@@ -196,6 +222,26 @@ export default function miniCart(products = undefined) {
             productMiniCartClose.onclick = function () {
                 productMiniCart.classList.remove('active')
                 productMiniCartWrapper.classList.remove('active')
+            }
+
+            // Handle close popup add to cart
+            if (productPopupOverlay) {
+                productPopupOverlay.onclick = function() {
+                    productPopup.classList.add('hide')
+                }
+            }
+
+            if (productPopupContinueBtn) {
+                productPopupContinueBtn.onclick = function() {
+                    productPopup.classList.add('hide')
+                }
+            }
+
+            // Handle switch to cart page
+            if (productPopupCartBtn) {
+                productPopupCartBtn.onclick = function() {
+                    window.location.href = './cart.html'
+                }
             }
         },
 
@@ -248,6 +294,11 @@ export default function miniCart(products = undefined) {
                 if (userId) {
                     let productIndex = qvForm.getAttribute('data-index')
                     this.renderMiniCart(products, productIndex, formData.quantity)
+
+                    // Handle show popup notification when quick view add to cart button clicked
+                    this.renderPopup()
+                    $('.product__qv-close-btn').click()
+
                     this.showEmptyText()
                 } else {
                     window.location.href = './login.html'

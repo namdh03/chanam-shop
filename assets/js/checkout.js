@@ -1,6 +1,6 @@
-import validator from '../lib/validator.js'
-import { showLoaderPage, hideLoaderPage, showLoaderDefault, hideLoaderDefault } from '../js/loader.js'
 import { userIDStatus } from '../js/userStatus.js'
+import { showLoaderPage, hideLoaderPage, showLoaderDefault, hideLoaderDefault } from '../js/loader.js'
+import validator from '../lib/validator.js'
 import toast from '../lib/toast.js'
 import scroll from '../js/scrollToTop.js'
 import product from '../js/product.js'
@@ -130,16 +130,16 @@ function handleCheckout() {
         userId: userId,
     }
 
-    updateProducts(data, userId)
+    updateProducts(data, userId, () => {
+        window.location.href = './index.html'
+    })
 }
 
 formCheckout.onSubmit = formData => {
-    console.log(formData)
     handleCheckout()
 }
 
 formCheckoutDiffer.onSubmit = formData => {
-    console.log(formData)
     handleCheckout()
 }
 

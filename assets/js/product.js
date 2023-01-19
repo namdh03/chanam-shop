@@ -1,6 +1,6 @@
+import { showLoaderPage, hideLoaderPage, showLoaderDefault, hideLoaderDefault } from '../js/loader.js'
 import quickViewProducts from '../js/quickView.js'
 import miniCart from '../js/miniCart.js'
-import { showLoaderPage, hideLoaderPage, showLoaderDefault, hideLoaderDefault } from '../js/loader.js'
 
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
@@ -14,7 +14,6 @@ let productSearchInput = $('#product__search-input')
 let productSearchBtn = $('.product__search-btn')
 let emptyText = $('.product__empty-text')
 let viewMoreButton = $('.product__view-more-btn')
-
 
 export default  {
     products: [],

@@ -194,6 +194,9 @@ export default function quickViewProducts(products = undefined) {
 
             inputQuantity.oninput = function() {
                 _this.countQuantity = inputQuantity.value
+                plusButtonParent.classList.remove('invalid')
+                minusButtonParent.classList.remove('invalid')
+                qvFormMsgQuantity.innerText = ``
             }
 
             // Handle click quick view add to wishlist button

@@ -238,7 +238,7 @@
     line-height: 2.4;
 }
 
-.user__save-address {
+.user__save {
     font-family: 'Rubik', sans-serif;
     outline: none;
     border: none;
@@ -258,7 +258,7 @@
     transition: all 0.3s ease;
 }
 
-.user__save-address:hover {
+.user__save:hover {
     background-color: #222222;
 }
 
