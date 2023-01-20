@@ -35,120 +35,65 @@
             </div>
         </div>
 
-        <div class="grid wide">
-            <div class="row">
-                <div class="product__detail">
-                    <div class="detail-inner">
-                        <button class="detail-inner-close-btn">
-                            <i class="fa-solid fa-xmark"></i>
-                        </button>
-                
-                        <div class="detail-inner-img">
-                            <img src="" alt="">
-                            <span class="detail-cnt-img"></span>
-                        </div>
-                
-                        <div class="detail-inner-control-btn">
-                            <button class="detail-inner-btn detail-inner-btn-prev">
-                                <i class="fa-solid fa-chevron-left"></i>
-                            </button>
-                
-                            <button class="detail-inner-btn detail-inner-btn-next">
-                                <i class="fa-solid fa-chevron-right"></i>
-                            </button>
+        <div class="detail__wrapper">
+            <div class="grid wide">
+                <div class="row">
+                    <div class="col l-5 m-12 c-12">
+                        <img class="detail__slides" id="main-slide" src="./assets/img/banner-1.jpg">
+                        <div class="detail__slides-tablist">
+                            <div class="tablist-col">
+                                <img class="tablist-img" src="./assets/img/banner-1.jpg">
+                            </div>
+                            <div class="tablist-col">
+                                <img class="tablist-img" src="./assets/img/banner-2.jpg">
+                            </div>
+                            <div class="tablist-col">
+                                <img class="tablist-img" src="./assets/img/banner-3.jpg">
+                            </div>
                         </div>
                     </div>
-                    <div class="detail-wrapper">
-                        <!-- <button class="detail-close-btn">
-                            <i class="fa-solid fa-xmark"></i>
-                        </button> -->
-                
-                        <div class="grid">
-                            <div class="row">
-                                <div class="col l-1 m-2">
-                                    <ul class="detail-tablist"></ul>
-                                </div>
-                
-                                <div class="col l-5 m-12 c-12">
-                                    <div class="detail-center">
-                                        <div class="detail-control">
-                                            <button class="detail-control-btn detail-control-btn--left">
-                                                <i class="fa-solid fa-chevron-left"></i>
-                                            </button>
-                
-                                            <button class="detail-control-btn detail-control-btn--right">
-                                                <i class="fa-solid fa-chevron-right"></i>
-                                            </button>
-                                        </div>
-                
-                                        <div class="detail-main">
-                                            <div class="detail-main-img">
-                                                <img src="" alt="">
-                                            </div>
-                
-                                            <button class="detail-show-more-btn">
-                                                <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                
-                                <div class="col l-5 m-12 c-12">
-                                    <div class="detail-info">
-                                        <div class="detail-title"></div>
-                                        <div class="detail-price"></div>
-                                        <div class="detail-desc"></div>
-                
-                                        <form action="" method="" class="form" id="qv-form">
-                                            <div class="form-group detail-select-form">
-                                                <label for="size" class="form-label">Size</label>
-                                                <select name="size" id="size" rules="required" class="form-control">
-                                                    <option value="" disabled selected>Choose an option</option>
-                                                    <option value="s">Size S</option>
-                                                    <option value="m">Size M</option>
-                                                    <option value="l">Size L</option>
-                                                    <option value="xl">Size XL</option>
-                                                </select>
-                                                <span class="form-message form-message--size"></span>
-                                            </div>
-                
-                                            <div class="form-group detail-select-form">
-                                                <label for="color" class="form-label">Color</label>
-                                                <select name="color" id="color" rules="required" class="form-control">
-                                                    <option value="" disabled selected>Choose an option</option>
-                                                    <option value="red">Red</option>
-                                                    <option value="blue">Blue</option>
-                                                    <option value="white">White</option>
-                                                    <option value="grey">Grey</option>
-                                                </select>
-                                                <span class="form-message form-message--color"></span>
-                                            </div>
-                
-                                            <div class="form-group">
-                                                <div class="detail-quantity">
-                                                    <div class="detail-quantity-btn detail-quantity-minus-btn">
-                                                        <i class="fa-solid fa-minus"></i>
-                                                    </div>
-                                                    <input id="quantity" name="quantity" rules="required|number|quantity:1" type="text" value="1"
-                                                        class="form-control">
-                                                    <div class="detail-quantity-btn detail-quantity-plus-btn">
-                                                        <i class="fa-solid fa-plus"></i>
-                                                    </div>
-                                                </div>
-                
-                                                <div class="detail-add-to-wishlist">
-                                                    <i class="fa-regular fa-heart"></i>
-                                                </div>
-                                                <span class="form-message form-message--quantity form-message--modifier"></span>
-                                            </div>
-                
-                                            <button class="detail-add-to-cart-btn" type="submit">
-                                                ADD TO CART
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
+
+                    <div class="col l-6 m-12 c-12">
+                        <div class="detail__content">
+                            <div class="detail-title">Simple Product 005</div>
+                        <div class="detail-price">$99.000</div>
+                        <div class="detail__script">
+                            <span>
+                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+                                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                            </span>
+                        </div>
+                        <div class="detail-category" href="">Category: </div>
+
+                        <div class="detail-select-form">
+                            <label for="size" class="detail-form-label">Size</label>
+                            <select name="size" id="size" rules="required" class="">
+                                <option value="" disabled selected>Choose an option</option>
+                                <option value="s">Size S</option>
+                                <option value="m">Size M</option>
+                                <option value="l">Size L</option>
+                                <option value="xl">Size XL</option>
+                            </select>
+                            <span class="form-message form-message--size"></span>
+                        </div>
+
+                        <div class="detail-select-form">
+                            <label for="color" class="detail-form-label">Color</label>
+                            <select name="color" id="color" rules="required" class="">
+                                <option value="" disabled selected>Choose an option</option>
+                                <option value="red">Red</option>
+                                <option value="blue">Blue</option>
+                                <option value="white">White</option>
+                                <option value="grey">Grey</option>
+                            </select>
+                            <span class="form-message form-message--color"></span>
+                        </div>
+
+                        <input type="number" value="1">
+                        <button class="detail-add-to-wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <button class="detail-add-to-cart-btn" type="submit">ADD TO CART</button>
                         </div>
                     </div>
                 </div>
