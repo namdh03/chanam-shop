@@ -1,10 +1,11 @@
-import {showLoaderPage, hideLoaderPage, showLoaderDefault, hideLoaderDefault} from '../js/loader.js'
-import scroll from '../js/scrollToTop.js'
-import footer from '../js/footer.js'
-import product from '../js/product.js'
+import {showLoaderPage, hideLoaderPage, showLoaderDefault, hideLoaderDefault} from './loader.js'
+import scroll from './scrollToTop.js'
+import footer from './footer.js'
+import product from './product.js'
 
 scroll()
-footer()
+footer.start()
+hideLoaderPage()
 
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)

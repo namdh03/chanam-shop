@@ -5,11 +5,9 @@ import hero from '../js/hero.js'
 import product from '../js/product.js'
 import footer from '../js/footer.js'
 
-window.onload = function() {
-    userIDStatus()
-    scroll()
-    header()
-    hero()
-    product.start()
-    footer.start()
-}
+userIDStatus()
+scroll()
+header()
+hero()
+product.start()
+footer.start()

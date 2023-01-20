@@ -1,5 +1,5 @@
 import validator from '../lib/validator.js'
-import product from '../js/product.js'
+import product from './product.js'
 
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)

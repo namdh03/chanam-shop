@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@700&display=swap');
-
 .banner__item {
     position: relative;
     display: flex;
@@ -115,7 +113,6 @@
 
 /* Tablet: width >= 740px and width < 1024px */
 @media only screen and (min-width: 740px) and (max-width: 1023px) {
-
     .banner__item.banner__item--middle,
     .banner__item.banner__item--last {
         margin-top: 40px;

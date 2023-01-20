@@ -10,60 +10,13 @@
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./assets/css/main.css">
+    <script type="module" src="./assets/layout/controlUI.js"></script>
+    <script src="./assets/layout/signupUI.js"></script>
 </head>
 
 <body>
-    <div id="toast"></div>
-
-    <div class="loader-wrapper loader-wrapper--page">
-        <div class="loader-page">
-            <div class="loader-page__box"></div>
-            <div class="loader-page__box"></div>
-        </div>
-    </div>
-
-    <div class="loader-wrapper loader-wrapper--default loader-wrapper--bgcolor hidden">
-        <div class="loader-default">
-            <svg viewBox="0 0 80 80">
-                <rect x="8" y="8" width="64" height="64"></rect>
-            </svg>
-        </div>
-    </div>
-    
-    <div class="user__page">
-        <div class="container">
-            <h1>Create Account</h1>
-            <p>To keep connected with us please login with your personal info.</p>
-            <form action="" method="POST" class="form" id="sign-up-form">
-                <div class="form-group sign-up-form__group">
-                    <input id="username" name="username" rules="required|blank" type="text"
-                        placeholder="Username" class="form-control sign-up-form__input sign-up-form__input--username">
-                    <span class="form-message sign-up-form__msg"></span>
-                </div>
-
-                <div class="form-group sign-up-form__group">
-                    <input id="email" name="email" rules="required|email" type="text"
-                        placeholder="Email" class="form-control sign-up-form__input sign-up-form__input--email">
-                    <span class="form-message sign-up-form__msg"></span>
-                </div>
-
-                <div class="form-group sign-up-form__group">
-                    <input id="password" name="password" rules="required|blank|min:6" type="password"
-                        placeholder="Password" class="form-control sign-up-form__input sign-up-form__input--password">
-                    <span class="form-message sign-up-form__msg"></span>
-                </div>
-
-                <div class="form-group sign-up-form__group">
-                    <input id="password_confirmation" name="password_confirmation" rules="confirm"
-                        placeholder="Confirm your password" type="password" class="form-control sign-up-form__input sign-up-form__input--confirm-password">
-                    <span class="form-message sign-up-form__msg"></span>
-                </div>
-
-                <button class="signup__signInButton">SIGN UP</button>
-                <p>Already registered? <a href="./login.html" class="signup__registerButton">Sign In</a></p>
-            </form>
-        </div>
-    </div>
+    <section id="control"><control-ui></control-ui></section>
+    <section id="signup"><sign-up-ui></sign-up-ui></section>
 
     <script type="module" src="./assets//js/signup.js"></script>
 </body>

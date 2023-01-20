@@ -1,6 +1,6 @@
-import { showLoaderPage, hideLoaderPage, showLoaderDefault, hideLoaderDefault } from '../js/loader.js'
-import quickViewProducts from '../js/quickView.js'
-import miniCart from '../js/miniCart.js'
+import { showLoaderPage, hideLoaderPage, showLoaderDefault, hideLoaderDefault } from './loader.js'
+import quickViewProducts from './quickView.js'
+import miniCart from './miniCart.js'
 
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)

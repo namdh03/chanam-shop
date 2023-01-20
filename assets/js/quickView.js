@@ -1,6 +1,6 @@
 import validator from '../lib/validator.js'
-import {showLoaderPage, hideLoaderPage, showLoaderDefault, hideLoaderDefault} from '../js/loader.js'
-import product from '../js/product.js'
+import {showLoaderPage, hideLoaderPage, showLoaderDefault, hideLoaderDefault} from './loader.js'
+import product from './product.js'
 
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
