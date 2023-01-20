@@ -71,6 +71,8 @@
 .primary-btn:hover {
     color: #ffffff;
     background: #DD8262;
+    transition: .3s;
+
 }
 
 .hero__social {
@@ -84,8 +86,10 @@
     margin-right: 32px;
 }
 
-.hero__social a:hover {
+.hero__social i:hover {
     color:#DD8262;
+    cursor: pointer;
+    transition: .3s;
 }
 
 .swiper-pagination-bullet {
