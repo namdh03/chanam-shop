@@ -14,6 +14,8 @@ let productSearchInput = $('#product__search-input')
 let productSearchBtn = $('.product__search-btn')
 let emptyText = $('.product__empty-text')
 let viewMoreButton = $('.product__view-more-btn')
+let productItemLinks = document.getElementsByClassName('product__item-link')
+let productItemInfoLinks = document.getElementsByClassName('product__item-info-link')
 
 export default  {
     products: [],
@@ -64,7 +66,7 @@ export default  {
                 <div class="col l-4 l-o-0 m-6 m-o-0 c-10 c-o-1" data-index="${index}">
                     <div class="product__item" data-id="${product.id}" data-category="${product.category.name}">
                         <div class="product__item-img-wrapper">
-                            <a href="" class="product__item-link">
+                            <a href="./detail.html" class="product__item-link">
                                 <img src="${product.images[0]}" alt="" class="product__item-img">
                             </a>
 
@@ -101,7 +103,7 @@ export default  {
 
                         <div class="product__item-info">
                             <div class="product__item-title">
-                                <a href="" class="product__item-info-link">${product.title}</a>
+                                <a href="./detail.html" class="product__item-info-link">${product.title}</a>
                             </div>
                             <div class="product__item-category">
                                 <a href="" class="product__item-info-link">${product.category.name}</a>
@@ -165,6 +167,25 @@ export default  {
                 viewMoreButton.classList.add('hide')
             }
         }
+
+        // Handle show product details
+        Array.from(productItemLinks).forEach(link => {
+            link.onclick = function() {
+                let product = _this.getParent(link, '.product__item')
+                let productId = product.getAttribute('data-id')
+                
+                window.localStorage.setItem('productId', productId)
+            }
+        })
+
+        Array.from(productItemInfoLinks).forEach(link => {
+            link.onclick = function() {
+                let product = _this.getParent(link, '.product__item')
+                let productId = product.getAttribute('data-id')
+                
+                window.localStorage.setItem('productId', productId)
+            }
+        })
     },
 
     // Handle showing only 9 product items per category
