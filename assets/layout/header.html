@@ -1,13 +1,15 @@
 <div class="grid wide">
     <div class="row header__row">
+        <div class="bg"></div>
+
         <div class="col c-3 m-3">
-            <div class="nav__logo" href="#home">
+            <div class="nav__logo" href="index.html">
                 <img src="./assets/img/logo_transparent.png">
             </div>
         </div>
 
         <ul class="nav__menu col c-6 m-6">
-            <li><a class="nav__menu-items" href="#home">Home</a></li>
+            <li><a class="nav__menu-items" href="index.html">Home</a></li>
             <li><a class="nav__menu-items" href="#shop">Shop</a></li>
             <li><a class="nav__menu-items" href="./about.html">About Us</a></li>
             <li><a class="nav__menu-items" href="#contact">Contact Us</a></li>
@@ -21,7 +23,7 @@
 
             <a class="nav__client-cart">
                 <i class="fa-solid fa-cart-shopping"></i>
-                <!-- <span>0</span> -->
+                <span>0</span>
                 <div class="cart__list">
                     <a class="cart__list-no-cart">
                         No products in the cart.
@@ -29,7 +31,7 @@
                 </div>
             </a>
 
-            <a href="#heart" class="nav__client-heart">
+            <a href="/detail.html" class="nav__client-heart">
                 <i class="fa-regular fa-heart"></i>
             </a>
 
@@ -38,21 +40,48 @@
             </a>
         </div>
 
-        <div class="mobile__menu" href="./assets/layout/sidebar.html">
-            <div class="mobile__menu-icon">
-                <span class="icon-bars"></span>
-                <span class="icon-bars"></span>
-                <span class="icon-bars"></span>
+        <div id="mobile__menu">
+            <div class="button" tabindex="0">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
             </div>
-            <a>Menu</a>
+
+            <div id="sid-content" tabindex="0">
+              <ul>
+                <li class="border"><a href="index.html">Home</a></li>
+                <li class="border">
+                    <div class="border-dropdown">
+                        <a href="#">Shop</a>
+                        <i class="fa-solid fa-arrow-right arrow"></i>
+                    </div>
+                    <ul class="dropdown">
+                        <li><a href="#">Shop</a></li>
+                        <li class="border"><a href="#">My Cart</a></li>
+                        <li class="border"><a href="#">My Wishlist</a></li>
+                    </ul>
+                </li>
+                <li class="border"><a href="about.html">About Us</a></li>
+                <li class="border"><a href="#">Contact Us</a></li>
+                <li class="border">
+                    <div class="border-dropdown">
+                        <a href="./assets/layout/login.html">My Account</a>
+                        <i class="fa-solid fa-arrow-right arrow"></i>
+                    </div>
+                    <ul class="dropdown">
+                        <li><a href="#">My Account</a></li>
+                        <li class="border"><a href="#">My Cart</a></li>
+                        <li class="border"><a href="#">My Wishlist</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <form>
+                        <input type="search" placeholder="Search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </form>
+                </li>
+              </ul>
+            </div>
         </div>
     </div>
 </div>
-
-<!-- <div class="sid-right">
-    <div class="sid-inner">
-        <form>
-            <input type="search" placeholder="Search">
-        </form>
-    </div>
-</div> -->

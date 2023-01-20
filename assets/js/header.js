@@ -1,50 +1,17 @@
-// mobile menu
+// import product from '../js/product.js'
+
 export default function header() {
-    const mobileMenu = document.querySelector(".mobile__menu");
-    // const sidMenu = document.querySelector(".sid-right");
-    // const navClient = document.querySelector(".nav__client");
+    // let arrow = document.querySelectorAll(".arrow");
+    // for (var i = 0; i < arrow.length; i++) {
+    //     arrow[i].addEventListener("click", (e)=> {
+            
+            
+    //         let arrowParent = e.target.parentElement;
+    //         arrowParent.classlist.toggle("showMenu");
+    //     });
+    // }
 
-    const cart = document.querySelector(".nav__client-cart")
-    const cartList = document.querySelector(".cart__list");
-    const noProduct = document.querySelector(".cart__list-no-cart");
+    // let productSearchInput = $('#product__search-input')
+    // let productSearchBtn = $('.product__search-btn')
 
-    // mobileMenu.addEventListener("click", () => {
-    //     mobileMenu.classList.toggle("active")
-    //     sidMenu.classList.toggle("active")
-    //     navClient.classList.toggle("active")
-    // });
-    // sidMenu.addEventListener("click", () => {
-    //     mobileMenu.classList.remove("active")
-    //     sidMenu.classList.toggle("active")
-    //     navClient.classList.toggle("active")
-    // });
-    // navClient.addEventListener("click", () => {
-    //     mobileMenu.classList.remove("active")
-    //     navMenu.classList.toggle("active")
-    //     navClient.classList.toggle("active")
-    // });
-
-    cart.addEventListener("click", () => {
-        cartList.classList.toggle("active")
-    });
-
-    // MENU MOBILE
-    let section = document.querySelectorAll('.sid-right');
-    let navLinks = document.querySelectorAll('.navbar__menu-items')
-
-    window.onscroll = () => {
-        section.forEach(sec => {
-            let top = window.scrollY;
-            let offset = sec.offsetTop;
-            let height = sec.offsetHeight;
-            let id = sec.getAttribute('id');
-
-            if (top >= offset && top < offset + height) {
-                navLinks.forEach(links => {
-                    links.classList.remove("active")
-                    document.querySelector('.navbar__menu--items[href*=' + id + ']').classList.add("active");
-                });
-            }
-        });
-    }
 }
