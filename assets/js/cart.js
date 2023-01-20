@@ -254,6 +254,7 @@ const cart = {
                     selector.onclick = function() {
                         Array.from(cartItem).forEach(item => {
                             if (Number(item.getAttribute('data-id')) === miniCartItemID) {
+                                _this.amount--
                                 item.remove()
                                 return
                             }
