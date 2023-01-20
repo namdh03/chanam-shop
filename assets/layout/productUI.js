@@ -50,7 +50,7 @@ class ProductUI extends HTMLElement {
                         <i class="fa-solid fa-xmark"></i>
                     </button>
             
-                    <div class="grid">
+                    <div class="grid wide">
                         <div class="row">
                             <div class="col l-1 m-2 c-3">
                                 <ul class="product__qv-tablist"></ul>

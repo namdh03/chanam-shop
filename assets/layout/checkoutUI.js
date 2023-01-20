@@ -81,8 +81,10 @@ class CheckoutUI extends HTMLElement {
                                                 <div for="country" class="form-label form__label--modifier">Country / Region
                                                     <span>*</span>
                                                 </div>
-                                                <select id="country" name="country" rules="required" class="form-control user-data"></select>
-                                                <span class="form-checkout__show-country"><i class="fa-solid fa-caret-down"></i></span>
+                                                <div class="form-checkout__country-wrapper">
+                                                    <select id="country" name="country" rules="required" class="form-control user-data"></select>
+                                                    <span class="form-checkout__show-country"><i class="fa-solid fa-caret-down"></i></span>
+                                                </div>
                                                 <span class="form-message form-message--modifier"></span>
                                             </div>
                                         </div>
@@ -208,8 +210,10 @@ class CheckoutUI extends HTMLElement {
                                                 <div for="country" class="form-label form__label--modifier">Country / Region
                                                     <span>*</span>
                                                 </div>
-                                                <select id="country-differ" name="country" rules="required" class="form-control"></select>
-                                                <span class="form-checkout__show-country"><i class="fa-solid fa-caret-down"></i></span>
+                                                <div class="form-checkout__country-wrapper">
+                                                    <select id="country-differ" name="country" rules="required" class="form-control"></select>
+                                                    <span class="form-checkout__show-country"><i class="fa-solid fa-caret-down"></i></span>
+                                                </div>
                                                 <span class="form-message form-message--modifier"></span>
                                             </div>
                                         </div>
@@ -358,7 +362,9 @@ class CheckoutUI extends HTMLElement {
                                             <div class="checkout__order-payment-cod">
                                                 <div class="checkout__order-payment-method">
                                                     <input name="radio" type="radio" id="radio-cod" checked>
-                                                    <label for="radio-cod"></label>
+                                                    <div class="checkout__order-label">
+                                                        <label for="radio-cod"></label>
+                                                    </div>
                                                     <span>Cash on delivery</span>
                                                 </div>
                                                 <div class="checkout__order-payment-box">Pay with cash upon delivery.</div>
@@ -367,7 +373,7 @@ class CheckoutUI extends HTMLElement {
                                             <div class="checkout__order-payment-paypal">
                                                 <div class="checkout__order-payment-method">
                                                     <input name="radio" type="radio" id="radio-paypal">
-                                                    <label for="radio-paypal"></label>
+                                                    <div class="checkout__order-label"><label for="radio-paypal"></label></div>
                                                     <span>
                                                         PayPal
                                                         <a href="https://www.paypal.com/uk/webapps/mpp/paypal-popup">What is PayPal?</a>

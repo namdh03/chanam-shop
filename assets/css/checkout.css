@@ -127,10 +127,6 @@
     padding: 4px 0;
 }
 
-.form__information--modifier {
-    position: relative;
-}
-
 .form__information .form__label--modifier {
     font-family: "Lora", Sans-serif;
     margin: 0 0 12px;
@@ -196,10 +192,15 @@
     cursor: pointer;
 }
 
+.form-checkout__country-wrapper {
+    position: relative;
+}
+
 .form-checkout__show-country {
     position: absolute;
-    bottom: 22px;
-    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 16px;
     color: #666666;
     pointer-events: none;
 }
@@ -340,14 +341,17 @@
     display: none;
 }
 
-.checkout__order-payment-method label {
-    padding-left: 24px; 
+.checkout__order-label {
     position: relative;
+}
+
+.checkout__order-payment-method .checkout__order-label label {
+    padding-left: 24px; 
     margin: 0;
     line-height: 20px;
 }
 
-.checkout__order-payment-method label::before {
+.checkout__order-payment-method .checkout__order-label label::before {
     width: 8px;
     height: 8px;
     border-radius: 50%;
@@ -361,14 +365,14 @@
     cursor: pointer;
 }
 
-input[type="radio"]:checked ~ label:after {
+input[type="radio"]:checked ~ .checkout__order-label label:after {
     width: 5px;
     height: 5px;
     border-radius: 50%;
     position: absolute;
     top: 50%;
-    left: 6.5px;
-    transform: translate(-50%, -50%);
+    left: 0;
+    transform: translate(80%, -50%);
     content: '';
     background: #333;
 }
