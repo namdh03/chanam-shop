@@ -1,0 +1,211 @@
+.detail__header {
+    padding: 80px 0;
+    background-color: #F2F3EC;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.detail__header span::before {
+    content: "/";
+    font-size: 20px;
+    margin: 0 10px;
+    color: #999999;
+    display: inline-block;
+    font-family: FontAwesome;
+    font-weight: 900;
+}
+
+.detail__header-title {
+    color: #222222;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 1.2;
+    text-transform: capitalize;
+}
+
+
+.detail__header-navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #DD8262;
+    font-size: 14px;
+    text-transform: capitalize;
+    margin-top: 4px;
+}
+
+.detail__header-navigation a {
+    color: #999999;
+    text-decoration: none;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.detail__header-navigation a:hover {
+    color: #DD8262;
+}
+
+.detail__wrapper {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    padding-top: 3rem;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.detail__slides-main-img {
+    height: 480px;
+    width: 100%;
+}
+
+.detail__slides {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.detail__slides-tablist {
+    display: flex;
+    margin-top: 10px;
+    /* justify-content: space-evenly; */
+}
+
+.detail__slides-tablist img {
+    width: 100%;
+    max-height: 100px;
+    padding-right: 10px;
+    cursor: pointer;
+}
+
+.tablist-col {
+
+    /* flex-basis: 32%; */
+}
+
+.detail-title {
+    font-size: 30px;
+    font-weight: 700;
+    padding-top: 30px;
+}
+
+.detail-price {
+    font-size: 35px;
+    font-weight: 600;
+    padding-top: 20px;
+}
+
+.detail__script {
+    font-size: 16px;
+    padding-top: 20px;
+}
+
+.detail-category {
+    font-size: 20px;
+    font-weight: 600;
+    padding-top: 20px;
+}
+
+.detail-select-form {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.detail-select-form::after {
+    content: '\f078';
+    font: normal normal normal 16px FontAwesome;
+    color: #000;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 9px;
+    font-size: 13px;
+    position: absolute;
+    pointer-events: none;
+}
+
+.detail-select-form select {
+    /* display: block; */
+    padding: 5px 30px 5px 10px;
+    font-size: 16px;
+    height: 40px;
+    width: 82%;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+.detail-select-form label {
+    flex: 1;
+}
+
+.detail__wrapper input {
+    width: 50px;
+    margin-top: 20px;
+    padding: 5px 10px;
+    /* padding-left:10px; */
+    font-size: 15px;
+    margin-right: 10px;
+}
+
+.detail__wrapper input:focus {
+    outline: none;
+}
+
+.detail-add-to-wishlist {
+    padding: 14px 14px;
+    color: #ffffff;
+    background: #000000;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.detail-add-to-wishlist:active {
+    background: #DD8262;
+}
+
+.detail-add-to-cart-btn {
+    font-size: 13px;
+    font-weight: 700;
+    padding: 14px 30px;
+    margin-top: 20px;
+    color: #ffffff;
+    background: #DD8262;
+    letter-spacing: 4px;
+    cursor: pointer;
+    border: none;
+    display: block;
+}
+
+.detail-add-to-cart-btn:hover {
+    background: #000000;
+    transition: all 0.5s ease;
+}
+
+/* Mobile: width < 740px */
+@media only screen and (max-width: 739px) {
+    .detail__wrapper {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
+/* Tablet: width >= 740px and width < 1023px */
+@media only screen and (min-width: 740px) and (max-width: 1023px) {}
+
+/* pc: width >= 1023px */
+@media only screen and (min-width: 1024px) {
+    .detail__content {
+        padding-left: 40px;
+    }
+}

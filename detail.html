@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chanam</title>
+    <link rel="stylesheet" href="./assets/fonts/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <script type="module" src="./assets/layout/controlUI.js"></script>
+    <script type="module" src="./assets/layout/headerUI.js"></script>
+    <script type="module" src="./assets/layout/miniCartUI.js"></script>
+    <script type="module" src="./assets/layout/footerUI.js"></script>
+</head>
+
+<body>
+    <section id="control"><control-ui></control-ui></section>
+    <section id="header">
+        <header-ui></header-ui>
+        
+        <div id="mobile-menu">
+            <mobile-menu-ui></mobile-menu-ui>
+        </div>
+    </section>
+    <section id="mini-cart"><mini-cart-ui></mini-cart-ui></section>
+    <section id="detail" class="layout">
+        <div class="grid">
+            <div class="row no-gutters">
+                <div class="col l-12 m-12 c-12">
+                    <div class="detail__header">
+                        <h1 class="detail__header-title">Product detail</h1>
+                        <div class="detail__header-navigation">
+                            <a href="index.html">Home</a>
+                            <span>Product detail</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="detail__wrapper">
+            <div class="grid wide">
+                <div class="row">
+                    <div class="col l-5 m-12 c-12">
+                        <div class="detail__slides-main-img">
+                            <img class="detail__slides" id="main-slide" src="./assets/img/banner-1.jpg">
+                        </div>
+                        <div class="detail__slides-tablist">
+                            <div class="tablist-col">
+                                <img class="tablist-img" src="./assets/img/banner-1.jpg">
+                            </div>
+                            <div class="tablist-col">
+                                <img class="tablist-img" src="./assets/img/banner-2.jpg">
+                            </div>
+                            <div class="tablist-col">
+                                <img class="tablist-img" src="./assets/img/banner-3.jpg">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col l-7 m-12 c-12">
+                        <div class="detail__content">
+                            <div class="detail-title">Simple Product 005</div>
+                            <div class="detail-price">$99.000</div>
+                            <div class="detail__script">
+                                <span>
+                                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                                    tempor
+                                    invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                                </span>
+                            </div>
+                            <div class="detail-category" href="">Category: </div>
+
+                            <div class="grid">
+                                <div class="row no-gutters">
+                                    <div class="col l-5 m-5 c-10">
+                                        <div class="detail-select-form">
+                                            <label for="size" class="detail-form-label">Size</label>
+                                            <select name="size" id="size" rules="required" class="">
+                                                <option value="" disabled selected>Choose an option</option>
+                                                <option value="s">Size S</option>
+                                                <option value="m">Size M</option>
+                                                <option value="l">Size L</option>
+                                                <option value="xl">Size XL</option>
+                                            </select>
+                                            <span class="form-message form-message--size"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid">
+                                <div class="row no-gutters">
+                                    <div class="col l-5 m-5 c-10">
+                                        <div class="detail-select-form">
+                                            <label for="color" class="detail-form-label">Color</label>
+                                            <select name="color" id="color" rules="required" class="">
+                                                <option value="" disabled selected>Choose an option</option>
+                                                <option value="red">Red</option>
+                                                <option value="blue">Blue</option>
+                                                <option value="white">White</option>
+                                                <option value="grey">Grey</option>
+                                            </select>
+                                            <span class="form-message form-message--color"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <input type="number" value="1">
+                            <button class="detail-add-to-wishlist">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                            <button class="detail-add-to-cart-btn" type="submit">ADD TO CART</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="footer" class="layout"><footer-ui></footer-ui></section>
+
+    <script type="module" src="./assets/js/detail.js"></script>
+</body>
+
+</html>
