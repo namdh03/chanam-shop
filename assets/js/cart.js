@@ -3,6 +3,7 @@ import {showLoaderPage, hideLoaderPage, showLoaderDefault, hideLoaderDefault} fr
 import { userIDStatus } from '../js/userStatus.js'
 import toast from '../lib/toast.js'
 import scroll from '../js/scrollToTop.js'
+import header from '../js/header.js'
 import product from '../js/product.js'
 import miniCart from '../js/miniCart.js'
 import footer from '../js/footer.js'
@@ -29,6 +30,7 @@ let cartCouponSubmit = $('.cart-coupon__submit')
 let cartCouponCode = $('.cart-coupon__code')
 
 userIDStatus()
+header.start()
 miniCart(productsAPI).start()
 scroll()
 footer.start()
@@ -38,6 +40,7 @@ const cart = {
     cart: {},
     products: [],
     subTotal: 0,
+    amount: 0,
     isChanged: false,
 
     renderCart() {
@@ -106,6 +109,7 @@ const cart = {
         for (let i of this.products) {
             for (let j of productsAPI) {
                 if (i.productID === j.id) {
+                    this.amount += i.quantity
                     this.subTotal += i.quantity * j.price
                     break
                 }
@@ -132,13 +136,17 @@ const cart = {
         // Handle delete cart items
         Array.from(cartRemoveBtn).forEach(button => {
             button.onclick = function() {
+                showLoaderDefault()
                 let cartItem = product.getParent(button, '.cart__item')
                 let cartItemID = Number(cartItem.getAttribute('data-id'))
                 let productMiniCartItem = $$('.product__mini-cart-item')
+                let headerCartQuantity = $('.header__cart-quantity')
 
                 for (let i = 0; i < productMiniCartItem.length; i++) {
                     if (Number(productMiniCartItem[i].getAttribute('data-id')) === cartItemID) {
                         productMiniCartItem[i].remove()
+                        _this.amount--
+                        headerCartQuantity.innerText = _this.amount
                         break
                     }
                 }
@@ -150,14 +158,12 @@ const cart = {
                         _this.cart["userId"] = userId
 
                         if (_this.products.length === 0) {
-                            showLoaderPage()
-                            
-                            setTimeout(() => {
-                                _this.showReturnHomeBtn()
-                            }, 1000)
+                            _this.showReturnHomeBtn()
                         }
 
-                        miniCart().updateProducts(_this.cart, userId)
+                        miniCart().updateProducts(_this.cart, userId, () => {
+                            window.location.reload()
+                        })
                         miniCart().showEmptyText()
                         break
                     }

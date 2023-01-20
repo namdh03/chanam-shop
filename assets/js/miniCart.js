@@ -7,7 +7,7 @@ const $$ = document.querySelectorAll.bind(document)
 export default function miniCart(products = undefined) {
     let userId = window.localStorage.getItem('userId')
     let cartApi = 'https://63b1106f6a74151a1bca76f7.mockapi.io/api/v1/users/1/carts'
-    let navClientCart = $('.nav__client-cart')
+    let navClientCart = $('.header__icon--cart span')
     let productMiniCart = $('.product__mini-cart')
     let productMiniCartWrapper = $('.product__mini-cart-wrapper')
     let productMiniCartClose = $('.product__mini-cart-close')
@@ -21,11 +21,13 @@ export default function miniCart(products = undefined) {
     let productPopupOverlay = $('.product__popup-overlay')
     let productPopupContinueBtn = $('.product__popup--continue-btn')
     let productPopupCartBtn = $('.product__popup--cart-btn')
+    let headerCartQuantity = $('.header__cart-quantity')
 
     return {
         cart: {},
         products: [],
         quantity: 1,
+        amount: 0,
         subTotal: 0,
 
         async isElementLoaded(selectors, method) {
@@ -100,18 +102,8 @@ export default function miniCart(products = undefined) {
 
         // Handle render popup notification
         renderPopup() {
-            let amount = 0
             productPopup.classList.remove('hide')
-            for (let i of this.products) {
-                for (let j of products) {
-                    if (i.productID === j.id) {
-                        amount += i.quantity
-                        break
-                    }
-                }
-            }
-            
-            productPopupQuantity.innerText = amount
+            productPopupQuantity.innerText = this.amount
             productPopupTotal.innerText = '£' + this.subTotal
         },
 
@@ -124,6 +116,9 @@ export default function miniCart(products = undefined) {
 
             this.subTotal += amount * productItem.price
             productMiniCartSubtotalNumber.innerText = '£' + this.subTotal
+            
+            this.amount += quantity
+            headerCartQuantity.innerText = this.amount
 
             for (let i = 0; i < this.products.length; i++) {
                 if (productID === this.products[i].productID) {
@@ -203,7 +198,10 @@ export default function miniCart(products = undefined) {
                     }
 
                     _this.subTotal -= quantity * price
+                    _this.amount -= quantity
+
                     productMiniCartSubtotalNumber.innerText = '£' + _this.subTotal
+                    headerCartQuantity.innerText = _this.amount
                     _this.showEmptyText()
                 }
             })
@@ -243,6 +241,14 @@ export default function miniCart(products = undefined) {
                     window.location.href = './cart.html'
                 }
             }
+
+            // Handle close product mini cart
+            productMiniCart.onclick = function(e) {
+                if (e.target !== this) {
+                    return
+                }
+                productMiniCart.classList.remove('active')
+            }
         },
 
         showEmptyText() {
@@ -273,6 +279,18 @@ export default function miniCart(products = undefined) {
                 }
             }
             productMiniCartSubtotalNumber.innerText = '£' + this.subTotal
+        },
+
+        loadAmount() {
+            for (let i of this.products) {
+                for (let j of products) {
+                    if (i.productID === j.id) {
+                        this.amount += i.quantity
+                        break
+                    }
+                }
+            }
+            headerCartQuantity.innerText = this.amount
         },
         
         async loadCurrProducts() {
@@ -309,6 +327,7 @@ export default function miniCart(products = undefined) {
         async start() {
             await this.loadCurrProducts()
             this.loadSubtotal()
+            this.loadAmount()
             this.miniCart()
             this.handleEvents()
             this.qvSubmitForm()

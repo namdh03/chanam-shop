@@ -7,7 +7,7 @@ import footer from '../js/footer.js'
 
 userIDStatus()
 scroll()
-header()
 hero()
+header.start()
 product.start()
 footer.start()

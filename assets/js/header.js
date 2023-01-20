@@ -1,17 +1,20 @@
-// import product from '../js/product.js'
+const $ = document.querySelector.bind(document)
+const $$ = document.querySelectorAll.bind(document)
 
-export default function header() {
-    // let arrow = document.querySelectorAll(".arrow");
-    // for (var i = 0; i < arrow.length; i++) {
-    //     arrow[i].addEventListener("click", (e)=> {
-            
-            
-    //         let arrowParent = e.target.parentElement;
-    //         arrowParent.classlist.toggle("showMenu");
-    //     });
-    // }
+let mobileMenu = $('#mobile-menu')
+let headerHamburgerBox = $('.header__hamburger-box')
+let headerMenuMobile = $('.header__menu-mobile')
 
-    // let productSearchInput = $('#product__search-input')
-    // let productSearchBtn = $('.product__search-btn')
+export default {
+    handleEvent() {
+        headerHamburgerBox.onclick = function() {
+            mobileMenu.classList.toggle('active')
+            headerHamburgerBox.classList.toggle('active')
+            headerMenuMobile.classList.toggle('active')
+        }
+    },
 
+    start() {
+        this.handleEvent()
+    }
 }

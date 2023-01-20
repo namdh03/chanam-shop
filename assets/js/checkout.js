@@ -3,6 +3,7 @@ import { showLoaderPage, hideLoaderPage, showLoaderDefault, hideLoaderDefault } 
 import validator from '../lib/validator.js'
 import toast from '../lib/toast.js'
 import scroll from '../js/scrollToTop.js'
+import header from '../js/header.js'
 import product from '../js/product.js'
 import miniCart from '../js/miniCart.js'
 import footer from '../js/footer.js'
@@ -41,6 +42,7 @@ let userData = $$('.user-data')
 let productsAPI = await product.getProductsAPI()
 
 userIDStatus()
+header.start()
 await miniCart(productsAPI).start()
 await renderOrderCheckout(productsAPI)
 scroll()
@@ -196,6 +198,8 @@ async function renderOrderCheckout(productsAPI) {
     checkoutOrderBody.innerHTML = html
     checkoutOrderSubtotal.innerText = '£' + subTotal
     checkoutOrderTotal.innerText = '£' + subTotal
+
+    hideLoaderPage()
 }
 
 Array.from(productMniCartRemoveBtn).forEach(button => {

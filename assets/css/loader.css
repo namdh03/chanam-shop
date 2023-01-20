@@ -1,5 +1,5 @@
 /* Loader page */
-.loader-wrapper {
+.loader-wrapper--page {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -111,13 +111,13 @@
 }
 
 /* Loader default */
-.loader-wrapper {
+.loader-wrapper--default {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #fff;
-    z-index: 9999;
+    z-index: 9998;
     height: 100%;
     width: 100%;
     display: flex;

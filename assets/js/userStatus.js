@@ -2,12 +2,14 @@ const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 
 let userId = window.localStorage.getItem('userId')
-let navClientUser = $('.nav__client-user')
+let navClientUser = $('.header__icon--user span')
 
 export function userIDStatus() {
-    if (userId) {
-        navClientUser.setAttribute('href', './user.html')
-    } else {
-        navClientUser.setAttribute('href', './login.html')
+    navClientUser.onclick = function() {
+        if (userId) {
+            window.location.href = './user.html'
+        } else {
+            window.location.href = './login.html'
+        }
     }
 }

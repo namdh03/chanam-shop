@@ -3,6 +3,7 @@ import { userIDStatus } from '../js/userStatus.js'
 import validator from '../lib/validator.js'
 import toast from '../lib/toast.js'
 import scroll from '../js/scrollToTop.js'
+import header from '../js/header.js'
 import product from '../js/product.js'
 import miniCart from '../js/miniCart.js'
 import footer from '../js/footer.js'
@@ -33,6 +34,7 @@ let addressesForm= new validator('#addresses-form')
 let userForm = new validator('#user-form')
 
 userIDStatus()
+header.start()
 await miniCart(productsAPI).start()
 scroll()
 footer.start()

@@ -12,6 +12,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./assets/css/main.css">
     <script type="module" src="./assets/layout/controlUI.js"></script>
+    <script type="module" src="./assets/layout/headerUI.js"></script>
     <script type="module" src="./assets/layout/miniCartUI.js"></script>
     <script type="module" src="./assets/layout/checkoutUI.js"></script>
     <script type="module" src="./assets/layout/footerUI.js"></script>
@@ -19,48 +20,16 @@
 
 <body>
     <section id="control"><control-ui></control-ui></section>
-    <section id="header" include-html="./assets/layout/header.html"></section>
+    <section id="header">
+        <header-ui></header-ui>
+        
+        <div id="mobile-menu">
+            <mobile-menu-ui></mobile-menu-ui>
+        </div>
+    </section>
     <section id="mini-cart"><mini-cart-ui></mini-cart-ui></section>
     <section id="checkout" class="layout"><checkout-ui></checkout-ui></section>
     <section id="footer" class="layout"><footer-ui></footer-ui></section>
-
-    <!-- Include all html files into one -->
-    <script>
-        (function includeHTML() {
-            let elements, file, xmlHttp
-
-            // Loop through a collection of all HTML elements
-            elements = document.getElementsByTagName('*')
-
-            Array.from(elements).forEach(element => {
-                // Search for elements with a certain attribute
-                file = element.getAttribute('include-html')
-
-                if (file) {
-                    // Make an HTTP request using the attribute value as the file name
-                    xmlHttp = new XMLHttpRequest()
-                    xmlHttp.onreadystatechange = function () {
-                        if (this.readyState === 4) {
-                            if (this.status === 200) {
-                                element.innerHTML = this.responseText;
-                            }
-                            if (this.status === 404) {
-                                element.innerHTML = "Page not found!";
-                            }
-
-                            // Remove the attribute, and call this function once more
-                            element.removeAttribute('include-html')
-                            includeHTML()
-                        }
-                    }
-                    xmlHttp.open('GET', file, true)
-                    xmlHttp.send()
-
-                    return
-                }
-            })
-        })()
-    </script>
     
     <script type="module" src="./assets/js/checkout.js"></script>
 </body>
