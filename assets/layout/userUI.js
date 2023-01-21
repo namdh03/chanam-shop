@@ -153,8 +153,10 @@ class UserUI extends HTMLElement {
                                                 <div for="country" class="form-label user__font-text form__label--modifier">Country / Region
                                                     <span>*</span>
                                                 </div>
-                                                <select id="country" name="country" rules="required" class="form-control user-data"></select>
-                                                <span class="form-checkout__show-country"><i class="fa-solid fa-caret-down"></i></span>
+                                                <div class="form-user__country-wrapper">
+                                                    <select id="country" name="country" rules="required" class="form-control user-data"></select>
+                                                    <span class="form-checkout__show-country"><i class="fa-solid fa-caret-down"></i></span>
+                                                </div>
                                                 <span class="form-message form-message--modifier"></span>
                                             </div>
                                         </div>

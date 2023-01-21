@@ -8,10 +8,10 @@ export default {
     handleEvent() {
         newLetterForm.onSubmit = formData => {
             toast({
-                title: 'Thành công!',
-                message: 'Cảm ơn bạn đã trở thành khách hàng thân thiết của chúng tôi!',
+                title: 'Successful!',
+                message: 'Thank you for being our valued customer. We are grateful for the pleasure of serving you and meeting your needs!',
                 type: 'success',
-                duration: 1500
+                duration: 5000
             })
             input.value = ''
         }

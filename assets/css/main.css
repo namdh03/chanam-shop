@@ -177,10 +177,6 @@ input[type=number] {
 
 /* Mobile: width < 740px */
 @media only screen and (max-width: 739px) {
-    #header {
-        padding-right: 10px;
-    }
-
     #banner {
         padding-bottom: 30px;
     }

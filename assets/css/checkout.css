@@ -346,8 +346,7 @@
 }
 
 .checkout__order-payment-method .checkout__order-label label {
-    padding-left: 24px; 
-    margin: 0;
+    margin-left: 24px;
     line-height: 20px;
 }
 

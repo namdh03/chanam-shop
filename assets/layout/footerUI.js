@@ -7,12 +7,12 @@ class FooterUI extends HTMLElement {
                     <div class="col l-3 m-6 c-12">
                         <div class="footer__about">
                             <div class="footer__logo">
-                                <a href="#">
+                                <a href="./index.html">
                                     <img src="./assets/img/footer-logo.png" alt="">
                                 </a>
                             </div>
                             <p>The customer is at the heart of our unique business model, which includes design.</p>
-                            <a href="#">
+                            <a href="">
                                 <img src="./assets/img/payment.png" alt="">
                             </a>
                         </div>
@@ -23,19 +23,19 @@ class FooterUI extends HTMLElement {
                             <h6>Shopping</h6>
                             <ul>
                                 <li>
-                                    <a href="#">Clothing Store</a>
+                                    <a href="">Clothing Store</a>
                                 </li>
 
                                 <li>
-                                    <a href="#">Trending Shoes</a>
+                                    <a href="">Trending Shoes</a>
                                 </li>
 
                                 <li>
-                                    <a href="#">Accessories</a>
+                                    <a href="">Accessories</a>
                                 </li>
 
                                 <li>
-                                    <a href="#">Sale</a>
+                                    <a href="">Sale</a>
                                 </li>
                             </ul>
                         </div>
@@ -46,19 +46,19 @@ class FooterUI extends HTMLElement {
                             <h6>Shopping</h6>
                             <ul>
                                 <li>
-                                    <a href="#">Contact Us</a>
+                                    <a href="">Contact Us</a>
                                 </li>
                                 
                                 <li>
-                                    <a href="#">Payment Methods</a>
+                                    <a href="">Payment Methods</a>
                                 </li>
                                 
                                 <li>
-                                    <a href="#">Delivary</a>
+                                    <a href="">Delivary</a>
                                 </li>
                                 
                                 <li>
-                                    <a href="#">Return &amp; Exchanges</a>
+                                    <a href="">Return &amp; Exchanges</a>
                                 </li>
                             </ul>
                         </div>

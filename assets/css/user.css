@@ -269,3 +269,7 @@
     margin-bottom: 14px;
     padding-bottom: 10px;
 }
+
+.form-user__country-wrapper {
+    position: relative;
+}

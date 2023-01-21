@@ -10,7 +10,7 @@ class BannerUI extends HTMLElement {
                             </div>
                             <div class="banner__item-text">
                                 <h2>Clothing Collections 2030</h2>
-                                <a href="#">Shop now</a>
+                                <a href="">Shop now</a>
                             </div>
                         </div>
                     </div>
@@ -22,7 +22,7 @@ class BannerUI extends HTMLElement {
                             </div>
                             <div class="banner__item-text">
                                 <h2>Accessories</h2>
-                                <a href="#">Shop now</a>
+                                <a href="">Shop now</a>
                             </div>
                         </div>
                     </div>
@@ -34,7 +34,7 @@ class BannerUI extends HTMLElement {
                             </div>
                             <div class="banner__item-text">
                                 <h2>Shoes Spring 2030</h2>
-                                <a href="#">Shop now</a>
+                                <a href="">Shop now</a>
                             </div>
                         </div>
                     </div>
