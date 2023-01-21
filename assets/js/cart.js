@@ -28,6 +28,8 @@ let cartReturnHome = $('.redirect__return-to-home')
 let productMiniCartClose = $('.product__mini-cart-close')
 let cartCouponSubmit = $('.cart-coupon__submit')
 let cartCouponCode = $('.cart-coupon__code')
+let cartProductImgLinks = document.getElementsByClassName('cart__product-img')
+let cartProductTitleLinks = document.getElementsByClassName('cart__product-title')
 
 userIDStatus()
 header.start()
@@ -64,14 +66,14 @@ const cart = {
 
                             <div class="col l-1 m-1 c-12 cart__product-full-w">
                                 <div class="cart__product-wrapper-img">
-                                    <a href="" class="cart__product-img">
+                                    <a href="./detail.html" class="cart__product-img">
                                         <img src="${j.images[0]}" alt="">
                                     </a>
                                 </div>
                             </div>
 
                             <div class="col l-3 m-3 c-12 cart__product-full-w">
-                                <a href="" class="cart__product-title cart__pad">
+                                <a href="./detail.html" class="cart__product-title cart__pad">
                                     <span>${j.title}</span>
                                 </a>
                             </div>
@@ -291,6 +293,21 @@ const cart = {
                 cartCouponCode.value = ''
             }
         }
+
+        //  Handle click to image link product in cart
+        Array.from(cartProductImgLinks).forEach(link => {
+            link.onclick = function() {
+                let productId = product.getParent(link, '.cart__item').getAttribute('data-id')
+                window.localStorage.setItem('productId', productId) 
+            }
+        })
+
+        Array.from(cartProductTitleLinks).forEach(link => {
+            link.onclick = function() {
+                let productId = product.getParent(link, '.cart__item').getAttribute('data-id')
+                window.localStorage.setItem('productId', productId) 
+            }
+        }) 
     },
 
     activeCartUpdateBtn() {

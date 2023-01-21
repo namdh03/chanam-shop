@@ -22,6 +22,8 @@ export default function miniCart(products = undefined) {
     let productPopupContinueBtn = $('.product__popup--continue-btn')
     let productPopupCartBtn = $('.product__popup--cart-btn')
     let headerCartQuantity = $('.header__cart-quantity')
+    let productMiniCartThumbnailLinks = document.getElementsByClassName('product__mini-cart-thumbnail-link')
+    let productMiniCartNameLinks = document.getElementsByClassName('product__mini-cart-name')
 
     return {
         cart: {},
@@ -151,14 +153,14 @@ export default function miniCart(products = undefined) {
 
             cartItem.innerHTML = `
                 <div class="product__mini-cart-thumbnail">
-                    <a href="">
+                    <a href="./detail.html" class="product__mini-cart-thumbnail-link">
                         <img src="${image}" alt="">
                     </a>
                 </div>
 
                 <div class="product__mini-cart-info">
                     <div class="product__mini-cart-name">
-                        <a href="">${title}</a>
+                        <a href="./detail.html" class="product__mini-cart-name-link">${title}</a>
                     </div>
 
                     <div class="product__mini-cart-price">
@@ -249,6 +251,22 @@ export default function miniCart(products = undefined) {
                 }
                 productMiniCart.classList.remove('active')
             }
+
+            //  Handle click to image link product in mini cart
+            Array.from(productMiniCartThumbnailLinks).forEach(link => {
+                link.onclick = function() {
+                    let productId = product.getParent(link, '.product__mini-cart-item').getAttribute('data-id')
+                    window.localStorage.setItem('productId', productId)                    
+                }
+            })
+
+            //  Handle click to title link product in mini cart
+            Array.from(productMiniCartNameLinks).forEach(link => {
+                link.onclick = function() {
+                    let productId = product.getParent(link, '.product__mini-cart-item').getAttribute('data-id')
+                    window.localStorage.setItem('productId', productId) 
+                }
+            })
         },
 
         showEmptyText() {
