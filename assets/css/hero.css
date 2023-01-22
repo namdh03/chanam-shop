@@ -109,9 +109,6 @@
 
 /* Mobile: width < 740px */
 @media only screen and (max-width: 528px) {
-    .swiper-slide img {
-    }
-
     .hero__text {
         margin-left: 10px;
         top: 0;
@@ -218,12 +215,5 @@
         margin-top: 100px;
         padding-left: 15px;
     }
-
-}
-
-
-
-/* pc: width >= 1023px */
-@media only screen and (min-width: 1024px) {
 
 }

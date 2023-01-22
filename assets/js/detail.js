@@ -80,7 +80,6 @@ requestIdleCallback(function () {
     line.style.left = tabActive.offsetLeft + "px";
     line.style.width = tabActive.offsetWidth + "px";
 });
-
 tabs.forEach((tab, index) => {
     const pane = panes[index];
 
@@ -97,13 +96,13 @@ tabs.forEach((tab, index) => {
 });
 
 
-allStars.forEach( (star, i) => {
-    star.onclick = function() {
+allStars.forEach((star, i) => {
+    star.onclick = function () {
         let current_star_level = i + 1;
         console.log(current_star_level);
-        
 
-        allStars.forEach( (star, j) => {
+
+        allStars.forEach((star, j) => {
             if (current_star_level >= j + 1) {
                 star.innerHTML = '&#9733';
             } else {
@@ -114,16 +113,16 @@ allStars.forEach( (star, i) => {
 });
 
 
-plus.addEventListener("click", ()=>{
+plus.addEventListener("click", () => {
     quantity++;
     quantity = (quantity < 10) ? "0" + quantity : quantity;
     num.innerText = quantity;
-  });
+});
 
-  minus.addEventListener("click", ()=>{
-    if(quantity > 1){
-      quantity--;
-      quantity = (quantity < 10) ? "0" + quantity : quantity;
-      num.innerText = quantity;
+minus.addEventListener("click", () => {
+    if (quantity > 1) {
+        quantity--;
+        quantity = (quantity < 10) ? "0" + quantity : quantity;
+        num.innerText = quantity;
     }
-  });
+});
