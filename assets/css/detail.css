@@ -397,11 +397,6 @@ td {
     padding-bottom: 30px;
 }
 
-
-
-
-
-
 /* Mobile: width < 740px */
 @media only screen and (max-width: 739px) {
     .detail__wrapper {

@@ -8,7 +8,7 @@
 
 .banner__item:hover .banner__item-text a::after {
     width: 40px;
-    background-color: #e53637;
+    background-color: var(--primary-color);
 }
 
 .banner__item-img img {
@@ -28,7 +28,7 @@
     font-size: 36px;
     font-weight: 700;
     line-height: 46px;
-    color: #111111;
+    color: var(--text-color);
 }
 
 .banner__item-text a {
@@ -40,7 +40,7 @@
     letter-spacing: 2px;
     text-decoration: none;
     text-transform: uppercase;
-    color: #111111;
+    color: var(--text-color);
 }
 
 .banner__item-text a::after {
@@ -51,7 +51,7 @@
     height: 2px;
     left: 0;
     bottom: 0;
-    background-color: #111111;
+    background-color: var(--text-color);
     transition: all 0.3s;
 }
 

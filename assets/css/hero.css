@@ -30,7 +30,7 @@
 .hero__text h6 {
     top: 0;
     opacity: 1;
-    color:#DD8262;
+    color: var(--primary-color);
     font-size: 14px;
     font-weight: 700;
     letter-spacing: 2px;
@@ -40,7 +40,7 @@
 .hero__text h2 {
     top: 0;
     opacity: 1;
-    color:#111111;
+    color: var(--text-color);
     font-size: 48px;
     font-weight: 700;
     line-height: 58px;
@@ -50,7 +50,7 @@
 .hero__text p {
     top: 0;
     opacity: 1;
-    color:#111111;
+    color: var(--text-color);
     font-size: 16px;
     line-height: 28px;
     margin-bottom: 35px;
@@ -60,8 +60,8 @@
     font-size: 13px;
     font-weight: 700;
     padding: 14px 30px;
-    color: #ffffff;
-    background: #000000;
+    color: var(--white-color);
+    background-color: var(--text-color);
     letter-spacing: 4px;
     cursor: pointer;
     border:none;
@@ -69,8 +69,8 @@
 }
 
 .primary-btn:hover {
-    color: #ffffff;
-    background: #DD8262;
+    color: var(--white-color);
+    background: var(--primary-color);
     transition: .3s;
 
 }
@@ -80,20 +80,20 @@
 }
 
 .hero__social a {
-    color:#111111;
+    color: var(--text-color);
     font-size: 16px;
     display: inline-block;
     margin-right: 32px;
 }
 
 .hero__social i:hover {
-    color:#DD8262;
+    color: var(--primary-color);
     cursor: pointer;
     transition: .3s;
 }
 
 .swiper-pagination-bullet {
-    background:#111111;
+    background: var(--text-color);
 }
 
 
@@ -133,7 +133,7 @@
     }
 
     .hero__social a {
-        color:#111111;
+        color: var(--text-color);
         font-size: 12px;
         display: inline-block;
         margin-right: 30px;

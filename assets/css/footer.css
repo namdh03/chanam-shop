@@ -8,7 +8,6 @@
 
 .footer__about .footer__logo a {
     display: inline-block;
-    color: #007bff;
     text-decoration: none;
     background-color: transparent;
 }
@@ -26,7 +25,7 @@
 }
 
 .footer__widget h6 {
-    color: #ffffff;
+    color: var(--white-color);
     font-size: 18px;
     font-weight: 700;
     text-transform: uppercase;
@@ -62,11 +61,11 @@
 .footer__widget .footer__newslatter form input {
     width: 100%;
     font-size: 16px;
-    color: #fff;
+    color: var(--white-color);
     background: transparent;
     border: none;
     padding: 16px 36px 16px 0;
-    border-bottom: 2px solid #ffffff;
+    border-bottom: 2px solid var(--white-color);
     outline: none;
     overflow: visible;
     font-family: 'Nunito Sans', sans-serif;
@@ -91,7 +90,7 @@
 }
 
 .footer__widget .footer__newslatter form button:hover {
-    color: #6759ff;
+    color: var(--primary-color);
 }
 
 .form-group.invalid .form-control {

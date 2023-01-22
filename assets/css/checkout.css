@@ -35,8 +35,8 @@
     padding: 8px 16px;
     background-color: #f7f7f7;
     outline: none;
-    border: 1px solid #ddd;
-    color: #333;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
     font-size: 16px;
     border-radius: 4px;
     width: 100%;
@@ -46,14 +46,15 @@
     font-family: "Lora", Sans-serif;
     outline: none;
     border: none;
-    background-color: #6759ff;
-    color: #fff;
+    background-color: var(--primary-color);
+    color: var(--white-color);
     padding: 12px 20px;
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     margin-left: 30px;
     max-width: 170px;
+    border-radius: 5px;
     letter-spacing: 1px;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
@@ -63,14 +64,14 @@
 }
 
 .checkout-coupon__submit:hover {
-    background-color: #333333;
+    background-color: var(--text-color);
 }
 
 .checkout-bill {
     padding: 30px;
     margin-top: 50px;
     border: 2px solid #eaeaea;
-    background-color: #fff;
+    background-color: var(--white-color);
     width: 100%;
 }
 
@@ -116,7 +117,7 @@
 
 .form-bill__title input:checked:before {
     content: '\f00c';
-    color: #242424;
+    color: var(--text-color);
     width: 18px;
     font-family: 'FontAwesome';
 }
@@ -146,7 +147,7 @@
     width: 100%;
     font-size: 14px;
     padding: 6px 12px;
-    color: #333;
+    color: var(--text-color);
     border: 1px solid #ddd;
     border-radius: 4px;
     -webkit-transition: all 0.3s ease;
@@ -172,11 +173,10 @@
     font-family: "Lora", Sans-serif;
     font-size: 16px;
     background-color: #f7f7f7;
-    color: #333;
+    color: var(--text-color);
     outline: none;
     width: 100%;
     padding: 6px 12px;
-    color: #333;
     border: 1px solid #ddd;
     border-radius: 4px;
     min-height: 40px
@@ -208,13 +208,13 @@
 .checkout-coupon__toggle {
     margin: 0 0 0 auto;
     text-transform: capitalize;
-    color: #202424;
+    color: var(--text-color);
     text-align: right;
     flex-basis: 66%;
 }
 
 .checkout-coupon__show-coupon {
-    color: #6759ff;
+    color: var(--primary-color);
     cursor: pointer;
 }
 
@@ -243,7 +243,7 @@
 
 .product__order-title {
     font-size: 18px;
-    color: #202424;
+    color: var(--text-color);
     letter-spacing: 0.8px;
     font-weight: 900;
     text-transform: uppercase;
@@ -263,7 +263,7 @@
 
 .checkout__order-price-product {
     font-size: 16px;
-    color: #202424;
+    color: var(--text-color);
 }
 
 .checkout__order-footer-title {
@@ -274,12 +274,12 @@
 
 .checkout__order-footer-value {
     font-size: 16px;
-    color: #202424;
+    color: var(--text-color);
 }
 
 .checkout__order-footer-value--total {
     font-weight: 900;
-    color: #202424;
+    color: var(--text-color);
 }
 
 .checkout__order-payment {
@@ -317,7 +317,7 @@
     padding: 20px;
     font-size: 14px;
     line-height: 1.5;
-    background-color: #fff;
+    background-color: var(--white-color);
     color: #555;
 }
 
@@ -326,7 +326,7 @@
     font-size: 16px;
     margin-left: 6px;
     text-decoration: none;
-    color: #242424;
+    color: var(--text-color);
 }
 
 .checkout__order-payment-img {
@@ -359,7 +359,7 @@
     transform: translateY(-50%);
     left: 0;
     content: '';
-    background: #fff;
+    background: var(--white-color);
     border: 3px solid #333;
     cursor: pointer;
 }
@@ -373,7 +373,7 @@ input[type="radio"]:checked ~ .checkout__order-label label:after {
     left: 0;
     transform: translate(80%, -50%);
     content: '';
-    background: #333;
+    background: var(--text-color);
 }
 
 .checkout__order-policy-text {
@@ -384,7 +384,7 @@ input[type="radio"]:checked ~ .checkout__order-label label:after {
 }
 
 .checkout__order-policy-text a {
-    color: #202424;
+    color: var(--text-color);
     text-decoration: none;
     font-weight: 500;
     -webkit-transition: all 0.3s ease;
@@ -395,7 +395,7 @@ input[type="radio"]:checked ~ .checkout__order-label label:after {
 }
 
 .checkout__order-policy-text a:hover {
-    color: #6759ff;
+    color: var(--primary-color);
 }
 
 .checkout__order-submit {
@@ -405,10 +405,11 @@ input[type="radio"]:checked ~ .checkout__order-label label:after {
     width: 100%;
     outline: none;
     border: none;
+    border-radius: 5px;
     padding: 16px 20px;
     line-height: 1.6;
-    background-color: #6759ff;
-    color: #fff;
+    background-color: var(--primary-color);
+    color: var(--white-color);
     text-transform: uppercase;
     font-size: 16px;
     font-weight: 700;
@@ -421,7 +422,7 @@ input[type="radio"]:checked ~ .checkout__order-label label:after {
 }
 
 .checkout__order-submit:hover {
-    background-color: #333333;
+    background-color: var(--text-color);
 }
 
 .form-message--modifier {
@@ -435,8 +436,8 @@ input[type="radio"]:checked ~ .checkout__order-label label:after {
     text-decoration: none;
     display: inline-flex;
     align-items: center;
-    background-color: #6759ff;
-    color: #fff;
+    background-color: var(--primary-color);
+    color: var(--white-color);
     text-transform: uppercase;
     position: relative;
     top: 100%;
@@ -453,7 +454,7 @@ input[type="radio"]:checked ~ .checkout__order-label label:after {
 }
 
 .redirect__return-to-home-btn:hover {
-    background-color: #333333;
+    background-color: var(--text-color);
 }
 
 .redirect__return-to-home-btn span {

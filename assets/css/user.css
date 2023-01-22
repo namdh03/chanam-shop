@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: #F2F3EE;
+    background: var(--redirect-color);
 }
 
 .container {
@@ -16,7 +16,7 @@
     width: 100%;
     max-width: 400px;
     padding: 20px;
-    background: #fff;
+    background: var(--white-color);
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
@@ -24,7 +24,7 @@
 .container h1 {
     font-size: 2rem;
     text-align: center;
-    color: #111111;
+    color: var(--text-color);
 }
 
 .container p {
@@ -66,8 +66,8 @@
     padding: 15px;
     border: none;
     border-radius: 5px;
-    background: #111111;
-    color: #fff;
+    background: var(--text-color);
+    color: var(--white-color);
     font-size: 1.2rem;
     cursor: pointer;
 }
@@ -81,7 +81,7 @@
     text-align: center;
     font-size: 14px;
     text-decoration: none;
-    color: #333;
+    color: var(--text-color);
     text-decoration: underline;
 }
 
@@ -118,13 +118,13 @@
     font-size: 18px;
     line-height: 1;
     margin-bottom: 5px;
-    color: #333;
+    color: var(--text-color);
 }
 
 .user__logout {
     text-decoration: none;
     font-size: 14px;
-    color: #222222;
+    color: var(--text-color);
     cursor: pointer;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
@@ -134,7 +134,7 @@
 }
 
 .user__logout:hover {
-    color: #6759ff;
+    color: var(--primary-color);
 }
 
 .user__account-nav {
@@ -153,12 +153,12 @@
 
 .user__account-nav-item:hover .user__account-nav-text,
 .user__account-nav-item:hover .user__account-nav-icon {
-    color: #6759ff;
+    color: var(--primary-color);
     opacity: 1;
 }
 
 .user__account-nav-text {
-    color: #222222;
+    color: var(--text-color);
     display: block;
     text-decoration: none;
     line-height: 1.6;
@@ -172,7 +172,7 @@
 }
 
 .user__account-nav-icon {
-    color: #6759ff;
+    color: var(--primary-color);
     opacity: 0.5;
     font-size: 16px;
     display: block;
@@ -189,7 +189,7 @@
 }
 
 .user__account-nav-icon.active {
-    color: #6759ff;
+    color: var(--primary-color);
     opacity: 1;
 }
 
@@ -206,7 +206,7 @@
 }
 
 .user__acc-content-link {
-    color: #222222;
+    color: var(--text-color);
     cursor: pointer;
     text-decoration: none;
     -webkit-transition: all 0.3s ease;
@@ -217,7 +217,7 @@
 }
 
 .user__acc-content-link:hover {
-    color: #6759ff;
+    color: var(--primary-color);
 }
 
 .user__font-text {
@@ -228,7 +228,7 @@
 
 .user__form-title {
     font-family: "Lora", Sans-serif;
-    color: #222222;
+    color: var(--text-color);
     margin-bottom: 12px;
     text-transform: none;
     font-size: 18px;
@@ -241,8 +241,8 @@
     outline: none;
     border: none;
     padding: 14px 30px;
-    background-color: #6759ff;
-    color: #fff;
+    background-color: var(--primary-color);
+    color: var(--white-color);
     border-radius: 25px;
     font-size: 12px;
     font-weight: 600;
@@ -257,12 +257,12 @@
 }
 
 .user__save:hover {
-    background-color: #222222;
+    background-color: var(--text-color);
 }
 
 .user__password-change-title {
     font-family: 'Rubik', sans-serif;
-    color: #333;
+    color: var(--text-color);
     border-bottom: 1px solid #e5e5e5;
     font-size: 14px;
     font-weight: 400;

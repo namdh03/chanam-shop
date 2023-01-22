@@ -19,7 +19,7 @@ export default function scrollToTop() {
             document.documentElement.scrollTop = 0
         }
 
-        backToTop.style.background =  `conic-gradient(#6759ff ${scrollValue}%, #d7d7d7 ${scrollValue}%)`
+        backToTop.style.background =  `conic-gradient(#dd8262 ${scrollValue}%, #d7d7d7 ${scrollValue}%)`
     }
 
     window.onscroll = calcScrollValue

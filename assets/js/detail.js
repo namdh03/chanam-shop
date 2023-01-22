@@ -1,12 +1,12 @@
 import validator from '../lib/validator.js'
-import { showLoaderPage, hideLoaderPage, showLoaderDefault, hideLoaderDefault } from '../js/loader.js'
-import { userIDStatus } from '../js/userStatus.js'
+import { showLoaderPage, hideLoaderPage, showLoaderDefault, hideLoaderDefault } from './loader.js'
+import { userIDStatus } from './userStatus.js'
 import toast from '../lib/toast.js'
-import scroll from '../js/scrollToTop.js'
-import header from '../js/header.js'
-import product from '../js/product.js'
-import miniCart from '../js/miniCart.js'
-import footer from '../js/footer.js'
+import scroll from './scrollToTop.js'
+import header from './header.js'
+import product from './product.js'
+import miniCart from './miniCart.js'
+import footer from './footer.js'
 
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
