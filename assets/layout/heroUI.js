@@ -8,7 +8,7 @@ class HeroUI extends HTMLElement {
                             <img src="./assets/img/hero-1.jpg.webp">
                             <div class="grid wide">
                                 <div class="row">
-                                    <div class="col c-5 l-7 m-8">
+                                    <div class="col c-7 l-7 m-7">
                                         <div class="hero__text">
                                             <h6>Summer Collection</h6>
                                             <h2>Summer - Fall Collections 2023</h2>
@@ -44,7 +44,7 @@ class HeroUI extends HTMLElement {
                             <img src="./assets/img/hero-2.jpg.webp">
                             <div class="grid wide">
                                 <div class="row">
-                                    <div class="col c-5 l-7 m-8">
+                                    <div class="col c-7 l-7 m-7">
                                         <div class="hero__text">
                                             <h6>Winter Collection</h6>
                                             <h2>Winter - Spring Collections 2023</h2>

@@ -57,7 +57,6 @@
 }
 
 .primary-btn {
-    /* display: inline-block; */
     font-size: 13px;
     font-weight: 700;
     padding: 14px 30px;
@@ -66,6 +65,7 @@
     letter-spacing: 4px;
     cursor: pointer;
     border:none;
+    border-radius: 5px;
 }
 
 .primary-btn:hover {
@@ -96,22 +96,6 @@
     background:#111111;
 }
 
-/* 
-.swiper-button-next {
-    color:#111111;
-}
-
-.swiper-button-next:hover {
-    color: #ffffff;
-}
-
-.swiper-button-prev {
-    color:#111111;
-}
-
-.swiper-button-prev:hover {
-    color: #ffffff;
-} */
 
 
 
@@ -124,20 +108,112 @@
 
 
 /* Mobile: width < 740px */
-@media only screen and (max-width: 739px) {
-    
+@media only screen and (max-width: 528px) {
+    .hero__text {
+        margin-left: 10px;
+        top: 0;
+        padding-top: 140px;
+    }
 
+    
+    .hero__text h2 {
+        font-size: 40px;
+        line-height: 50px;
+    }
+    
+    .hero__text p {
+        font-size: 14px;
+        line-height: 28px;
+        margin-bottom: 35px;
+    }
+
+    .hero__social {
+        margin-top: 130px;
+        padding-left: 15px;
+    }
+
+    .hero__social a {
+        color:#111111;
+        font-size: 12px;
+        display: inline-block;
+        margin-right: 30px;
+    }
+
+    .primary-btn {
+        font-size: 11px;
+    }
+
+}
+
+@media only screen and (min-width: 529px) and (max-width: 537px) {
+    .hero__text h6 {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 2px;
+    }
+    
+    .hero__text h2 {
+        font-size: 38px;
+        font-weight: 700;
+        line-height: 58px;
+    }
+    
+    .hero__text p {
+        font-size: 16px;
+        line-height: 28px;
+    }
+
+    .hero__social {
+        margin-top: 90px;
+        padding-left: 15px;
+    }
+
+    .primary-btn {
+        font-size: 13px;
+    }
+}
+
+@media only screen and (min-width: 537px) and (max-width: 739px) {
+    .hero__text {
+        padding-left: 10px;
+    }
+    
+    .hero__text h6 {
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        margin-bottom: 28px;
+    }
+    
+    .hero__text h2 {
+        font-size: 38px;
+        font-weight: 700;
+        line-height: 58px;
+        /* margin-bottom: 30px; */
+    }
+    
+    .hero__text p {
+        font-size: 16px;
+        line-height: 28px;
+        /* margin-bottom: 35px; */
+    }
+
+    .hero__social {
+        margin-top: 150px;
+        padding-left: 15px;
+    }
+
+    .primary-btn {
+        /* display: inline-block; */
+        font-size: 13px;
+    }
 }
 
 /* Tablet: width >= 740px and width < 1023px */
 @media only screen and (min-width: 740px) and (max-width: 1023px) {
-    
-
-}
-
-
-
-/* pc: width >= 1023px */
-@media only screen and (min-width: 1024px) {
+    .hero__social {
+        margin-top: 100px;
+        padding-left: 15px;
+    }
 
 }
