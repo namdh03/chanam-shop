@@ -17,7 +17,7 @@ let carts = await miniCart().getCart(userId)
 let cartBody = $('.cart__body')
 let cartSubtotal = $('.cart__totals-body-value--subtotal')
 let cartTotal = $('.cart__totals-body-value--total')
-let cartRemoveBtn = document.getElementsByClassName('cart__product-remove-btn')
+let cartRemoveBtn = document.getElementsByClassName('cart__product-remove-btn-icon')
 let cartQuantityInput = document.getElementsByClassName('cart__quantity-input')
 let cartQuantityPlusBtn = document.getElementsByClassName('cart__product-quantity-plus-btn')
 let cartQuantityMinusBtn = document.getElementsByClassName('cart__product-quantity-minus-btn')
@@ -60,7 +60,7 @@ const cart = {
                         <div class="row no-gutters cart__item" data-id="${i.productID}">
                             <div class="col l-1 m-1 c-12 cart__product-full-w">
                                 <div class="cart__product-remove-btn">
-                                    <span class="ti-close"></span>
+                                    <span class="ti-close cart__product-remove-btn-icon"></span>
                                 </div>
                             </div>
 
@@ -142,13 +142,10 @@ const cart = {
                 let cartItem = product.getParent(button, '.cart__item')
                 let cartItemID = Number(cartItem.getAttribute('data-id'))
                 let productMiniCartItem = $$('.product__mini-cart-item')
-                let headerCartQuantity = $('.header__cart-quantity')
 
                 for (let i = 0; i < productMiniCartItem.length; i++) {
                     if (Number(productMiniCartItem[i].getAttribute('data-id')) === cartItemID) {
                         productMiniCartItem[i].remove()
-                        _this.amount--
-                        headerCartQuantity.innerText = _this.amount
                         break
                     }
                 }
@@ -256,7 +253,6 @@ const cart = {
                     selector.onclick = function() {
                         Array.from(cartItem).forEach(item => {
                             if (Number(item.getAttribute('data-id')) === miniCartItemID) {
-                                _this.amount--
                                 item.remove()
                                 return
                             }

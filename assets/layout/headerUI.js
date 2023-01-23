@@ -12,13 +12,13 @@ class HeaderUI extends HTMLElement {
                     <div class="col l-5 m-0 c-0">
                         <ul class="header__menu-desktop">
                             <li><a href="./index.html" class="header__menu-item active">Home</a></li>
-                            <li><a href="" class="header__menu-item">Shop</a></li>
+                            <li><a class="header__menu-item">Shop</a></li>
                             <li><a href="./cart.html" class="header__menu-item">Features
                                 <span class="header__menu-item--features">Hot</span>
                             </a></li>
-                            <li><a href="" class="header__menu-item">Blog</a></li>
-                            <li><a href="" class="header__menu-item">About</a></li>
-                            <li><a href="" class="header__menu-item">Contact</a></li>
+                            <li><a class="header__menu-item">Blog</a></li>
+                            <li><a class="header__menu-item">About</a></li>
+                            <li><a class="header__menu-item">Contact</a></li>
                         </ul>
                     </div>
             

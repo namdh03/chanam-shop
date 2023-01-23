@@ -34,13 +34,13 @@
     text-align: center;
 }
 
-.cart__product-remove-btn span {
+.cart__product-remove-btn-icon {
     display: inline-block;
     text-align: center;
     height: 24.8px;
 }
 
-.cart__product-remove-btn span::before {
+.cart__product-remove-btn-icon::before {
     border: 1px solid var(--text-color);
     border-radius: 100%;
     padding: 8px;
@@ -54,7 +54,7 @@
     transition: all 0.3s ease;
 }
 
-.cart__product-remove-btn span:hover::before {
+.cart__product-remove-btn-icon:hover::before {
     color: var(--primary-color);
     border-color: var(--primary-color);
 }
