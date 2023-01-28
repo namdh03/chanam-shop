@@ -17,7 +17,7 @@
     font-size: 16px;
     font-family: 'Nunito Sans', sans-serif;
     line-height: 25px;
-    margin-bottom: 30px;    
+    margin-bottom: 30px;
 }
 
 .footer__widget {
@@ -51,7 +51,7 @@
     font-size: 16px;
     font-family: 'Nunito Sans', sans-serif;
     line-height: 25px;
-    margin-bottom: 30px;    
+    margin-bottom: 30px;
 }
 
 #newletter-form {
@@ -74,7 +74,7 @@
 
 .footer__widget .footer__newslatter form input:-webkit-autofill,
 .footer__widget .footer__newslatter form input:-webkit-autofill:focus {
-  transition: background-color 600000s 0s, color 600000s 0s;
+    transition: background-color 600000s 0s, color 600000s 0s;
 }
 
 .footer__widget .footer__newslatter form button {
@@ -103,6 +103,7 @@
 
 /* Mobile: width < 740px */
 @media only screen and (max-width: 739px) {
+
     .footer__about,
     .footer__widget {
         padding: 0 20px;
@@ -116,7 +117,7 @@
     }
 
     .footer__widget .footer__newslatter p {
-        margin-bottom: 16px;    
+        margin-bottom: 16px;
     }
 }
 

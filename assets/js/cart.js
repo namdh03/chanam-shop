@@ -1,5 +1,5 @@
 import validator from '../lib/validator.js'
-import {showLoaderPage, hideLoaderPage, showLoaderDefault, hideLoaderDefault} from '../js/loader.js'
+import { showLoaderPage, hideLoaderPage, showLoaderDefault, hideLoaderDefault } from '../js/loader.js'
 import { userIDStatus } from '../js/userStatus.js'
 import toast from '../lib/toast.js'
 import scroll from '../js/scrollToTop.js'
@@ -46,105 +46,107 @@ const cart = {
     isChanged: false,
 
     renderCart() {
-        for (let cart of carts) {
-            if (cart.userId === userId) {
-                this.products = cart.products
-                break
+        if (userId) {
+            for (let cart of carts) {
+                if (cart.userId === userId) {
+                    this.products = cart.products
+                    break
+                }
             }
-        }
-        
-        for (let i of this.products) {
-            for (let j of productsAPI) {
-                if (i.productID === j.id) {
-                    this.html += `
-                        <div class="row no-gutters cart__item" data-id="${i.productID}">
-                            <div class="col l-1 m-1 c-12 cart__product-full-w">
-                                <div class="cart__product-remove-btn">
-                                    <span class="ti-close cart__product-remove-btn-icon"></span>
-                                </div>
-                            </div>
 
-                            <div class="col l-1 m-1 c-12 cart__product-full-w">
-                                <div class="cart__product-wrapper-img">
-                                    <a href="./detail.html" class="cart__product-img">
-                                        <img src="${j.images[0]}" alt="">
+            for (let i of this.products) {
+                for (let j of productsAPI) {
+                    if (i.productID === j.id) {
+                        this.html += `
+                            <div class="row no-gutters cart__item" data-id="${i.productID}">
+                                <div class="col l-1 m-1 c-12 cart__product-full-w">
+                                    <div class="cart__product-remove-btn">
+                                        <span class="ti-close cart__product-remove-btn-icon"></span>
+                                    </div>
+                                </div>
+    
+                                <div class="col l-1 m-1 c-12 cart__product-full-w">
+                                    <div class="cart__product-wrapper-img">
+                                        <a href="./detail.html" class="cart__product-img">
+                                            <img src="${j.images[0]}" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+    
+                                <div class="col l-3 m-3 c-12 cart__product-full-w">
+                                    <a href="./detail.html" class="cart__product-title cart__pad">
+                                        <span>${j.title}</span>
                                     </a>
                                 </div>
-                            </div>
-
-                            <div class="col l-3 m-3 c-12 cart__product-full-w">
-                                <a href="./detail.html" class="cart__product-title cart__pad">
-                                    <span>${j.title}</span>
-                                </a>
-                            </div>
-
-                            <div class="col l-2 m-2 c-12">
-                                <div class="cart__product-price cart__pad">£${j.price}</div>
-                            </div>
-
-                            <div class="col l-3 m-3 c-12 cart__product-full-w">
-                                <div class="form-group">
-                                    <div class="cart__product-quantity cart__pad">
-                                        <div class="cart__product-quantity-btn cart__product-quantity-minus-btn">
-                                            <i class="fa-solid fa-minus"></i>
-                                        </div>
-                                        <input id="quantity" name="quantity" rules="required|number|quantity:1" type="number"
-                                            step="1" min="0" max="99999" value="${i.quantity}" inputmode="numeric" autocomplete="off"
-                                            class="form-control cart__quantity-input">
-                                        <div class="cart__product-quantity-btn cart__product-quantity-plus-btn">
-                                            <i class="fa-solid fa-plus"></i>
+    
+                                <div class="col l-2 m-2 c-12">
+                                    <div class="cart__product-price cart__pad">£${j.price}</div>
+                                </div>
+    
+                                <div class="col l-3 m-3 c-12 cart__product-full-w">
+                                    <div class="form-group">
+                                        <div class="cart__product-quantity cart__pad">
+                                            <div class="cart__product-quantity-btn cart__product-quantity-minus-btn">
+                                                <i class="fa-solid fa-minus"></i>
+                                            </div>
+                                            <input id="quantity" name="quantity" rules="required|number|quantity:1" type="number"
+                                                step="1" min="0" max="99999" value="${i.quantity}" inputmode="numeric" autocomplete="off"
+                                                class="form-control cart__quantity-input">
+                                            <div class="cart__product-quantity-btn cart__product-quantity-plus-btn">
+                                                <i class="fa-solid fa-plus"></i>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+    
+                                <div class="col l-2 m-2 c-12 cart__product-full-w">
+                                    <div class="cart__product-subtotal cart__pad">£${j.price * i.quantity}</div>
+                                </div>
                             </div>
-
-                            <div class="col l-2 m-2 c-12 cart__product-full-w">
-                                <div class="cart__product-subtotal cart__pad">£${j.price * i.quantity}</div>
-                            </div>
-                        </div>
-                    `
-                    break
+                        `
+                        break
+                    }
                 }
             }
+
+            for (let i of this.products) {
+                for (let j of productsAPI) {
+                    if (i.productID === j.id) {
+                        this.amount += i.quantity
+                        this.subTotal += i.quantity * j.price
+                        break
+                    }
+                }
+            }
+
+            cartBody.innerHTML = this.html
+            cartSubtotal.innerText = '£' + this.subTotal
+            cartTotal.innerText = '£' + this.subTotal
+
+            let cartListImg = $$('.cart__product-img img')
+            Array.from(cartListImg).forEach((img, index) => {
+                if (index === cartListImg.length - 1) {
+                    img.onload = function () {
+                        hideLoaderPage()
+                    }
+                }
+            })
         }
-
-        for (let i of this.products) {
-            for (let j of productsAPI) {
-                if (i.productID === j.id) {
-                    this.amount += i.quantity
-                    this.subTotal += i.quantity * j.price
-                    break
-                }
-            }
-        }
-
-        cartBody.innerHTML = this.html
-        cartSubtotal.innerText = '£' + this.subTotal
-        cartTotal.innerText = '£' + this.subTotal
-
-        let cartListImg = $$('.cart__product-img img')
-        Array.from(cartListImg).forEach((img, index) => {
-            if (index === cartListImg.length - 1) {
-                img.onload = function() {
-                    hideLoaderPage()
-                }
-            }
-        })
     },
 
-    handleEvents () {
+    handleEvents() {
         const _this = this
 
         // Handle delete cart items
         Array.from(cartRemoveBtn).forEach(button => {
-            button.onclick = function() {
+            button.onclick = function () {
                 showLoaderDefault()
                 let cartItem = product.getParent(button, '.cart__item')
-                let cartItemID = Number(cartItem.getAttribute('data-id'))
+                let cartItemID = cartItem.getAttribute('data-id')
                 let productMiniCartItem = $$('.product__mini-cart-item')
 
                 for (let i = 0; i < productMiniCartItem.length; i++) {
-                    if (Number(productMiniCartItem[i].getAttribute('data-id')) === cartItemID) {
+                    if (productMiniCartItem[i].getAttribute('data-id') === cartItemID) {
                         productMiniCartItem[i].remove()
                         break
                     }
@@ -174,7 +176,7 @@ const cart = {
 
         // Handle increase quantity products
         Array.from(cartQuantityPlusBtn).forEach(button => {
-            button.onclick = function() {
+            button.onclick = function () {
                 _this.activeCartUpdateBtn()
                 let input = button.previousElementSibling
                 input.value++
@@ -184,7 +186,7 @@ const cart = {
 
         // Handle decrease quantity products
         Array.from(cartQuantityMinusBtn).forEach(button => {
-            button.onclick = function() {
+            button.onclick = function () {
                 _this.activeCartUpdateBtn()
                 let input = button.nextElementSibling
 
@@ -199,7 +201,7 @@ const cart = {
 
         // Handle onchange input quantity
         Array.from(cartQuantityInput).forEach(input => {
-            input.onkeypress = function(e) {
+            input.onkeypress = function (e) {
                 let ASCIICode = (e.which) ? e.which : e.keyCode
 
                 if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57)) {
@@ -213,28 +215,28 @@ const cart = {
                 return true
             }
 
-            input.onblur = function() {
+            input.onblur = function () {
                 input.classList.remove('active')
             }
         })
 
         // Handle update cart
-        cartUpdateBtn.onclick = function() {
+        cartUpdateBtn.onclick = function () {
             if (cartUpdateBtn.classList.contains('active') && _this.isChanged === true) {
                 showLoaderDefault()
-                
+
                 setTimeout(() => {
                     let cart = {}
                     let products = []
                     Array.from(cartItem).forEach(item => {
                         let quantity = Number(item.querySelector('.cart__quantity-input').value)
-                        let productID = Number(item.getAttribute('data-id'))
+                        let productID = item.getAttribute('data-id')
 
                         if (quantity !== 0) {
                             products.push({ productID, quantity })
                         }
                     })
-                    
+
                     cart['products'] = products
                     miniCart().updateProducts(cart, userId, () => {
                         window.location.reload()
@@ -248,11 +250,11 @@ const cart = {
             .then(selectors => {
                 Array.from(selectors).forEach(selector => {
                     let productMiniCartItem = product.getParent(selector, '.product__mini-cart-item')
-                    let miniCartItemID = Number(productMiniCartItem.getAttribute('data-id'))
+                    let miniCartItemID = productMiniCartItem.getAttribute('data-id')
 
-                    selector.onclick = function() {
+                    selector.onclick = function () {
                         Array.from(cartItem).forEach(item => {
-                            if (Number(item.getAttribute('data-id')) === miniCartItemID) {
+                            if (item.getAttribute('data-id') === miniCartItemID) {
                                 item.remove()
                                 return
                             }
@@ -261,24 +263,24 @@ const cart = {
                         for (let i = 0; i < _this.products.length; i++) {
                             if (miniCartItemID === _this.products[i].productID) {
                                 _this.products.splice(i, 1)
-                                
+
                                 if (_this.products.length === 0) {
                                     showLoaderPage()
-                                    
+
                                     setTimeout(() => {
                                         _this.showReturnHomeBtn()
                                     }, 1000)
                                 }
-    
+
                                 break
                             }
                         }
                     }
-                }) 
+                })
             })
 
         // Handle submit coupon code
-        cartCouponSubmit.onclick = function() {
+        cartCouponSubmit.onclick = function () {
             if (typeof cartCouponCode.value !== 'string' || cartCouponCode.value.trim().length !== 0) {
                 toast({
                     title: 'Error!',
@@ -292,18 +294,18 @@ const cart = {
 
         //  Handle click to image link product in cart
         Array.from(cartProductImgLinks).forEach(link => {
-            link.onclick = function() {
+            link.onclick = function () {
                 let productId = product.getParent(link, '.cart__item').getAttribute('data-id')
-                window.localStorage.setItem('productId', productId) 
+                window.localStorage.setItem('productId', productId)
             }
         })
 
         Array.from(cartProductTitleLinks).forEach(link => {
-            link.onclick = function() {
+            link.onclick = function () {
                 let productId = product.getParent(link, '.cart__item').getAttribute('data-id')
-                window.localStorage.setItem('productId', productId) 
+                window.localStorage.setItem('productId', productId)
             }
-        }) 
+        })
     },
 
     activeCartUpdateBtn() {

@@ -144,7 +144,7 @@
 }
 
 .cart-coupon__form,
-.cart__update  {
+.cart__update {
     padding: 14px;
 }
 
@@ -338,7 +338,7 @@
     .cart__product-wrapper-img,
     .cart__product-title,
     .cart__product-quantity,
-    .cart__product-subtotal  {
+    .cart__product-subtotal {
         padding: 14px;
         border-bottom: 1px solid #ebebeb;
     }
@@ -357,9 +357,7 @@
 }
 
 /* Tablet: width >= 740px and width < 1024px */
-@media only screen and (min-width: 740px) and (max-width: 1023px) {
-    
-}
+@media only screen and (min-width: 740px) and (max-width: 1023px) {}
 
 /* Mobile & tablet */
 @media (max-width: 1023px) {
@@ -369,7 +367,7 @@
 
     .cart-coupon__code {
         width: 100%;
-    }    
+    }
 
     .cart-coupon__submit {
         margin-top: 10px;

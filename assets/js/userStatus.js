@@ -5,7 +5,7 @@ let userId = window.localStorage.getItem('userId')
 let navClientUser = $('.header__icon--user span')
 
 export function userIDStatus() {
-    navClientUser.onclick = function() {
+    navClientUser.onclick = function () {
         if (userId) {
             window.location.href = './user.html'
         } else {

@@ -40,7 +40,7 @@ function createCart(data, userId, callback) {
         },
         body: JSON.stringify(data)
     }
-    
+
     fetch('https://63b1106f6a74151a1bca76f7.mockapi.io/api/v1/users/' + `${userId}` + '/carts', options)
         .then(response => {
             response.json()
@@ -107,7 +107,7 @@ signUpForm.onSubmit = async formData => {
             let cart = {
                 products: [],
             }
-            
+
             createUser(user)
 
             users = await getUsersAPI()

@@ -1,5 +1,5 @@
 import validator from '../lib/validator.js'
-import {showLoaderPage, hideLoaderPage, showLoaderDefault, hideLoaderDefault} from './loader.js'
+import { showLoaderPage, hideLoaderPage, showLoaderDefault, hideLoaderDefault } from './loader.js'
 import product from './product.js'
 
 const $ = document.querySelector.bind(document)
@@ -40,7 +40,7 @@ export default function quickViewProducts(products = undefined) {
         countQuantity: 1,
         indexImg: 0,
         innerIndexImg: 0,
-        
+
         renderQuickView() {
             const _this = this
             Array.from(quickViewButtons).forEach(button => {
@@ -84,7 +84,7 @@ export default function quickViewProducts(products = undefined) {
                     }
 
                     let qvTablistImg = $$('.product__qv-tablist-img img')
-                    qvTablistImg[qvTablistImg.length - 1].onload = function() {
+                    qvTablistImg[qvTablistImg.length - 1].onload = function () {
                         hideLoaderDefault()
 
                         // Handle the display of the product quick view interface
@@ -192,7 +192,7 @@ export default function quickViewProducts(products = undefined) {
                 }
             }
 
-            inputQuantity.oninput = function() {
+            inputQuantity.oninput = function () {
                 _this.countQuantity = inputQuantity.value
                 plusButtonParent.classList.remove('invalid')
                 minusButtonParent.classList.remove('invalid')

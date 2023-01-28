@@ -9,12 +9,12 @@ let currLocation = window.location.href
 
 export default {
     handleEvent() {
-        headerHamburgerBox.onclick = function() {
+        headerHamburgerBox.onclick = function () {
             mobileMenu.classList.toggle('active')
             headerHamburgerBox.classList.toggle('active')
             headerMenuMobile.classList.toggle('active')
         }
-        
+
         // Handle add class active for navigation item when page is redirected
         Array.from(headerMenuItem).forEach(item => {
             if (item.href === currLocation) {

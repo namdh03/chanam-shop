@@ -10,12 +10,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
     <link rel="stylesheet" href="./assets/css/main.css">
     <script type="module" src="./assets/layout/controlUI.js"></script>
     <script type="module" src="./assets/layout/headerUI.js"></script>
     <script type="module" src="./assets/layout/heroUI.js"></script>
     <script type="module" src="./assets/layout/bannerUI.js"></script>
+    <script type="module" src="./assets/layout/popupUI.js"></script>
     <script type="module" src="./assets/layout/productUI.js"></script>
     <script type="module" src="./assets/layout/miniCartUI.js"></script>
     <script type="module" src="./assets/layout/footerUI.js"></script>
@@ -25,14 +26,17 @@
     <section id="control"><control-ui></control-ui></section>
     <section id="header">
         <header-ui></header-ui>
-        
+
         <div id="mobile-menu">
             <mobile-menu-ui></mobile-menu-ui>
         </div>
     </section>
     <section id="hero" class="layout"><hero-ui></hero-ui></section>
     <section id="banner" class="layout"><banner-ui></banner-ui></section>
-    <section id="product" class="layout"><product-ui></product-ui></section>
+    <section id="product" class="layout">
+        <popup-ui></popup-ui>
+        <product-ui></product-ui>
+    </section>
     <section id="mini-cart"><mini-cart-ui></mini-cart-ui></section>
     <section id="footer" class="layout"><footer-ui></footer-ui></section>
 

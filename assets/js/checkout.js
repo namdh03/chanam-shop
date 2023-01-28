@@ -149,12 +149,46 @@ async function renderOrderCheckout(productsAPI) {
     let html = ''
     let products = []
     let subTotal = 0
-    let carts = await miniCart().getCart(userId)
 
-    for (let cart of carts) {
-        if (cart.userId === userId) {
-            products = cart.products
-            break
+    if (userId) {
+        let carts = await miniCart().getCart(userId)
+
+        for (let cart of carts) {
+            if (cart.userId === userId) {
+                products = cart.products
+                break
+            }
+        }
+
+        for (let i of products) {
+            for (let j of productsAPI) {
+                if (i.productID === j.id) {
+                    html += `
+                        <div class="row no-gutters">
+                            <div class="col l-6 m-6 c-6">
+                                <div class="checkout__order-title-product product__order--frames">
+                                    <div class="checkout__order-name-product">${j.title}</div>
+                                    <div class="checkout__order-quantity-product"> x ${i.quantity}</div>
+                                </div>
+                            </div>
+                        
+                            <div class="col l-6 m-6 c-6">
+                                <div class="checkout__order-price-product product__order--frames">£${j.price * i.quantity}</div>
+                            </div>
+                        </div>
+                    `
+                    break
+                }
+            }
+        }
+
+        for (let i of products) {
+            for (let j of productsAPI) {
+                if (i.productID === j.id) {
+                    subTotal += i.quantity * j.price
+                    break
+                }
+            }
         }
     }
 
@@ -162,37 +196,6 @@ async function renderOrderCheckout(productsAPI) {
         checkoutWrapper.remove()
         checkoutReturnHome.classList.remove('hide')
         productMiniCartClose.click()
-    }
-
-    for (let i of products) {
-        for (let j of productsAPI) {
-            if (i.productID === j.id) {
-                html += `
-                    <div class="row no-gutters">
-                        <div class="col l-6 m-6 c-6">
-                            <div class="checkout__order-title-product product__order--frames">
-                                <div class="checkout__order-name-product">${j.title}</div>
-                                <div class="checkout__order-quantity-product"> x ${i.quantity}</div>
-                            </div>
-                        </div>
-                    
-                        <div class="col l-6 m-6 c-6">
-                            <div class="checkout__order-price-product product__order--frames">£${j.price}</div>
-                        </div>
-                    </div>
-                `
-                break
-            }
-        }
-    }
-
-    for (let i of products) {
-        for (let j of productsAPI) {
-            if (i.productID === j.id) {
-                subTotal += i.quantity * j.price
-                break
-            }
-        }
     }
 
     checkoutOrderBody.innerHTML = html
@@ -203,10 +206,12 @@ async function renderOrderCheckout(productsAPI) {
 }
 
 Array.from(productMniCartRemoveBtn).forEach(button => {
-    button.onclick = async function() {
+    button.onclick = async function () {
         let productsAPI = await product.getProductsAPI()
-        await renderOrderCheckout(productsAPI)
+        renderOrderCheckout(productsAPI)
     }
 })
 
-createFormData(userData, userId, hideLoaderPage)
+if (userId) {
+    createFormData(userData, userId, hideLoaderPage)
+}

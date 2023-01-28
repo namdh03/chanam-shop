@@ -16,12 +16,12 @@ const $$ = document.querySelectorAll.bind(document)
 let userApi = 'https://63b1106f6a74151a1bca76f7.mockapi.io/api/v1/users'
 let productsAPI = await product.getProductsAPI()
 let userId = window.localStorage.getItem('userId')
-let userAccNavItems  = $$('.user__account-nav-item')
+let userAccNavItems = $$('.user__account-nav-item')
 let userAccNavIcons = $$('.user__account-nav-icon')
 let userAccContent = $$('.user__acc-content')
 let userAccContentAddress = $('.user__acc-content--address')
 let userAccContentAccDetails = $('.user__acc-content--account-details')
-let userAccContentNotify  = $('.user__acc-content--notify')
+let userAccContentNotify = $('.user__acc-content--notify')
 let userAccContentLinkAddresses = $('.user__acc-content-link--addresses')
 let userAccContentLinkAccDetails = $('.user__acc-content-link--acc-details')
 let userAccountNavAddresses = $('.user__account-nav--addresses')
@@ -30,7 +30,7 @@ let userLogout = $$('.user__logout')
 let countrySelect = $('#country')
 let userData = $$('.user-data')
 let userNameApi = $$('.user__name--api')
-let addressesForm= new validator('#addresses-form')
+let addressesForm = new validator('#addresses-form')
 let userForm = new validator('#user-form')
 
 userIDStatus()
@@ -60,7 +60,7 @@ const user = {
             },
             body: JSON.stringify(data)
         }
-    
+
         fetch('https://63b1106f6a74151a1bca76f7.mockapi.io/api/v1/users/' + `${userId}`, options)
             .then(function (response) {
                 response.json();
@@ -81,7 +81,7 @@ const user = {
 
         // Handle add class active when user nav item clicked
         Array.from(userAccNavItems).forEach((item, index) => {
-            item.onclick = function() {
+            item.onclick = function () {
                 _this.activeNavContent()
                 _this.activeNavIcons()
                 userAccNavIcons[index].classList.add('active')
@@ -104,7 +104,7 @@ const user = {
         })
 
         // Handle switching to user address editing tab
-        userAccContentLinkAddresses.onclick = function() {
+        userAccContentLinkAddresses.onclick = function () {
             let icon = userAccountNavAddresses.querySelector('.user__account-nav-icon')
 
             _this.activeNavContent()
@@ -114,9 +114,9 @@ const user = {
         }
 
         // Handle switching to user account details editing tab
-        userAccContentLinkAccDetails.onclick = function() {
+        userAccContentLinkAccDetails.onclick = function () {
             let icon = userAccountNavAccountDetails.querySelector('.user__account-nav-icon')
-            
+
             _this.activeNavContent()
             _this.activeNavIcons()
             userAccContentAccDetails.classList.remove('hide')
@@ -125,7 +125,7 @@ const user = {
 
         // Handle logout and back to home
         Array.from(userLogout).forEach(button => {
-            button.onclick = function() {
+            button.onclick = function () {
                 window.localStorage.removeItem('userId')
                 window.location.href = './index.html'
             }
@@ -160,7 +160,7 @@ const user = {
                     break
                 }
             }
-    
+
             if (isExistedEmail) {
                 toast({
                     title: 'Error!',
@@ -218,7 +218,7 @@ const user = {
                     if (_this.user.username === username) {
                         isExistedUsername = false
                     }
-                } 
+                }
                 if (user.password === oldPassword) {
                     isExistedPassword = true
                 }

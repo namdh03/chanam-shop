@@ -17,20 +17,20 @@ let viewMoreButton = $('.product__view-more-btn')
 let productItemLinks = document.getElementsByClassName('product__item-link')
 let productItemInfoLinks = document.getElementsByClassName('product__item-info-link')
 
-export default  {
+export default {
     products: [],
     categories: [],
     curIndex: 0,
 
     async getProductsAPI() {
         showLoaderPage()
-        let productApi = 'https://api.escuelajs.co/api/v1/products'
+        let productApi = 'https://63cd48090f1d5967f02d485e.mockapi.io/products'
         return (await fetch(productApi)).json()
     },
 
     async getCategoriesAPI() {
         showLoaderPage()
-        let categoryApi = 'https://api.escuelajs.co/api/v1/categories'
+        let categoryApi = 'https://63cd48090f1d5967f02d485e.mockapi.io/categories'
         return (await fetch(categoryApi)).json()
     },
 
@@ -170,19 +170,19 @@ export default  {
 
         // Handle show product details
         Array.from(productItemLinks).forEach(link => {
-            link.onclick = function() {
+            link.onclick = function () {
                 let product = _this.getParent(link, '.product__item')
                 let productId = product.getAttribute('data-id')
-                
+
                 window.localStorage.setItem('productId', productId)
             }
         })
 
         Array.from(productItemInfoLinks).forEach(link => {
-            link.onclick = function() {
+            link.onclick = function () {
                 let product = _this.getParent(link, '.product__item')
                 let productId = product.getAttribute('data-id')
-                
+
                 window.localStorage.setItem('productId', productId)
             }
         })

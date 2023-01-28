@@ -6,7 +6,6 @@ const $$ = document.querySelectorAll.bind(document)
 
 export default function miniCart(products = undefined) {
     let userId = window.localStorage.getItem('userId')
-    let cartApi = 'https://63b1106f6a74151a1bca76f7.mockapi.io/api/v1/users/1/carts'
     let navClientCart = $('.header__icon--cart span')
     let productMiniCart = $('.product__mini-cart')
     let productMiniCartWrapper = $('.product__mini-cart-wrapper')
@@ -14,7 +13,9 @@ export default function miniCart(products = undefined) {
     let productMiniCartItems = $('.product__mini-cart-items')
     let productMiniCartSubtotalNumber = $('.product__mini-cart-subtotal-number')
     let qvForm = $('#qv-form')
+    let detailForm = $('#detail-form')
     let qvFormValidator = new validator('#qv-form')
+    let detailFormValidator = new validator('#detail-form')
     let productPopup = $('.product__popup')
     let productPopupQuantity = $('.product__popup-quantity')
     let productPopupTotal = $('.product__popup-total')
@@ -49,6 +50,7 @@ export default function miniCart(products = undefined) {
         },
 
         async getCart(userId) {
+            if (!userId) return
             return (await fetch('https://63b1106f6a74151a1bca76f7.mockapi.io/api/v1/users/' + userId + '/carts')).json()
         },
 
@@ -61,8 +63,8 @@ export default function miniCart(products = undefined) {
                 },
                 body: JSON.stringify(data)
             }
-        
-            fetch(cartApi + '/' + id, options)
+
+            fetch('https://63b1106f6a74151a1bca76f7.mockapi.io/api/v1/users/' + id + '/carts/' + id, options)
                 .then(function (response) {
                     response.json()
                 })
@@ -74,7 +76,7 @@ export default function miniCart(products = undefined) {
             this.isElementLoaded('.product__btn--add-to-cart', 'querySelectorAll')
                 .then(selectors => {
                     const _this = this
-                    
+
                     Array.from(selectors).forEach(button => {
                         button.onclick = function () {
                             if (userId) {
@@ -92,14 +94,14 @@ export default function miniCart(products = undefined) {
                     this.showEmptyText()
                 })
 
-                for (let i of this.products) {
-                    for (let j of products) {
-                        if (i.productID === j.id) {
-                            this.createCartItem(j.images[0], j.title, i.quantity, j.price, i.productID)
-                            break
-                        }
+            for (let i of this.products) {
+                for (let j of products) {
+                    if (i.productID === j.id) {
+                        this.createCartItem(j.images[0], j.title, i.quantity, j.price, i.productID)
+                        break
                     }
                 }
+            }
         },
 
         // Handle render popup notification
@@ -118,7 +120,7 @@ export default function miniCart(products = undefined) {
 
             this.subTotal += amount * productItem.price
             productMiniCartSubtotalNumber.innerText = '£' + this.subTotal
-            
+
             this.amount += quantity
             headerCartQuantity.innerText = this.amount
 
@@ -134,15 +136,15 @@ export default function miniCart(products = undefined) {
             this.cart["products"] = this.products
             this.cart["userId"] = userId
             this.updateProducts(this.cart, userId)
-            
+
             for (let item of productMiniCartItem) {
-                if (Number(item.getAttribute('data-id')) === productID) {
+                if (item.getAttribute('data-id') === productID) {
                     let number = item.querySelector('.product__mini-cart-quantity')
                     number.innerText = quantity + ' x'
                     return
                 }
             }
-            
+
             this.createCartItem(productItem.images[0], productItem.title, quantity, productItem.price, productID)
         },
 
@@ -185,11 +187,11 @@ export default function miniCart(products = undefined) {
                     let item = product.getParent(button, '.product__mini-cart-item')
                     let quantity = Number(item.querySelector('.product__mini-cart-quantity').textContent.replace(/\D/g, ''))
                     let price = Number(item.querySelector('.product__mini-cart-number').textContent.replace(/\D/g, ''))
-                    
+
                     item.remove()
 
                     for (let i = 0; i < _this.products.length; i++) {
-                        if (Number(item.getAttribute('data-id')) === _this.products[i].productID) {
+                        if (item.getAttribute('data-id') === _this.products[i].productID) {
                             _this.products.splice(i, 1)
                             _this.cart["products"] = _this.products
                             _this.cart["userId"] = userId
@@ -226,26 +228,26 @@ export default function miniCart(products = undefined) {
 
             // Handle close popup add to cart
             if (productPopupOverlay) {
-                productPopupOverlay.onclick = function() {
+                productPopupOverlay.onclick = function () {
                     productPopup.classList.add('hide')
                 }
             }
 
             if (productPopupContinueBtn) {
-                productPopupContinueBtn.onclick = function() {
+                productPopupContinueBtn.onclick = function () {
                     productPopup.classList.add('hide')
                 }
             }
 
             // Handle switch to cart page
             if (productPopupCartBtn) {
-                productPopupCartBtn.onclick = function() {
+                productPopupCartBtn.onclick = function () {
                     window.location.href = './cart.html'
                 }
             }
 
             // Handle close product mini cart
-            productMiniCart.onclick = function(e) {
+            productMiniCart.onclick = function (e) {
                 if (e.target !== this) {
                     return
                 }
@@ -254,17 +256,17 @@ export default function miniCart(products = undefined) {
 
             //  Handle click to image link product in mini cart
             Array.from(productMiniCartThumbnailLinks).forEach(link => {
-                link.onclick = function() {
+                link.onclick = function () {
                     let productId = product.getParent(link, '.product__mini-cart-item').getAttribute('data-id')
-                    window.localStorage.setItem('productId', productId)                    
+                    window.localStorage.setItem('productId', productId)
                 }
             })
 
             //  Handle click to title link product in mini cart
             Array.from(productMiniCartNameLinks).forEach(link => {
-                link.onclick = function() {
+                link.onclick = function () {
                     let productId = product.getParent(link, '.product__mini-cart-item').getAttribute('data-id')
-                    window.localStorage.setItem('productId', productId) 
+                    window.localStorage.setItem('productId', productId)
                 }
             })
         },
@@ -310,11 +312,11 @@ export default function miniCart(products = undefined) {
             }
             headerCartQuantity.innerText = this.amount
         },
-        
+
         async loadCurrProducts() {
             if (userId) {
                 let carts = await this.getCart(userId)
-                
+
                 for (let cart of carts) {
                     if (cart.userId === userId) {
                         this.products = cart.products
@@ -342,6 +344,20 @@ export default function miniCart(products = undefined) {
             }
         },
 
+        detailSubmitForm() {
+            const _this = this
+            detailFormValidator.onSubmit = formData => {
+                let productId = window.localStorage.getItem('productId')
+                let quantity = Number($('.num').textContent)
+
+                this.renderMiniCart(products, productId - 1, quantity)
+
+                // Handle show popup notification when detail add to cart button clicked
+                this.renderPopup()
+                this.showEmptyText()
+            }
+        },
+
         async start() {
             await this.loadCurrProducts()
             this.loadSubtotal()
@@ -349,6 +365,7 @@ export default function miniCart(products = undefined) {
             this.miniCart()
             this.handleEvents()
             this.qvSubmitForm()
+            this.detailSubmitForm()
             this.showEmptyText()
         }
     }

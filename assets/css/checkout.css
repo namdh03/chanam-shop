@@ -160,9 +160,9 @@
 }
 
 .form__label--modifier--modifier {
-    white-space: nowrap; 
+    white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis; 
+    text-overflow: ellipsis;
 }
 
 .form__information .form__label--modifier span {
@@ -364,7 +364,7 @@
     cursor: pointer;
 }
 
-input[type="radio"]:checked ~ .checkout__order-label label:after {
+input[type="radio"]:checked~.checkout__order-label label:after {
     width: 5px;
     height: 5px;
     border-radius: 50%;
@@ -472,7 +472,7 @@ input[type="radio"]:checked ~ .checkout__order-label label:after {
     .checkout-coupon p {
         font-size: 14px;
     }
-    
+
     .checkout-coupon__code {
         font-size: 14px;
     }
@@ -481,7 +481,8 @@ input[type="radio"]:checked ~ .checkout__order-label label:after {
         padding: 30px 20px;
     }
 
-    .checkout__order-title-product, .checkout__order-quantity-product {
+    .checkout__order-title-product,
+    .checkout__order-quantity-product {
         font-size: 15px;
     }
 
@@ -512,9 +513,7 @@ input[type="radio"]:checked ~ .checkout__order-label label:after {
 }
 
 /* Tablet: width >= 740px and width < 1024px */
-@media only screen and (min-width: 740px) and (max-width: 1023px) {
-    
-}
+@media only screen and (min-width: 740px) and (max-width: 1023px) {}
 
 /* Mobile & tablet */
 @media (max-width: 1023px) {

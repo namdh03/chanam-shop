@@ -17,7 +17,7 @@ export function createCountryOption(...selectors) {
                     `
                 }
             }).join('')
-            
+
             for (let selector of selectors) {
                 selector.innerHTML = option
             }
