@@ -111,9 +111,6 @@ signUpForm.onSubmit = async formData => {
             }
 
             createUser(user)
-
-            users = await getUsersAPI()
-            userId = users.length + 1
             createCart(cart, userId, () => window.location.href = './login.html')
         }
     }
