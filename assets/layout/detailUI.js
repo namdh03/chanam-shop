@@ -93,7 +93,7 @@ class DetailUI extends HTMLElement {
                                             <span class="ti-plus plus"></span>
                                         </div>
 
-                                        <button class="detail-add-to-wishlist">
+                                        <button type="button" class="detail-add-to-wishlist">
                                             <i class="fa-regular fa-heart"></i>
                                         </button>
                                     </div>

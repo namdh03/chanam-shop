@@ -28,7 +28,7 @@ class CheckoutUI extends HTMLElement {
             </div>
 
             <div class="grid wide checkout__wrapper">
-                <div class="row">
+                <div class="row row-mobile">
                     <div class="col l-12 m-12 c-12">
                         <div id="checkout-coupon" class="checkout-coupon hide">
                             <p>If you have a coupon code, please apply it below.</p>

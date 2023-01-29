@@ -29,7 +29,7 @@ class CartUI extends HTMLElement {
             </div>
 
             <div class="grid wide cart__wrapper">
-                <div class="row">
+                <div class="row row-mobile">
                     <div class="col l-8 m-12 c-12">
                         <div class="cart__info">
                             <div class="grid cart__header">

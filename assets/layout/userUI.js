@@ -28,7 +28,7 @@ class UserUI extends HTMLElement {
             </div>
 
             <div class="grid wide user__wrraper">
-                <div class="row">
+                <div class="row row-mobile">
                     <div class="col l-3 m-12 c-12">
                         <div class="user__profile">
                             <div class="user__img">
