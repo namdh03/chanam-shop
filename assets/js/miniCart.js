@@ -347,14 +347,18 @@ export default function miniCart(products = undefined) {
         detailSubmitForm() {
             const _this = this
             detailFormValidator.onSubmit = formData => {
-                let productId = window.localStorage.getItem('productId')
-                let quantity = Number($('.num').textContent)
+                if (userId) {
+                    let productId = window.localStorage.getItem('productId')
+                    let quantity = Number($('.num').textContent)
 
-                this.renderMiniCart(products, productId - 1, quantity)
+                    this.renderMiniCart(products, productId - 1, quantity)
 
-                // Handle show popup notification when detail add to cart button clicked
-                this.renderPopup()
-                this.showEmptyText()
+                    // Handle show popup notification when detail add to cart button clicked
+                    this.renderPopup()
+                    this.showEmptyText()
+                } else {
+                    window.location.href = './login.html'
+                }
             }
         },
 

@@ -8,7 +8,7 @@ class FooterUI extends HTMLElement {
                         <div class="footer__about">
                             <div class="footer__logo">
                                 <a href="./index.html">
-                                    <img src="./assets/img/footer-logo.png" alt="">
+                                    <img src="./assets/img/footer.png" alt="">
                                 </a>
                             </div>
                             <p>The customer is at the heart of our unique business model, which includes design.</p>

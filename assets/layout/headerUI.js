@@ -5,7 +5,7 @@ class HeaderUI extends HTMLElement {
                 <div class="row">
                     <div class="col l-3 m-4 c-0">
                         <a href="./index.html" class="header__logo-desktop">
-                            <img src="./assets/img/logo.png" alt="">
+                            <img src="./assets/img/header.png" alt="">
                         </a>
                     </div>
             

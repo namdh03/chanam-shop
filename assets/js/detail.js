@@ -43,7 +43,7 @@ miniCart(productsAPI).start()
 scroll()
 footer.start()
 
-if (!userId) {
+if (!productId) {
     detailReturnHome.classList.remove('hide')
     detailWrapper.classList.add('hide')
     hideLoaderPage()
