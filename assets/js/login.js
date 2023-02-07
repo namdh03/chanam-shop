@@ -16,6 +16,28 @@ async function getUsersAPI() {
     return (await fetch(userApi)).json()
 }
 
+async function createCart(data, userId, callback) {
+    let options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        mode: 'cors',
+        body: JSON.stringify(data)
+    }
+
+    fetch('https://63b1106f6a74151a1bca76f7.mockapi.io/api/v1/users/' + `${userId}` + '/carts', options)
+        .then(response => {
+            response.json()
+        })
+        .then(callback)
+}
+
+async function getCart(userId) {
+    if (!userId) return
+    return (await fetch('https://63b1106f6a74151a1bca76f7.mockapi.io/api/v1/users/' + userId + '/carts')).json()
+}
+
 loginForm.onSubmit = async formData => {
     showLoaderDefault()
     let isExistedUsername = false
@@ -32,6 +54,17 @@ loginForm.onSubmit = async formData => {
                 if (user.password === password) {
                     isExistedPassword = true
                     window.localStorage.setItem('userId', user.id)
+                    
+                    let userId = window.localStorage.getItem('userId')
+                    let cartUser = await getCart(userId)
+
+                    if (Object.keys(cartUser).length === 0) {
+                        let cart = {
+                            products: [],
+                        }
+
+                        await createCart(cart, userId)
+                    }
                 }
 
                 break

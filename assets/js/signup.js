@@ -33,23 +33,6 @@ function createUser(data, callback) {
         .then(callback)
 }
 
-function createCart(data, userId, callback) {
-    let options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        mode: 'cors',
-        body: JSON.stringify(data)
-    }
-
-    fetch('https://63b1106f6a74151a1bca76f7.mockapi.io/api/v1/users/' + `${userId}` + '/carts', options)
-        .then(response => {
-            response.json()
-        })
-        .then(callback)
-}
-
 signUpForm.onSubmit = async formData => {
     showLoaderPage()
     let isExistedEmail = false
@@ -58,7 +41,6 @@ signUpForm.onSubmit = async formData => {
     let username = formData.username
     let password = formData.password
     let users = await getUsersAPI()
-    let userId = users.length + 1
 
     if (typeof users === 'object') {
         for (let user of users) {
@@ -106,12 +88,7 @@ signUpForm.onSubmit = async formData => {
                 apartment: '',
             }
 
-            let cart = {
-                products: [],
-            }
-
-            createUser(user)
-            createCart(cart, userId, () => window.location.href = './login.html')
+            createUser(user, () => window.location.href = './login.html')
         }
     }
 }
