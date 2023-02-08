@@ -63,7 +63,7 @@ loginForm.onSubmit = async formData => {
                             products: [],
                         }
 
-                        await createCart(cart, userId)
+                        await createCart(cart, userId, () => window.location.href = './index.html')
                     }
                 }
 
